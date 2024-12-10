@@ -1,7 +1,7 @@
 class LibrariesController < ApplicationController
 
   def index
-    @libraries = Library.all
+    @libraries = current_user.libraries
   end
 
   def show
@@ -13,8 +13,8 @@ class LibrariesController < ApplicationController
     if @library.save
       redirect_to @library, notice: "La biblioteca fue creada con éxito.."
     else
-      render :new status: :unprocessable_entity
-
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def destroy

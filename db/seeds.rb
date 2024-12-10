@@ -1,24 +1,14 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 # Creación de usuarios con nombres reales
 user1 = User.create!(email: 'ana@example.com', password: 'password')
 user2 = User.create!(email: 'juan@example.com', password: 'password')
 user3 = User.create!(email: 'maria@example.com', password: 'password')
-user4 = User.create!(email: 'pedro@example.com', password: 'password')
-user5 = User.create!(email: 'luisa@example.com', password: 'password')
+user4 = User.create!(email: 'pedro@example.com', password: 'password') #estudiantes
+user5 = User.create!(email: 'luisa@example.com', password: 'password') #estudiantes
 
 # Creación de categorías
-categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing', 
-              'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar', 
-              'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas', 
+categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing',
+              'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar',
+              'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas',
               'Carreras Técnicas', 'Preparación Profesional', 'Desarrollo Personal']
 
 categories.each do |category|
@@ -34,12 +24,12 @@ syllabus_titles = [
 
 syllabus_descriptions = [
   'Aprende los fundamentos de la programación.', 'Curso completo para crear aplicaciones con Ruby on Rails.',
-  'Explora las herramientas básicas para diseñar gráficos impactantes.', 
-  'Desarrolla estrategias creativas para campañas de marketing digital.', 
+  'Explora las herramientas básicas para diseñar gráficos impactantes.',
+  'Desarrolla estrategias creativas para campañas de marketing digital.',
   'Adquiere las bases de la gestión financiera personal.',
   'Explora los principios fundamentales de la economía global.',
-  'Descubre prácticas para mejorar tu salud mental y bienestar.', 
-  'Conoce las leyes fundamentales de la física que rigen el universo.', 
+  'Descubre prácticas para mejorar tu salud mental y bienestar.',
+  'Conoce las leyes fundamentales de la física que rigen el universo.',
   'Estudia los principios de las matemáticas discretas aplicadas.',
   'Disfruta de una mirada profunda al arte contemporáneo.'
 ]
@@ -54,7 +44,7 @@ syllabus_titles.each_with_index do |title, index|
     category: category,
     user: user
   )
-  
+
   # Crear módulos y lectures para cada syllabus
   case title
   when 'Introducción a la Programación'
@@ -107,13 +97,13 @@ syllabus_titles.each_with_index do |title, index|
       name: mod[:name],
       syllabus: syllabus
     )
-    
+
     mod[:lectures].each do |lecture_name|
       lecture = Lecture.create!(
         details: lecture_name,
         syllabus_module: syllabus_module
       )
-      
+
       # Crear comentarios para cada lecture
       2.times do
         user = [user4, user5].sample # Selección aleatoria de usuario que no es el creador
