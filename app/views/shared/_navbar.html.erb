@@ -1,38 +1,36 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container-fluid">
-    <%= link_to "#", class: "navbar-brand" do %>
-      <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container d-flex justify-content-between align-items-center w-100">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- Texto U-Bliss alineado a la izquierda -->
+    <p class="text-logo mb-0">U-Bliss</p>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto">
-        <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
-          </li>
-          <li class="nav-item dropdown">
-          <a href="#" class="avatar" id="navbarDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "dropdown menu" %>
-          </a>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Action", "#", class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
-            </div>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-        <% end %>
+    <!-- Logo -->
+    <a class="navbar-brand" href="<%= root_path %>">
+      <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 40px;") %>
+    </a>
+
+    <!-- Searchbar -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Buscar...">
+      <button class="search-button">
+        <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+      </button>
+    </div>
+
+    <!-- Menú de navegación alineado a la derecha -->
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto d-flex justify-content-center gap-3">
+        <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
+          <%= link_to 'Categorias', lectures_path, class: 'nav-link custom-link-color' %>
+        </li>
+        <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
+          <%= link_to 'Mi Libreria', lectures_path, class: 'nav-link custom-link-color' %>
+        </li>
+        <li class="nav-item <%= 'active' if current_page?('/users/sign_in') %>">
+          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link custom-link-color' if !user_signed_in? %>
+          <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link custom-link-color' if user_signed_in? %>
+        </li>
       </ul>
     </div>
   </div>
-</div>
+</nav>
