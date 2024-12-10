@@ -6,12 +6,20 @@
 
     <!-- Logo -->
     <a class="navbar-brand" href="<%= root_path %>">
-      <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 60px;") %>
+      <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 40px;") %>
     </a>
 
-    <!-- Menú de navegación -->
+    <!-- Searchbar -->
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Buscar...">
+      <button class="search-button">
+        <i class="fas fa-search"></i> <!-- Ícono de lupa -->
+      </button>
+    </div>
+
+    <!-- Menú de navegación alineado a la derecha -->
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav d-flex justify-content-center gap-3">
+      <ul class="navbar-nav ms-auto d-flex justify-content-center gap-3">
         <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
           <%= link_to 'Categorias', lectures_path, class: 'nav-link custom-link-color' %>
         </li>

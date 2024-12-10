@@ -7,6 +7,7 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
+
 .img-hover-opacity {
   transition: transform 0.3s ease;
 }
@@ -19,9 +20,201 @@ h1, h2, h3 {
 }
 
 .banner {
-  background-image: url();
+  background-image: url("https://t4.ftcdn.net/jpg/02/76/15/85/360_F_276158586_h5RkwIgMQhvW1mfi7dNPV2GW1NGg3Fvb.jpg");
   background-size: cover;
   background-position: center;
   padding: 50px 0;
   color: white;  /* Ajusta el color del texto para que sea legible sobre la imagen */
+}
+
+/* Banner Principal */
+.hero {
+  background: url('hero-image.jpg') no-repeat center center/cover;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.buttons a {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-secondary {
+  background-color: #333;
+}
+
+/* Cursos Destacados */
+.featured-courses {
+  padding: 50px 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.featured-courses h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.courses-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.course-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  width: 30%;
+}
+
+.course-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.course-card h3 {
+  margin: 15px 0;
+  font-size: 1.5rem;
+}
+
+.course-card p {
+  font-size: 1rem;
+  color: #777;
+}
+
+.course-card .btn-primary {
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+/* Testimonios */
+.testimonials {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.testimonials h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.testimonial-slider {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.testimonial {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 300px;
+  text-align: center;
+}
+
+.testimonial p {
+  font-style: italic;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+footer .footer-links ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+
+footer .footer-links ul li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+footer .footer-links ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer .social-media a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+footer .social-media a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos base para el botón */
+/* Estilos base para el botón */
+/* Estilos base para el botón */
+/* Estilos base para el botón */
+.btn-primary {
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px; /* Mantener los bordes redondeados */
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045); /* Colores al revés */
+  background-size: 400% 400%; /* Aumentamos el tamaño del gradiente para el movimiento */
+  color: white;
+  transition: color 0.4s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+/* Animación de desplazamiento del gradiente */
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%; /* Empieza desde la posición inicial */
+  }
+  50% {
+    background-position: 100% 50%; /* Mueve el gradiente hacia la derecha */
+  }
+  100% {
+    background-position: 0% 50%; /* Vuelve a la posición inicial */
+  }
+}
+
+/* Efecto de hover con movimiento de gradiente */
+.btn-primary:hover {
+  color: #fff;
+  animation: gradientMove 4s ease infinite;
+}
+
+/* Estilo adicional para los estados del botón */
+.btn-primary:focus {
+  outline: none;
+}
+
+.btn-primary:active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
