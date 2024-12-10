@@ -1,1 +1,27 @@
-// Specific CSS for your home-page
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+}
+
+.img-hover-opacity {
+  transition: transform 0.3s ease;
+}
+
+.img-hover-opacity:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.banner {
+  background-image: url();
+  background-size: cover;
+  background-position: center;
+  padding: 50px 0;
+  color: white;  /* Ajusta el color del texto para que sea legible sobre la imagen */
+}

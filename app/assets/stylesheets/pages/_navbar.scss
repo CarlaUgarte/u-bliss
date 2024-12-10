@@ -1,0 +1,32 @@
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.text-logo {
+  font-size: 2rem;
+  font-weight: bolder;
+  text-align: left;   /* Alinear a la izquierda */
+  margin: 0;
+  margin-right: 10px;
+}
+
+.nav-item.active .nav-link {
+  color: #000000;
+}
+
+
+.custom-link-color:hover {
+  color: #000000; /* Example: Bootstrap primary blue */
+}
+
+.custom-link-color {
+  color: #000000;
+  font-weight: bolder;
+}
