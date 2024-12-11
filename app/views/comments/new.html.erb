@@ -1,2 +1,15 @@
-<h1>Comments#new</h1>
-<p>Find me in app/views/comments/new.html.erb</p>
+<h3 class="text-center mt-5 mb-5">Nuevo Comentario</h3>
+
+<%= simple_form_for [ @lecture, @comment ], html: { class: 'w-50 mx-auto' } do |f| %>
+  <div class="card shadow-sm p-3 mb-5">
+    <div class="card-body">
+      <%= f.label :content, "Escribe tu comentario:", class: 'form-label' %>
+      <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
+    </div>
+    <div class="card-footer text-end">
+      <%= f.submit "Comentar", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<%# http://127.0.0.1:3000/lectures/1/comments/new %>
