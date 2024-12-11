@@ -1,2 +1,5 @@
-<h1>Lectures#new</h1>
-<p>Find me in app/views/lectures/new.html.erb</p>
+<div>
+<%= simple_form_for([@syllabus_module, @lecture]) do |f|%>
+  <%= f.input :details, label: "Detalles de la Lectura" %>
+    <%= f.submit "Agregar", class:"btn btn-primary w-100"%>
+<%end%></div>

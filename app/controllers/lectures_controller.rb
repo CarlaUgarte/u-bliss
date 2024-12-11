@@ -1,5 +1,6 @@
 class LecturesController < ApplicationController
   def new
+    @syllabus_module = SyllabusModule.find(params[:syllabus_module_id])
     @lecture = Lecture.new
   end
 
