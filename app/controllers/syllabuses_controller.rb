@@ -22,6 +22,17 @@ class SyllabusesController < ApplicationController
     #cargar también módulos o bibliotecas asociadas
     @modules = @syllabus.syllabus_modules
     @libraries = @syllabus.libraries
+
+    @syllabus = Syllabus.find(params[:id]) # Encuentra el syllabus por su ID
+
+    # Si necesitas @syllabuses, asegúrate de inicializarla
+    @syllabuses = Syllabus.where(category_id: @syllabus.category_id) if @syllabus.respond_to?(:category_id)
+
+    # También necesitas inicializar @category si se usa en la vista
+    @category = @syllabus.category if @syllabus.respond_to?(:category)
+
+    @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
+
   end
 
   def edit
