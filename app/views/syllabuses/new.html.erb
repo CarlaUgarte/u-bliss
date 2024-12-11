@@ -1,2 +1,34 @@
-<h1>Syllabuses#new</h1>
-<p>Find me in app/views/syllabuses/new.html.erb</p>
+<%= simple_form_for(@syllabus, html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>
+
+  <% if @syllabus.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4><%= pluralize(@syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h4>
+      <ul>
+        <% @syllabus.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Título del formulario -->
+  <div class="form-group">
+    <%= f.input :title, label: 'Title', input_html: { class: 'form-control' } %>
+  </div>
+
+  <!-- Descripción del formulario -->
+  <div class="form-group">
+    <%= f.input :description, label: 'Description', as: :text, input_html: { class: 'form-control' } %>
+  </div>
+
+  <!-- Botón de envío -->
+  <div class="form-actions text-center">
+    <%= f.button :submit, 'Create Syllabus', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<!-- Enlace de retroceso -->
+<%= link_to 'Back', syllabuses_path, class: 'btn btn-secondary' %>
+
+<!-- Cargar Bootstrap si no está en tu proyecto -->
+<%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' %>
