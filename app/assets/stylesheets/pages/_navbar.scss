@@ -10,7 +10,7 @@
 .text-logo {
   font-size: 1.5rem;
   font-weight: bolder;
-  text-align: left;   /* Alinear a la izquierda */
+  text-align: left; 
   margin: 0;
   margin-right: 10px;
 }
@@ -18,26 +18,26 @@
 /* Estilos base para los enlaces de navegación */
 .nav-link {
   font-weight: bolder;
-  color: #000000; /* Color inicial */
+  color: #000000;
   position: relative;
   display: inline-block;
   text-decoration: none;
   padding: 5px 10px;
   font-size: 1rem;
   transition: color 0.4s ease;
-  outline: none; /* Eliminar contorno en todos los estados */
-  border: none; /* Asegurarnos de que no haya bordes */
+  outline: none;
+  border: none;
 }
 
 /* Estilo cuando el enlace está activo */
 .nav-item.active .nav-link {
-  color: transparent; /* El texto se vuelve transparente para mostrar el gradiente */
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045); /* Gradiente de colores */
-  background-size: 400% 400%; /* Aumentamos el tamaño del gradiente */
-  -webkit-background-clip: text; /* Aplica el gradiente al texto */
-  background-clip: text; /* Aplica el gradiente al texto */
-  animation: gradientMove 4s ease infinite; /* Animación del gradiente */
-  box-shadow: none; /* Eliminar cualquier sombra extra al estar activo */
+  color: transparent;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientMove 4s ease infinite;
+  box-shadow: none;
 }
 
 /* Animación del gradiente moviéndose como un video */
@@ -56,21 +56,21 @@
 /* Eliminar borde de enfoque (outline) y caja en hover o foco */
 .nav-link:focus,
 .nav-link:hover {
-  outline: none; /* Eliminar contorno */
-  border: none; /* Asegurarnos de que no hay un borde extra */
-  box-shadow: none; /* Eliminar cualquier sombra extra */
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 /* Eliminar sombra extra en hover o active */
 .nav-link:active,
 .nav-link:focus,
 .nav-link:hover {
-  box-shadow: none; /* Sin sombra extra al hacer hover o focus */
+  box-shadow: none;
 }
 
 
 .custom-link-color:hover {
-  color: #000000; /* Example: Bootstrap primary blue */
+  color: #000000;
 }
 
 .custom-link-color {
