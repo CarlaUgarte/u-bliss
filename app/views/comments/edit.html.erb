@@ -1,2 +1,11 @@
-<h1>Comments#edit</h1>
-<p>Find me in app/views/comments/edit.html.erb</p>
+<h3>Editar Comentario</h3>
+
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.input :content, label: 'Contenido', input_html: { rows: 4, class: "form-control" } %>
+
+  <div class="form-group">
+    <%= f.button :submit, 'Actualizar Comentario', class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%# <%= link_to 'Volver a los comentarios', lecture_comments_path(@lecture), class: "btn btn-primary" %>
