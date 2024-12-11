@@ -1,10 +1,19 @@
-<h2>Mi Biblioteca</h2>
+<h3 class="mt-5 mb-5 text-center">Mi Biblioteca</h3>
 
-<div class="library-cards-container">
-  <% @libraries.each do |library| %>
-    <div class="library-card">
-      <h4 class="library-title"><%= library.syllabus.title %></h4>
-      <p class="library-description"><%= library.syllabus.description %></p>
-    </div>
-  <% end %>
+<div class="container">
+  <div class="row mb-5">
+    <% @libraries.each do |library| %>
+      <div class="col-12 mb-4">
+        <div class="card h-100 shadow">
+          <div class="card-body d-flex flex-column">
+            <h5 class="card-title fw-bold"><%= library.syllabus.title %></h5>
+            <p class="card-text"><%= library.syllabus.description %></p>
+            <div class="d-flex justify-content-end mt-auto">
+              <a href="#" class="btn btn-primary">Ver más</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>
