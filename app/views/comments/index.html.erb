@@ -1,26 +1,53 @@
 <h3>Comentarios</h3>
-
 <% if @lecture %>
-  <h2>Comentarios para la lección: <%= @lecture.title %></h2>
-  <%= link_to 'Crear comentario', new_lecture_comment_path(@lecture) %>
-
+  <h2>Comentarios para la lección: <%= @lecture.details %></h2>
   <% if @comments.any? %>
     <ul>
       <% @comments.each do |comment| %>
         <li>
-          <%= comment.user%> dijo: <%= comment.content %>
-          <%= link_to 'Ver', lecture_comment_path(@lecture, comment) %>
-          <%= link_to 'Editar', edit_lecture_comment_path(@lecture, comment) %>
-          <%= link_to 'Eliminar', lecture_comment_path(@lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' } %>
+          <% if params[:edit_comment_id].to_i == comment.id %>
+
+            <h3 class="text-center mt-5 mb-5">Editar Comentario</h3>
+            <%= simple_form_for [@lecture, comment], method: :patch, html: { class: 'w-50 mx-auto' } do |f| %>
+              <div class="card shadow-sm p-3 mb-5">
+                <div class="card-body">
+                  <%= f.label :content, "Edita tu comentario:", class: 'form-label' %>
+                  <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
+                </div>
+                <div class="card-footer text-end">
+                  <%= f.submit "Actualizar", class: 'btn btn-primary' %>
+                  <%= link_to "Cancelar", lecture_comments_path(@lecture), class: "btn btn-secondary" %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+
+            <p><strong><%= comment.user.email %> dijo:</strong> <%= comment.content %></p>
+            <% if comment.user == current_user %>
+              <%= link_to 'Editar', lecture_comments_path(@lecture, edit_comment_id: comment.id), class: 'btn btn-primary btn-sm' %>
+              <%= button_to 'Eliminar', lecture_comment_path(@lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-primary btn-sm' %>
+            <% end %>
+          <% end %>
         </li>
       <% end %>
     </ul>
   <% else %>
     <p>No hay comentarios para esta lección aún.</p>
   <% end %>
-
 <% else %>
   <p>No se ha seleccionado ninguna lección.</p>
 <% end %>
 
-<%# # http://127.0.0.1:3000/comments %>
+<h3 class="text-center mt-5 mb-5">Nuevo Comentario</h3>
+
+<%= simple_form_for [ @lecture, @comment ], html: { class: 'w-50 mx-auto' } do |f| %>
+  <div class="card shadow-sm p-3 mb-5">
+    <div class="card-body">
+      <%= f.label :content, "Escribe tu comentario:", class: 'form-label' %>
+      <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
+    </div>
+    <div class="card-footer text-end">
+      <%= f.submit "Comentar", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>

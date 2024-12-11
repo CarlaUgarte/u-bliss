@@ -10,9 +10,9 @@ Rails.application.routes.draw do
     resources :lectures, only: %i[ new create ]
   end
   resources :lectures, except: %i[ new create ] do
-    resources :comments, only: %i[ new create ]
+    resources :comments
   end
-  resources :comments, only: %i[ edit update destroy show index ]
+  # resources :comments, only: %i[ edit update destroy ]
   resources :libraries, only: :index
 
 
