@@ -19,18 +19,19 @@
 
     <!-- Menú de navegación alineado a la derecha -->
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto d-flex justify-content-center gap-3">
-        <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
-          <%= link_to 'Categorias', lectures_path, class: 'nav-link custom-link-color' %>
-        </li>
-        <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
-          <%= link_to 'Mi Libreria', lectures_path, class: 'nav-link custom-link-color' %>
-        </li>
-        <li class="nav-item <%= 'active' if current_page?('/users/sign_in') %>">
-          <%= link_to 'Sign In', new_user_session_path, class: 'nav-link custom-link-color' if !user_signed_in? %>
-          <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link custom-link-color' if user_signed_in? %>
-        </li>
-      </ul>
-    </div>
+  <ul class="navbar-nav ms-auto d-flex justify-content-center gap-3">
+    <li class="nav-item <%= 'active' if current_page?(lectures_path) %>">
+      <%= link_to 'Categorias', lectures_path, class: 'nav-link custom-link-color' %>
+    </li>
+    <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
+      <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link custom-link-color' %>
+    </li>
+    <li class="nav-item <%= 'active' if current_page?('/users/sign_in') %>">
+      <%= link_to 'Sign In', new_user_session_path, class: 'nav-link custom-link-color' if !user_signed_in? %>
+      <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'nav-link custom-link-color' if user_signed_in? %>
+    </li>
+  </ul>
+</div>
+
   </div>
 </nav>
