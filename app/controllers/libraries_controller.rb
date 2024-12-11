@@ -9,9 +9,10 @@ class LibrariesController < ApplicationController
   end
 
   def create
-    @library = Library.new(library_params)
-    if @library.save
-      redirect_to @library, notice: "La biblioteca fue creada con éxito.."
+    syllabus = Syllabus.find(params[:syllabus_id])
+    library = current_user.libraries.new(syllabus: syllabus)
+    if library.save
+      redirect_to libraries_path, notice: "La biblioteca fue creada con éxito.."
     else
       render :new, status: :unprocessable_entity
     end

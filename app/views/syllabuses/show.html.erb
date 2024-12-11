@@ -1,9 +1,5 @@
 <h1 class="text-center my-4"><%= @syllabus.title %></h1>
-
-<!-- Botón 'Agregar a mi biblioteca' justo debajo del título principal -->
-<div class="text-center mb-4">
-  <%= button_to 'Agregar a mi biblioteca', (@syllabus), method: :post, class: 'btn btn-outline-success btn-lg' %>
-</div>
+<!--poner el nombre del mentor -->
 
 <div class="container">
   <!-- Información general del Syllabus -->
@@ -35,7 +31,7 @@
                       <!-- Título de la lección justo después de la casilla -->
                       <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
                       <!-- Botón 'Ver Lección' a la derecha -->
-                      <%= link_to 'Ver Lección', lecture_path(lecture), class: 'btn btn-outline-primary btn-sm' %>
+                      <%= link_to 'Comentarios', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm' %>
                     </li>
                   <% end %>
                 </ul>
@@ -48,6 +44,11 @@
       <% end %>
     </div>
   </div>
+  <!-- Botón 'Agregar a mi biblioteca' justo debajo del título principal -->
+<div class="text-center mb-4">
+  <%= button_to 'Agregar a mi biblioteca', libraries_path(@syllabus), method: :post, class: 'btn btn-primary btn-lg' %>
+  <%= button_to "Agregar", syllabus_libraries_path(@syllabus), method: :post, class: 'btn btn-primary btn-lg' %>
+</div>
 </div>
 
 <!-- Estilos para las casillas de verificación -->

@@ -9,7 +9,7 @@
             <h5 class="card-title fw-bold"><%= library.syllabus.title %></h5>
             <p class="card-text"><%= library.syllabus.description %></p>
             <div class="d-flex justify-content-end mt-auto">
-              <a href="#" class="btn btn-primary">Ver más</a>
+              <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary" %>
             </div>
           </div>
         </div>

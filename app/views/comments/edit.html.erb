@@ -1,6 +1,6 @@
 <h3>Editar Comentario</h3>
 
-<%= simple_form_for(@comment) do |f| %>
+<%= simple_form_for[@lecture, @comment] do |f| %>
   <%= f.input :content, label: 'Contenido', input_html: { rows: 4, class: "form-control" } %>
 
   <div class="form-group">

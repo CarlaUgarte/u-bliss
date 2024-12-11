@@ -3,12 +3,15 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:lecture_id]
-      @lecture = Lecture.find(params[:lecture_id])
-      @comments = @lecture.comments
-    else
-      @comments = Comment.all
-    end
+    # if params[:lecture_id]
+    #   @lecture = Lecture.find(params[:lecture_id])
+    #   @comments = @lecture.comments
+    # else
+    #   @comments = Comment.all
+    # end
+    @lecture = Lecture.find(params[:lecture_id])
+    @comments = @lecture.comments.where.not(user_id: nil)
+    @comment = @lecture.comments.new
   end
 
 
@@ -37,10 +40,11 @@ class CommentsController < ApplicationController
 
 
   def update
-    @comment = Comment.find(params[:id])
+    @comment = @lecture.comments.find(params[:id])
     if @comment.update(comment_params)
-      redirect_to lecture_path(@comment.lecture), notice: 'Comentario actualizado con éxito.'
+      redirect_to lecture_comments_path(@lecture), notice: 'Comentario actualizado con éxito.'
     else
+      @comments = @lecture.comments
       render :edit, status: :unprocessable_entity
     end
   end
