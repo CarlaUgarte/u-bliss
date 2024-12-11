@@ -1,0 +1,29 @@
+<%= form_with(model: @comment, local: true) do |form| %>
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Editar Comentario</h3>
+
+            <% if @comment.errors.any? %>
+              <div class="alert alert-danger">
+                <h4><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h4>
+                <ul>
+                  <% @comment.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+            <%= form.label :content, "Contenido del Comentario", class: "form-label" %>
+            <%= form.text_area :content, rows: 4, class: 'form-control mb-3' %>
+
+            <%= form.submit "Actualizar Comentario", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

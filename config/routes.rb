@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :lectures, except: %i[ index show ] do
     resources :comments, only: %i[ new create ]
   end
-  resources :comments, only: %i[ edit update destroy ]
+  resources :comments, only: %i[ edit update destroy show index]
   resources :libraries, only: :index
 
 

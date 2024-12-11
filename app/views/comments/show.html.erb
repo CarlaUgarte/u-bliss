@@ -1,2 +1,21 @@
-<h3>Comentarios:</h3>
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-header bg-light">
+          <h3>Detalles del Comentario</h3>
+        </div>
+        <div class="card-body">
+          <p class="card-text"><strong>Comentario:</strong> <%= @comment.content %></p>
 
+          <div class="d-flex justify-content-between mt-3">
+            <%= link_to 'Volver a la Clase', lecture_path(@comment.lecture), class: "btn btn-primary" %>
+            <%= link_to 'Editar Comentario', edit_comment_path(@comment), class: "btn btn-primary" %>
+            <%= button_to 'Eliminar Comentario', comment_path(@comment), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%# # http://127.0.0.1:3000/comments/2/ %>
