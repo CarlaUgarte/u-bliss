@@ -1,6 +1,26 @@
-<h1>Comentarios de la lectura</h1>
+<h3>Comentarios</h3>
 
+<% if @lecture %>
+  <h2>Comentarios para la lección: <%= @lecture.title %></h2>
+  <%= link_to 'Crear comentario', new_lecture_comment_path(@lecture) %>
 
+  <% if @comments.any? %>
+    <ul>
+      <% @comments.each do |comment| %>
+        <li>
+          <%= comment.user%> dijo: <%= comment.content %>
+          <%= link_to 'Ver', lecture_comment_path(@lecture, comment) %>
+          <%= link_to 'Editar', edit_lecture_comment_path(@lecture, comment) %>
+          <%= link_to 'Eliminar', lecture_comment_path(@lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' } %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No hay comentarios para esta lección aún.</p>
+  <% end %>
 
+<% else %>
+  <p>No se ha seleccionado ninguna lección.</p>
+<% end %>
 
 <%# # http://127.0.0.1:3000/comments %>
