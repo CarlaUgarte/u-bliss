@@ -19,17 +19,15 @@ h1, h2, h3 {
   transition: transform 0.3s ease;
 }
 
-.banner {
-  background-image: url("https://t4.ftcdn.net/jpg/02/76/15/85/360_F_276158586_h5RkwIgMQhvW1mfi7dNPV2GW1NGg3Fvb.jpg");
-  background-size: cover;
-  background-position: center;
-  padding: 50px 0;
-  color: white;  /* Ajusta el color del texto para que sea legible sobre la imagen */
-}
-
-/* Banner Principal */
 .hero {
-  background: url('hero-image.jpg') no-repeat center center/cover;
+  background-image: url('');
+  background-size: cover;  /* Hace que la imagen cubra toda la sección */
+  background-position: center center;  /* Centra la imagen en la sección */
+  background-repeat: no-repeat;  /* Evita que la imagen se repita */
+  height: 50vh;  /* Asegura que la sección ocupe toda la altura de la ventana del navegador */
+  display: flex;  /* Permite el uso de flexbox en su contenido */
+  justify-content: center;  /* Centra el contenido horizontalmente */
+  align-items: center;
   color: white;
   text-align: center;
   padding: 100px 20px;
@@ -38,11 +36,13 @@ h1, h2, h3 {
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 30px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
 }
 
 .buttons a {
@@ -52,10 +52,6 @@ h1, h2, h3 {
   color: white;
   text-decoration: none;
   border-radius: 5px;
-}
-
-.btn-secondary {
-  background-color: #333;
 }
 
 /* Cursos Destacados */
@@ -174,27 +170,29 @@ footer .social-media a:hover {
 /* Estilos base para el botón */
 /* Estilos base para el botón */
 /* Estilos base para el botón */
+/* Estilos base para el botón */
 .btn-primary {
   padding: 10px 15px;
   font-size: 1rem;
   font-weight: bold;
   border: none;
-  border-radius: 8px; /* Mantener los bordes redondeados */
+  border-radius: 8px; /* Bordes redondeados */
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045); /* Colores al revés */
-  background-size: 400% 400%; /* Aumentamos el tamaño del gradiente para el movimiento */
-  color: white;
-  transition: color 0.4s ease;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045); /* Gradiente */
+  background-size: 400% 400%; /* Tamaño grande del gradiente para animarlo */
+  color: white;  /* Color del texto */
+  transition: background-position 1s ease-out, color 0.4s ease-out;  /* Transición suave para el fondo y color */
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 /* Animación de desplazamiento del gradiente */
 @keyframes gradientMove {
   0% {
-    background-position: 0% 50%; /* Empieza desde la posición inicial */
+    background-position: 0% 50%; /* Comienza en la posición inicial */
   }
   50% {
     background-position: 100% 50%; /* Mueve el gradiente hacia la derecha */
@@ -204,17 +202,22 @@ footer .social-media a:hover {
   }
 }
 
-/* Efecto de hover con movimiento de gradiente */
+/* Efecto de hover en el botón */
 .btn-primary:hover {
-  color: #fff;
-  animation: gradientMove 4s ease infinite;
+  background-position: 100% 50%;  /* El gradiente se mueve de izquierda a derecha */
+  color: white;  /* Mantiene el color blanco del texto */
+}
+
+/* Estilo cuando el botón pierde el hover (vuelve a su estado inicial) */
+.btn-primary {
+  transition: background-position 1s ease-out, color 0.4s ease; /* Regreso suave al estado normal */
 }
 
 /* Estilo adicional para los estados del botón */
 .btn-primary:focus {
-  outline: none;
+  outline: none; /* Elimina el borde del enfoque */
 }
 
 .btn-primary:active {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1); /* Efecto de color al hacer clic */
 }
