@@ -1,2 +1,27 @@
-<h1>Syllabuses#index</h1>
-<p>Find me in app/views/syllabuses/index.html.erb</p>
+<h1 class="display-4 text-center my-4">Cursos que Tenemos para Ti</h1>
+
+<div class="container">
+  <div class="row">
+    <% categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing', 'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar', 'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas', 'Carreras Técnicas', 'Preparación Profesional', 'Desarrollo Personal'] %>
+
+    <% categories.each do |category_name| %>
+      <div class="col-md-4 mb-4">
+        <div class="list-group">
+          <div class="list-group-item d-flex justify-content-between align-items-center py-3 bg-primary text-white">
+            <h5 class="mb-1 text-truncate"><%= category_name %></h5>
+          </div>
+          <% 3.times do |i| %>
+            <div class="list-group-item d-flex justify-content-between align-items-center py-3">
+              <div>
+                <h5 class="mb-1 text-truncate">Curso <%= i + 1 %> de <%= category_name %></h5>
+                <small class="text-muted">Explora los detalles de este contenido.</small>
+              </div>
+              <!-- Enlace dinámico a la vista 'show' de cada curso -->
+              <%= link_to 'Ver más', syllabus_path(i + 1), class: 'btn btn-primary btn-sm border-0 text-decoration-none' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
