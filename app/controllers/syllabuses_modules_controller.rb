@@ -1,5 +1,6 @@
 class SyllabusesModulesController < ApplicationController
   def new
+    @syllabus = Syllabus.find(params[:syllabus_id])
     @syllabus_module = SyllabusModule.new
   end
 
@@ -7,7 +8,7 @@ class SyllabusesModulesController < ApplicationController
     @syllabus_module = SyllabusModule.new(syllabus_module_params)
     @syllabus_module.user = current_user
     if @syllabus_module.save
-      redirect_to syllabuses_path
+      redirect_to syllabuses_path(@syllabus)
     else
       render :new, status: :unprocessable_entity
     end

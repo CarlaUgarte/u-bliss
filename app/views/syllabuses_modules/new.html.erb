@@ -1,2 +1,5 @@
-<h1>SyllabusesModules#new</h1>
-<p>Find me in app/views/syllabuses_modules/new.html.erb</p>
+<div>
+<%= simple_form_for([@syllabus, @syllabus_module]) do |f|%>
+  <%= f.input :name, label: "Nombre del Modulo" %>
+    <%= f.submit "Agregar", class:"btn btn-primary w-100"%>
+<%end%></div>

@@ -1,2 +1,5 @@
-<h1>SyllabusesModules#edit</h1>
-<p>Find me in app/views/syllabuses_modules/edit.html.erb</p>
+<div>
+<%= simple_form_for([@syllabus, @syllabus_module]) do |f|%>
+  <%= f.input :name, label: "Nombre del Modulo" %>
+    <%= f.submit "Actualizar", class:"btn btn-primary w-100"%>
+<%end%></div>

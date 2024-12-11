@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   resources :syllabuses do
-    resources :syllabuses_modules, only: %i[ new create ]
+    resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
     resources :libraries, only: :create
   end
-  resources :syllabuses_modules, except: %i[ index show ] do
+  resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index show ] do
     resources :lectures, only: %i[ new create ]
   end
   resources :lectures, except: %i[ new create ] do
