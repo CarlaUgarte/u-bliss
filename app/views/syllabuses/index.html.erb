@@ -1,19 +1,23 @@
 <h1 class="display-4 text-center my-4">Cursos que Tenemos para Ti</h1>
 
-<div class="container">
+<div class="container my-5">
   <div class="row">
-    <% categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing', 'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar', 'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas', 'Carreras Técnicas', 'Preparación Profesional', 'Desarrollo Personal'] %>
-
-    <% categories.each do |category_name| %>
+    <% @categories.each do |category| %>
       <div class="col-md-4 mb-4">
-        <div class="list-group">
-          <div class="list-group-item d-flex justify-content-between align-items-center py-3 bg-primary text-white">
-            <h5 class="mb-1 text-truncate"><%= category_name %></h5>
+        <div class="list-group shadow-sm rounded">
+          <!-- Encabezado de la categoría centrado -->
+          <div class="list-group-item py-3 bg-primary text-white text-center category-title">
+            <h5 class="mb-1 text-truncate"><%= category.name %></h5>
           </div>
+
+          <!-- Imagen de la categoría con estilo -->
+          <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
+
+          <!-- Cursos de ejemplo -->
           <% 3.times do |i| %>
             <div class="list-group-item d-flex justify-content-between align-items-center py-3">
               <div>
-                <h5 class="mb-1 text-truncate">Curso <%= i + 1 %> de <%= category_name %></h5>
+                <h5 class="mb-1 text-truncate">Curso <%= i + 1 %> de <%= category.name %></h5>
                 <small class="text-muted">Explora los detalles de este contenido.</small>
               </div>
               <!-- Enlace dinámico a la vista 'show' de cada curso -->
@@ -25,3 +29,35 @@
     <% end %>
   </div>
 </div>
+
+<!-- Estilos específicos para las imágenes, tarjetas y títulos -->
+<style>
+  .container.my-5 {
+    margin-top: 3rem; /* Margen superior */
+    margin-bottom: 3rem; /* Margen inferior */
+  }
+
+  .img-category {
+    width: 100%; /* Ajusta el ancho al contenedor */
+    height: 250px; /* Más alargada */
+    object-fit: cover; /* Recorta la imagen para llenar el espacio sin distorsión */
+    border-radius: 8px; /* Bordes redondeados */
+    margin-bottom: 10px; /* Espaciado inferior entre la imagen y el contenido */
+  }
+  
+  .list-group {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
+    border-radius: 8px; /* Bordes redondeados para las tarjetas */
+    overflow: hidden; /* Asegura que la sombra no afecte los bordes de los elementos */
+  }
+
+  .list-group-item:first-child {
+    border-top-left-radius: 8px; /* Bordes redondeados superiores */
+    border-top-right-radius: 8px;
+  }
+
+  .category-title {
+    text-align: center; /* Centra el texto del título */
+    font-weight: bold; /* Destaca el texto */
+  }
+</style>
