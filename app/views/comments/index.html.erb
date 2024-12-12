@@ -1,53 +1,66 @@
-<h3>Comentarios</h3>
 <% if @lecture %>
-  <h2>Comentarios para la lección: <%= @lecture.details %></h2>
+  <h2 class="text-center mt-5 mb-5">Comentarios para la lección: <%= @lecture.details %></h2>
+
   <% if @comments.any? %>
-    <ul>
+    <ul class="list-unstyled">
       <% @comments.each do |comment| %>
-        <li>
+        <li class="mb-4">
           <% if params[:edit_comment_id].to_i == comment.id %>
 
             <h3 class="text-center mt-5 mb-5">Editar Comentario</h3>
             <%= simple_form_for [@lecture, comment], method: :patch, html: { class: 'w-50 mx-auto' } do |f| %>
-              <div class="card shadow-sm p-3 mb-5">
+              <div class="card shadow-sm p-3" style="max-width: 50%; margin: 0 auto;">
                 <div class="card-body">
                   <%= f.label :content, "Edita tu comentario:", class: 'form-label' %>
                   <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
                 </div>
-                <div class="card-footer text-end">
-                  <%= f.submit "Actualizar", class: 'btn btn-primary' %>
-                  <%= link_to "Cancelar", lecture_comments_path(@lecture), class: "btn btn-secondary" %>
+                <div class="card-footer d-flex justify-content-between" style="background-color: transparent;">
+                  <%= f.submit "Actualizar", class: 'btn btn-primary btn-lg' %>
+                  <%= link_to "Cancelar", lecture_comments_path(@lecture), class: "btn btn-primary btn-lg" %>
                 </div>
               </div>
             <% end %>
           <% else %>
 
-            <p><strong><%= comment.user.email %> dijo:</strong> <%= comment.content %></p>
-            <% if comment.user == current_user %>
-              <%= link_to 'Editar', lecture_comments_path(@lecture, edit_comment_id: comment.id), class: 'btn btn-primary btn-sm' %>
-              <%= button_to 'Eliminar', lecture_comment_path(@lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-primary btn-sm' %>
-            <% end %>
+            <div class="card shadow-sm p-3 mb-3" style="max-width: 50%; margin: 0 auto; background-color: white;">
+              <div class="card-body">
+                <p><strong><%= comment.user.email %> dijo:</strong></p>
+                <p><%= comment.content %></p>
+              </div>
+              <div class="card-footer d-flex justify-content-end align-items-center" style="background-color: transparent; border-top: none;">
+                <% if comment.user == current_user %>
+
+                  <%= link_to lecture_comments_path(@lecture, edit_comment_id: comment.id), class: 'btn btn-primary btn-lg' do %>
+                    <i class="fas fa-edit fa-lg"></i>
+                  <% end %>
+
+                  <%= button_to lecture_comment_path(@lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'btn btn-primary btn-lg ms-2' do %>
+                    <i class="fas fa-trash fa-lg"></i>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </li>
       <% end %>
     </ul>
   <% else %>
-    <p>No hay comentarios para esta lección aún.</p>
+    <p class="text-center mt-4">No hay comentarios para esta lección aún.</p>
   <% end %>
 <% else %>
-  <p>No se ha seleccionado ninguna lección.</p>
+  <p class="text-center">No se ha seleccionado ninguna lección.</p>
 <% end %>
 
 <h3 class="text-center mt-5 mb-5">Nuevo Comentario</h3>
 
 <%= simple_form_for [ @lecture, @comment ], html: { class: 'w-50 mx-auto' } do |f| %>
-  <div class="card shadow-sm p-3 mb-5">
+  <div class="card shadow-sm p-3 mb-5" style="max-width: 50%; margin: 0 auto; background-color: white;">
     <div class="card-body">
       <%= f.label :content, "Escribe tu comentario:", class: 'form-label' %>
       <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
     </div>
-    <div class="card-footer text-end">
-      <%= f.submit "Comentar", class: 'btn btn-primary' %>
+    <div class="card-footer text-end" style="background-color: transparent; border-top: none;">
+      <%= f.submit "Comentar", class: 'btn btn-primary btn-lg' %>
     </div>
   </div>
 <% end %>
