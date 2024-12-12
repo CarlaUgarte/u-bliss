@@ -10,11 +10,7 @@
   </div>
 
   <div class="form-actions text-center">
-    <%= f.link_to syllabus_path, 'Ver Syllabus', class: 'btn btn-primary' %>
-  </div>
-
-  <div class="form-actions text-center">
-    <%= f.link_to syllabus_path, 'Ver Modulos', class: 'btn btn-primary' %>
+    <%= link_to 'Ver Syllabus', syllabus_path(@syllabus_module.syllabus), class: 'btn btn-primary' %>
   </div>
 
 <% end %>
