@@ -1,19 +1,27 @@
+Library.destroy_all
+Comment.destroy_all
+Lecture.destroy_all
+SyllabusModule.destroy_all
+Syllabus.destroy_all
+Category.destroy_all
+User.destroy_all
 # Creación de usuarios con nombres reales
 user1 = User.create!(email: 'ana@example.com', password: 'password')
 user2 = User.create!(email: 'juan@example.com', password: 'password')
 user3 = User.create!(email: 'maria@example.com', password: 'password')
-user4 = User.create!(email: 'pedro@example.com', password: 'password') #estudiantes
-user5 = User.create!(email: 'luisa@example.com', password: 'password') #estudiantes
+user4 = User.create!(email: 'pedro@example.com', password: 'password') # estudiantes
+user5 = User.create!(email: 'luisa@example.com', password: 'password') # estudiantes
 
-# Creación de categorías
+# Creación de categorías con imágenes
 categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing',
-              'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar',
-              'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas',
-              'Carreras Técnicas', 'Preparación Profesional', 'Desarrollo Personal']
+  'Negocios', 'Idiomas', 'Finanzas', 'Economía', 'Salud', 'Bienestar',
+  'Ciencias', 'Matemáticas', 'Arte', 'Humanidades', 'Habilidades Prácticas',
+  'Carreras Técnicas', 'Preparación Profesional', 'Desarrollo Personal']
 
 categories.each do |category|
-  Category.create!(name: category)
+    Category.create(name: category)
 end
+puts "Categorías creadas: #{Category.count}"
 
 # Creación de 10 silabus
 syllabus_titles = [
