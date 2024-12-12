@@ -1,4 +1,3 @@
-/* Estilos generales de la tarjeta personalizada */
 .custom-card-vertical {
   background-color: white;
   border-radius: 15px;
@@ -6,24 +5,41 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 300px; /* Hacemos la tarjeta más delgada */
-  max-width: 90%; /* Asegura que no se estire demasiado en pantallas más grandes */
-  margin: 0 auto; /* Centra las tarjetas */
-  height: 400px; /* Ajustamos la altura de la tarjeta */
+  width: 300px;
+  max-width: 90%;
+  margin: 0 auto;
+  height: 400px;
+  position: relative;
+  transition: all 0.3s ease;
+
+  border: 5px solid transparent;
+  background: white;
+}
+
+.custom-card-vertical::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 15px;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);
+  z-index: -1;
 }
 
 .custom-card-vertical .card-image {
   width: 100%;
-  height: 150px; /* Reducir la altura de la imagen */
+  height: 150px;
   object-fit: cover;
 }
 
 .custom-card-vertical .card-body {
-  padding: 15px; /* Reducir el padding del cuerpo de la tarjeta */
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex-grow: 1; /* Asegura que el contenido se distribuya sin estirarse demasiado */
+  flex-grow: 0;
 }
 
 .custom-card-vertical .card-title {
@@ -42,20 +58,35 @@
 .custom-card-vertical .card-text {
   font-size: 0.9rem;
   color: #878787;
-  margin-top: 5px; /* Reducir el margen superior para acercar el texto a los elementos anteriores */
-  margin-bottom: 15px; /* Reducir el margen inferior */
+  margin-top: 5px;
+  margin-bottom: 15px;
   text-align: start;
 }
 
-.custom-card-vertical .btn {
-  width: 75%; /* Ajusta el ancho del botón según sea necesario */
-}
-
-.custom-card-vertical .btn-danger,
-.custom-card-vertical .btn-primary {
-  margin: 0 auto; /* Centra los botones */
-}
-
 .custom-card-vertical .card-body {
-  padding-bottom: 15px; /* Reducir el padding en la parte inferior */
+  padding-bottom: 15px;
+}
+
+.custom-card-vertical .btn {
+  width: 45%;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.custom-card-vertical .d-flex {
+  gap: 10px;
+}
+
+.custom-card-vertical form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-card-vertical:hover {
+  box-shadow: none;
 }

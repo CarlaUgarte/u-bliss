@@ -2,9 +2,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
-  resources :syllabuses do
+  get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
+    resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
-    resources :libraries, only: %i[ create destroy ] 
+    resources :libraries, only: %i[ create destroy ]
   end
   resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index show ] do
     resources :lectures, only: %i[ new create ]
