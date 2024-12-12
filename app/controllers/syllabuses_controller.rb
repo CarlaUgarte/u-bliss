@@ -16,8 +16,9 @@ class SyllabusesController < ApplicationController
 
   def create
     @syllabus = Syllabus.new(syllabus_params)
+    @syllabus.user = current_user
     if @syllabus.save
-      redirect_to @syllabus, notice: 'Syllabus was successfully created.'
+      redirect_to new_syllabus_syllabus_module_path(@syllabus), notice: 'Syllabus fue exitosamente creado.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -63,6 +64,6 @@ class SyllabusesController < ApplicationController
   end
 
   def syllabus_params
-    params.require(:syllabus).permit(:title, :description)
+    params.require(:syllabus).permit(:title, :category_id, :description, :image)
   end
 end
