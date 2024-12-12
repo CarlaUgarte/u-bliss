@@ -1,0 +1,61 @@
+/* Estilos generales de la tarjeta personalizada */
+.custom-card-vertical {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 300px; /* Hacemos la tarjeta más delgada */
+  max-width: 90%; /* Asegura que no se estire demasiado en pantallas más grandes */
+  margin: 0 auto; /* Centra las tarjetas */
+  height: 400px; /* Ajustamos la altura de la tarjeta */
+}
+
+.custom-card-vertical .card-image {
+  width: 100%;
+  height: 150px; /* Reducir la altura de la imagen */
+  object-fit: cover;
+}
+
+.custom-card-vertical .card-body {
+  padding: 15px; /* Reducir el padding del cuerpo de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* Asegura que el contenido se distribuya sin estirarse demasiado */
+}
+
+.custom-card-vertical .card-title {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  text-align: start;
+}
+
+.custom-card-vertical .card-subtitle {
+  font-size: 0.9rem;
+  color: #484848;
+  margin-top: 5px;
+  text-align: start;
+}
+
+.custom-card-vertical .card-text {
+  font-size: 0.9rem;
+  color: #878787;
+  margin-top: 5px; /* Reducir el margen superior para acercar el texto a los elementos anteriores */
+  margin-bottom: 15px; /* Reducir el margen inferior */
+  text-align: start;
+}
+
+.custom-card-vertical .btn {
+  width: 75%; /* Ajusta el ancho del botón según sea necesario */
+}
+
+.custom-card-vertical .btn-danger,
+.custom-card-vertical .btn-primary {
+  margin: 0 auto; /* Centra los botones */
+}
+
+.custom-card-vertical .card-body {
+  padding-bottom: 15px; /* Reducir el padding en la parte inferior */
+}

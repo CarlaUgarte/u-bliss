@@ -1,15 +1,27 @@
-<h3 class="mt-5 mb-5 text-center">Mi Biblioteca</h3>
+<div class="container">
+  <!-- Título alineado con el contenido y menor espacio -->
+  <div class="row mb-4"> <!-- Menor espacio entre el título y las tarjetas -->
+    <div class="col-12">
+      <h3 class="mt-5 mb-2">Mi Biblioteca</h3> <!-- Márgenes reducidos -->
+    </div>
+  </div>
 
 <div class="container">
   <div class="row mb-5">
     <% @libraries.each do |library| %>
-      <div class="col-12 mb-4">
-        <div class="card h-100 shadow">
+      <div class="col-12 col-md-4 mb-4">
+        <div class="custom-card-vertical h-100 rounded-5 bg-light">
+          <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image"> <!-- Imagen placeholder -->
           <div class="card-body d-flex flex-column">
-            <h5 class="card-title fw-bold"><%= library.syllabus.title %></h5>
+            <h2 class="card-title"><%= library.syllabus.title %></h2>
+            <p class="card-subtitle"><%= library.syllabus.user %></p> <!-- Texto intermedio entre título y contenido -->
             <p class="card-text"><%= library.syllabus.description %></p>
-            <div class="d-flex justify-content-end mt-auto">
-              <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary" %>
+            <!-- Contenedor de botones: Ver más y Eliminar -->
+            <div class="d-flex flex-column justify-content-center mt-auto align-items-center">
+              <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary mb-2 w-50" %>
+              <%= button_to syllabus_library_path(library.syllabus, library), method: :delete, class: "btn btn-primary w-50" do %>
+                Eliminar
+              <% end %>
             </div>
           </div>
         </div>
