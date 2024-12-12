@@ -1,14 +1,15 @@
 class LecturesController < ApplicationController
+  before_action :set_syllabus_module, only: %i[new create]
   def new
-    @syllabus_module = SyllabusModule.find(params[:syllabus_module_id])
     @lecture = Lecture.new
   end
 
   def create
     @lecture = Lecture.new(lecture_params)
-    @lecture.user = current_user
+    @lecture.syllabus_module = @syllabus_module
     if @lecture.save
-      redirect_to syllabuses_path
+      redirect_to new_syllabus_module_lecture_path(@lecture.syllabus_module.syllabus)
+   #   redirect_to lecture_new_path(@syllabus_module.syllabus)
     else
       render :new, status: :unprocessable_entity
     end
@@ -31,6 +32,10 @@ class LecturesController < ApplicationController
   private
 
   def lecture_params
-    params.require(:syllabus_module).permit(:details, :syllabus_module_id)
+    params.require(:lecture).permit(:details)
+  end
+
+  def set_syllabus_module
+    @syllabus_module = SyllabusModule.find(params[:syllabus_module_id])
   end
 end
