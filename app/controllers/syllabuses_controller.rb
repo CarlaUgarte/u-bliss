@@ -11,6 +11,7 @@ class SyllabusesController < ApplicationController
 
   def create
     @syllabus = Syllabus.new(syllabus_params)
+    @syllabus.user = current_user
     if @syllabus.save
       redirect_to @syllabus, notice: 'Syllabus was successfully created.'
     else
@@ -58,6 +59,6 @@ class SyllabusesController < ApplicationController
   end
 
   def syllabus_params
-    params.require(:syllabus).permit(:title, :description)
+    params.require(:syllabus).permit(:title, :category_id, :description, :image)
   end
 end
