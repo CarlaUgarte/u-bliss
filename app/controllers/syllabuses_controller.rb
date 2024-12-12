@@ -2,6 +2,7 @@ class SyllabusesController < ApplicationController
   before_action :set_syllabus, only: %i[show edit update destroy]
 
   def index
+    @categories = Category.all
     if params[:category].present?
       @syllabuses = Syllabus.where(category: params[:category])
     else
