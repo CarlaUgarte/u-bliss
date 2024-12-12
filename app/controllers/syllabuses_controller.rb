@@ -3,6 +3,7 @@ class SyllabusesController < ApplicationController
 
   def index
     @syllabuses = Syllabus.all
+    @categories = Category.all
   end
 
   def new
