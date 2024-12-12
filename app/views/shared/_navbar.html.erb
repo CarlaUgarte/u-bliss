@@ -25,21 +25,22 @@
       <%= link_to 'Home', root_path, class: 'nav-link custom-link-color' %>
     </li>
 
-    <li class="nav-item <%= 'active' if current_page?(lectures_path) %> dropdown">
+   <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %> dropdown">
   <!-- Enlace de Categorías con el dropdown-toggle -->
-  <a href="#" class="nav-link custom-link-color dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  <a href="<%= syllabuses_path %>" class="nav-link custom-link-color">
     Categorías
   </a>
 
   <!-- Menú desplegable con categorías -->
   <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li><%= link_to 'Diseño Gráfico', '#', class: 'dropdown-item' %></li>
-    <li><%= link_to 'Fotografía', '#', class: 'dropdown-item' %></li>
-    <li><%= link_to 'Desarrollo Web', '#', class: 'dropdown-item' %></li>
-    <li><%= link_to 'Marketing', '#', class: 'dropdown-item' %></li>
-    <!-- Agrega más categorías aquí -->
+    <li><%= link_to 'Diseño Gráfico', syllabuses_path(category: 'design'), class: 'dropdown-item' %></li>
+    <li><%= link_to 'Fotografía', syllabuses_path(category: 'photography'), class: 'dropdown-item' %></li>
+    <li><%= link_to 'Desarrollo Web', syllabuses_path(category: 'web-development'), class: 'dropdown-item' %></li>
+    <li><%= link_to 'Marketing', syllabuses_path(category: 'marketing'), class: 'dropdown-item' %></li>
+    <!-- Puedes agregar más categorías aquí -->
   </ul>
 </li>
+
 
     <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
       <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link custom-link-color' %>
