@@ -1,6 +1,10 @@
-<h1>Mi Perfil</h1>
+<h1 class="profile-title mt-5">Mi Perfil</h1>
 
-<p><strong>Nombre:</strong> <%= @user.id %></p>
-<p><strong>Email:</strong> <%= @user.email %></p>
+<div class="profile-card">
+  <div class="profile-card-body">
+    <h5 class="profile-card-title">Detalles del Perfil</h5>
 
-<%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary' %>  <!-- Este sigue usando Devise para edición -->
+    <p><strong>Email:</strong> <%= @user.email %></p>
+
+  </div>
+</div>
