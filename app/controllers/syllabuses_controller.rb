@@ -82,7 +82,7 @@ class SyllabusesController < ApplicationController
 
   def destroy
     @syllabus.destroy
-    redirect_to syllabuses_path, notice: 'Syllabus exitosamente borrado.'
+    redirect_to libraries_path, notice: 'Syllabus exitosamente borrado.'
   end
 
   private
