@@ -8,6 +8,33 @@ class SyllabusesController < ApplicationController
     else
       @syllabuses = Syllabus.all
     end
+      #CODIGO PARA EL BUSCADOR, BUSCARÁ EN TODO LO QUE SE RELACIONE CON LA PALABRA QUE INGRESE EL USUARIO
+      # Inicializamos las variables para las búsquedas
+      @syllabuses = Syllabus.all
+      @syllabuses_modules = SyllabusModule.all
+      @lectures = Lecture.all
+
+      # Filtramos por categoría si está presente
+      if params[:category].present?
+        @syllabuses = Syllabus.where(category: params[:category])
+      end
+
+      # Lógica para la búsqueda
+      if params[:query].present?
+        query = "%#{params[:query]}%"
+
+        sql_subquery = <<~SQL
+          categories.name ILIKE :query
+          OR syllabuses.title ILIKE :query
+          OR syllabuses_modules.name ILIKE :query
+          OR lectures.details ILIKE :query
+        SQL
+
+        @categories = @categories.where("name ILIKE ?", query)
+        @syllabuses = @syllabuses.where("title ILIKE ?", query)
+        @syllabuses_modules = @syllabuses_modules.where("name ILIKE ?", query)
+        @lectures = @lectures.where("details ILIKE ?", query)
+      end
   end
 
 
