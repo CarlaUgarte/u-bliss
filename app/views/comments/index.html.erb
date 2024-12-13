@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :comment do %>
   <% if @lecture %>
-    <h2 class="text-center mt-5 mb-5">Comentarios para la lección: <%= @lecture.details %></h2>
+
 
     <% if @comments.any? %>
       <ul class="list-unstyled">
@@ -23,7 +23,7 @@
               <% end %>
             <% else %>
 
-              <div class="card shadow-sm p-3 mb-3" style="max-width: 50%; margin: 0 auto; background-color: white;">
+              <div class="card shadow-sm p-3 mb-3" style="max-width: 75%; margin: 0 auto; background-color: white;">
                 <div class="card-body">
                   <p><strong><%= comment.user.email %> dijo:</strong></p>
                   <p><%= comment.content %></p>
@@ -52,10 +52,9 @@
     <p class="text-center">No se ha seleccionado ninguna lección.</p>
   <% end %>
 
-  <h3 class="text-center mt-5 mb-5">Nuevo Comentario</h3>
 
-  <%= simple_form_for [ @lecture, @comment ], html: { class: 'w-50 mx-auto' } do |f| %>
-    <div class="card shadow-sm p-3 mb-5" style="max-width: 50%; margin: 0 auto; background-color: white;">
+  <%= simple_form_for [ @lecture, @comment ], html: { class: 'w-75 mx-auto' } do |f| %>
+    <div class="card shadow-sm p-3 mb-5" style="max-width: 100%; margin: 0 auto; background-color: white;">
       <div class="card-body">
         <%= f.label :content, "Escribe tu comentario:", class: 'form-label' %>
         <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
