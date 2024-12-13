@@ -9,6 +9,55 @@
         </div>
     </section>
 
+    <!-- Resultados de búsqueda -->
+        <<% if params[:query].present? %>
+    <h3>Resultados de búsqueda:</h3>
+
+    <h4>Categorías:</h4>
+    <% if @categories.any? %>
+        <ul>
+        <% @categories.each do |category| %>
+            <li><%= category.name %></li>
+        <% end %>
+        </ul>
+    <% else %>
+        <p>No se encontraron categorías para "<%= params[:query] %>".</p>
+    <% end %>
+
+    <h4>Silabus:</h4>
+    <% if @syllabuses.any? %>
+        <ul>
+        <% @syllabuses.each do |syllabus| %>
+            <li><%= syllabus.title %></li>
+        <% end %>
+        </ul>
+    <% else %>
+        <p>No se encontraron silabus para "<%= params[:query] %>".</p>
+    <% end %>
+
+    <h4>Módulos:</h4>
+    <% if @syllabuses_modules.any? %>
+        <ul>
+        <% @syllabuses_modules.each do |mod| %>
+            <li><%= mod.name %></li>
+        <% end %>
+        </ul>
+    <% else %>
+        <p>No se encontraron módulos para "<%= params[:query] %>".</p>
+    <% end %>
+
+    <h4>Lecturas:</h4>
+    <% if @lectures.any? %>
+        <ul>
+        <% @lectures.each do |lecture| %>
+            <li><%= lecture.details %></li>
+        <% end %>
+        </ul>
+    <% else %>
+        <p>No se encontraron lecturas para "<%= params[:query] %>".</p>
+    <% end %>
+    <% end %>
+
     <!-- Cursos Destacados -->
     <section class="featured-courses">
         <h2>Silabos Destacados</h2>
