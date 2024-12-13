@@ -1,6 +1,5 @@
 <h1 class="text-center my-4"><%= @syllabus.title %></h1>
 <!--poner el nombre del mentor -->
-
 <div class="container">
   <div>
     <nav>
@@ -18,47 +17,47 @@
         <p><strong>Categoría:</strong> <%= @syllabus.category.name %></p>
         <p>Mentor: <strong><%= @syllabus.user.email %></strong> </p>
       </div>
-    </div>
-      <h2>Módulos</h2>
-    <div class="tab-pane fade d-flex" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-          <!-- Módulos del curso -->
-
-        <div class="accordion" id="modulesAccordion">
-          <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="heading<%= index %>">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
-                  <%= modulo.name %>
-                </button>
-              </h2>
-              <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
-                <div class="accordion-body">
-                  <% if modulo.lectures.any? %>
-                    <ul class="list-group">
-                      <% modulo.lectures.each do |lecture| %>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                          <!-- Casilla de marcado con estilo contrastante -->
-                          <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
-                          <!-- Título de la lección justo después de la casilla -->
-                          <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
-                          <!-- Botón 'Ver Lección' a la derecha -->
-                          <%= link_to 'Comentarios', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
-                        </li>
-                      <% end %>
-                    </ul>
-                  <% else %>
-                    <p>No hay lecciones en este módulo.</p>
-                  <% end %>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+          <div>
+            <!-- Módulos del curso -->
+                    <h2>Módulos</h2>
+                    <div class="accordion" id="modulesAccordion">
+            <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading<%= index %>">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
+                    <%= modulo.name %>
+                  </button>
+                </h2>
+                <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
+                  <div class="accordion-body">
+                    <% if modulo.lectures.any? %>
+                      <ul class="list-group">
+                        <% modulo.lectures.each do |lecture| %>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <!-- Casilla de marcado con estilo contrastante -->
+                            <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
+                            <!-- Título de la lección justo después de la casilla -->
+                            <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
+                            <!-- Botón 'Ver Lección' a la derecha -->
+                            <%= link_to 'Comentarios', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
+                          </li>
+                        <% end %>
+                      </ul>
+                    <% else %>
+                      <p>No hay lecciones en este módulo.</p>
+                    <% end %>
+                  </div>
                 </div>
               </div>
-            </div>
-          <% end %>
-        </div>
-        <div>
-          <%= turbo_frame_tag :comment %>
-        </div>
+            <% end %>
+                    </div>
+                    <div>
+            <%= turbo_frame_tag :comment %>
+                    </div>
+          </div>
+      </div>
     </div>
-
   </div>
 </div>
 <!-- Botón 'Agregar a mi biblioteca' justo debajo del título principal -->
