@@ -1,5 +1,5 @@
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -297,4 +297,8 @@ footer .social-media a:hover {
   .about-text {
       max-width: 90%;
   }
+}
+
+.black {
+background-color: black !important;
 }
