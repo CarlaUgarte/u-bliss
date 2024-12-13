@@ -15,7 +15,7 @@
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
     <div class="row mb-5">
       <% @libraries.each do |library| %>
-        <div class="col-12 col-md-4 mb-4">
+        <div class="col-12 col-md-4 mb-4 mt-5">
           <div class="custom-card-vertical rounded-5 bg-light">
             <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
             <div class="card-body d-flex flex-column">
@@ -37,7 +37,7 @@
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
     <div class="text-center mt-5">
-      <%= link_to "Agregar un Syllabus", new_syllabus_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to "Agregar un Syllabus", new_syllabus_path, class: 'btn btn-primary btn-lg mt-5' %>
     </div>
     <div class="row mb-5">
       <% current_user.syllabuses.each do |syllabus| %>

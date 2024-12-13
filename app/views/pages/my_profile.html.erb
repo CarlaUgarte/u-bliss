@@ -1,5 +1,10 @@
-<!-- app/views/pages/my_profile.html.erb -->
-<h1>Mi Perfil</h1>
-<p>Nombre: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
-<!-- Aquí puedes agregar más información del usuario, como su foto de perfil o detalles adicionales -->
+<h1 class="profile-title mt-5">Mi Perfil</h1>
+
+<div class="profile-card">
+  <div class="profile-card-body">
+    <h5 class="profile-card-title">Detalles del Perfil</h5>
+
+    <p><strong>Email:</strong> <%= @user.email %></p>
+
+  </div>
+</div>

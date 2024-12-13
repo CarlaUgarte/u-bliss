@@ -1,4 +1,4 @@
-<h1 class="display-4 text-center my-4">Cursos que Tenemos para Ti</h1>
+<h1 class="display-4 text-center mt-5 fw-bold">Cursos que tenemos para tí</h1>
 
 <div class="container my-5">
   <div class="row">
@@ -6,8 +6,8 @@
       <div class="col-md-4 mb-4">
         <div class="list-group shadow-sm rounded">
           <!-- Encabezado de la categoría centrado -->
-          <div class="list-group-item py-3 bg-primary text-white text-center category-title">
-            <h5 class="mb-1 text-truncate"><%= category.name %></h5>
+          <div class="list-group-item py-3 bg-primary text-white text-center category-title black">
+            <h5 class="mb-1 text-truncate fw-bold"><%= category.name %></h5>
           </div>
 
           <!-- Imagen de la categoría con estilo -->
@@ -35,6 +35,7 @@
   .container.my-5 {
     margin-top: 3rem; /* Margen superior */
     margin-bottom: 3rem; /* Margen inferior */
+    font-family: 'Inter', sans-serif !important;
   }
 
   .img-category {
@@ -48,7 +49,8 @@
   .list-group {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para las tarjetas */
     border-radius: 8px; /* Bordes redondeados para las tarjetas */
-    overflow: hidden; /* Asegura que la sombra no afecte los bordes de los elementos */
+    overflow: hidden;
+    font-family: 'Inter', sans-serif !important;
   }
 
   .list-group-item:first-child {
@@ -59,5 +61,6 @@
   .category-title {
     text-align: center; /* Centra el texto del título */
     font-weight: bold; /* Destaca el texto */
+    font-family: 'Inter', sans-serif !important;
   }
 </style>
