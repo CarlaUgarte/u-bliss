@@ -24,7 +24,7 @@
         <p>No se encontraron categorías para "<%= params[:query] %>".</p>
     <% end %>
 
-    <h4>Silabus:</h4>
+    <h4>Syllabus:</h4>
     <% if @syllabuses.any? %>
         <ul>
         <% @syllabuses.each do |syllabus| %>
@@ -32,7 +32,7 @@
         <% end %>
         </ul>
     <% else %>
-        <p>No se encontraron silabus para "<%= params[:query] %>".</p>
+        <p>No se encontraron syllabus para "<%= params[:query] %>".</p>
     <% end %>
 
     <h4>Módulos:</h4>
@@ -60,15 +60,15 @@
 
     <!-- Cursos Destacados -->
     <section class="featured-courses">
-        <h2>Silabos Destacados</h2>
+        <h2>Syllabuses Destacados</h2>
         <div class="courses-container">
             <div class="course-card">
-                <h3>Silabo de Diseño Gráfico</h3>
+                <h3>Syllabus de Diseño Gráfico</h3>
                 <p>Impartido por expertos en la materia.</p>
                 <a href="#" class="btn-primary">Ver más</a>
             </div>
             <div class="course-card">
-                <h3>Silabo de Fotografía</h3>
+                <h3>Syllabus de Fotografía</h3>
                 <p>Aprende a capturar momentos inolvidables.</p>
                 <a href="#" class="btn-primary">Ver más</a>
             </div>

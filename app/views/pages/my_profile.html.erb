@@ -1,5 +1,6 @@
-<!-- app/views/pages/my_profile.html.erb -->
 <h1>Mi Perfil</h1>
-<p>Nombre: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
-<!-- Aquí puedes agregar más información del usuario, como su foto de perfil o detalles adicionales -->
+
+<p><strong>Nombre:</strong> <%= @user.id %></p>
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<%= link_to 'Editar Perfil', edit_user_registration_path, class: 'btn btn-primary' %>  <!-- Este sigue usando Devise para edición -->

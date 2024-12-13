@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def my_profile
-    @user = current_user  # Aquí accedemos al usuario logueado
+    @user = current_user
   end
 
 end
