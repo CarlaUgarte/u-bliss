@@ -25,7 +25,6 @@
     </li>
 
    <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %> dropdown">
-  <!-- Enlace de Categorías con el dropdown-toggle -->
   <a href="<%= syllabuses_path %>" class="nav-link custom-link-color">
     Categorías
   </a>
@@ -36,9 +35,9 @@
     <li><%= link_to 'Fotografía', syllabuses_path(category: 'photography'), class: 'dropdown-item' %></li>
     <li><%= link_to 'Desarrollo Web', syllabuses_path(category: 'web-development'), class: 'dropdown-item' %></li>
     <li><%= link_to 'Marketing', syllabuses_path(category: 'marketing'), class: 'dropdown-item' %></li>
-    <!-- Puedes agregar más categorías aquí -->
   </ul>
 </li>
+
 
 
     <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
