@@ -11,7 +11,7 @@
     <div class="tab-content mt-5" id="nav-tabContent">
       <div class="tab-pane fade show active mt-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
         <!-- Información general del Syllabus -->
-        <%= cl_image_tag(@syllabus.image.key, width: 800, height: 400, crop: :fill, class: "img-fluid rounded") if @syllabus.image.present?%>
+        <%= cl_image_tag(@syllabus.image.key, width: 800, height: 400, crop: :fill, class: "img-fluid rounded") if @syllabus.image.present? %>
         <h3>Detalles del Curso</h3>
         <p><%= @syllabus.description %></p>
         <p><strong>Categoría:</strong> <%= @syllabus.category.name %></p>
@@ -19,12 +19,19 @@
       </div>
 
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-          <div class="">
-            <!-- Módulos del curso -->
-            <div class="d-flex">
-              <div class="" style="width: 65%;">
-                <div class="accordion" id="modulesAccordion">
-                  <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
+        <div class="container">
+          <!-- Barra de progreso -->
+          <div class="progress mt-3">
+            <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progress_percentage %>%;" aria-valuenow="<%= @progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
+              <%= @progress_percentage %>% completado
+            </div>
+          </div>
+
+          <!-- Módulos del curso -->
+          <div class="row">
+            <div class="col-8">
+              <div class="accordion" id="modulesAccordion">
+                <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
                   <div class="accordion-item">
                     <h2 class="accordion-header" id="heading<%= index %>">
                       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
@@ -53,13 +60,13 @@
                     </div>
                   </div>
                 <% end %>
-                        </div>
-                        <div>
               </div>
-                      </div>
-              <div class="" style="width: 35%;"><%= turbo_frame_tag :comment %></div>
+            </div>
+            <div class="col-4">
+              <%= turbo_frame_tag :comment %>
             </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -93,6 +100,10 @@
   .form-check-label {
     font-size: 16px;
   }
+
+  .progress-bar {
+    transition: width 0.2s ease;
+  }
 </style>
 
 <!-- Código JavaScript al final del archivo -->
@@ -105,10 +116,8 @@
       }
     });
   });
-</script>
 
-<!-- Incluir el código JavaScript al final del archivo -->
-<script>
+  // Función para actualizar la barra de progreso
   document.addEventListener("DOMContentLoaded", function() {
     const progressBar = document.querySelector(".progress-bar");
     const checkboxes = document.querySelectorAll(".mark-completed");
