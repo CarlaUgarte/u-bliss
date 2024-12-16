@@ -27,7 +27,10 @@ class CommentsController < ApplicationController
     @comment = @lecture.comments.new(comment_params)
     @comment.user = current_user
     if @comment.save
-      redirect_to lecture_path(@lecture), notice: 'Comentario creado con éxito.'
+      respond_to do |format|
+        format.turbo_stream
+        format.html {redirect_to syllabuses_path}
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,7 +56,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to lecture_path(@lecture), notice: 'Comentario eliminado con éxito.'
+    redirect_to syllabuses_path(@lecture), notice: 'Comentario eliminado con éxito.'
   end
 
   private

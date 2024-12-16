@@ -1,0 +1,35 @@
+<li class="mb-2">
+  <% if params[:edit_comment_id].to_i == comment.id %>
+    <h5 class="text-center mt-3 mb-3"><strong>Editar Comentario</strong></h5>
+    <%= simple_form_for [lecture, comment], method: :patch, html: { class: 'w-100 mx-auto' } do |f| %>
+      <div class="comment-bubble" style="max-width: 90%; margin: 0 auto; background-color: white; padding: 10px;">
+        <div class="card-body">
+          <%= f.label :content, "<strong>Edita tu comentario:</strong>".html_safe, class: 'form-label' %>
+          <%= f.input :content, as: :text, input_html: { rows: 4, class: 'form-control' }, label: false %>
+        </div>
+        <div class="comment-footer text-center" style="background-color: transparent; border-top: none;">
+          <%= f.submit "Actualizar", class: 'btn btn-primary' %>
+          <%= link_to "Cancelar", lecture_comments_path(lecture), class: 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="comment-bubble <%= 'user-comment' if comment.user == current_user %> shadow-lg" style="max-width: 90%; margin: 10px auto; background-color: white;">
+      <div class="comment-content">
+        <p><strong><%= comment.user.email %> dijo:</strong></p>
+        <p><%= comment.content %></p>
+      </div>
+      <div class="comment-footer d-flex justify-content-end align-items-center" style="background-color: transparent; border-top: none;">
+        <% if comment.user == current_user %>
+          <%= link_to lecture_comments_path(lecture, edit_comment_id: comment.id), class: 'me-2' do %>
+            <i class="fas fa-pen-to-square fa-lg text-black"></i>
+          <% end %>
+
+          <%= button_to lecture_comment_path(lecture, comment), method: :delete, data: { confirm: '¿Estás seguro?' }, class: 'ms-2 trash-icon' do %>
+            <i class="fas fa-trash-can fa-lg text-black"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</li>
