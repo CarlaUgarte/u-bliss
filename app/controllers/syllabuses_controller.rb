@@ -3,38 +3,19 @@ class SyllabusesController < ApplicationController
 
   def index
     @categories = Category.all
-    if params[:category].present?
-      @syllabuses = Syllabus.where(category: params[:category])
-    else
-      @syllabuses = Syllabus.all
+    @syllabuses = Syllabus.all
+  
+    # Filtramos por categoría si está presente
+    @syllabuses = @syllabuses.where(category: params[:category]) if params[:category].present?
+  
+    # Lógica para la búsqueda
+    if params[:query].present?
+      query = "%#{params[:query]}%"
+      @categories = @categories.where("name ILIKE ?", query)
+      @syllabuses = @syllabuses.where("title ILIKE ?", query)
+      @syllabuses_modules = SyllabusModule.where("name ILIKE ?", query)
+      @lectures = Lecture.where("details ILIKE ?", query)
     end
-      #CODIGO PARA EL BUSCADOR, BUSCARÁ EN TODO LO QUE SE RELACIONE CON LA PALABRA QUE INGRESE EL USUARIO
-      # Inicializamos las variables para las búsquedas
-      @syllabuses = Syllabus.all
-      @syllabuses_modules = SyllabusModule.all
-      @lectures = Lecture.all
-
-      # Filtramos por categoría si está presente
-      if params[:category].present?
-        @syllabuses = Syllabus.where(category: params[:category])
-      end
-
-      # Lógica para la búsqueda
-      if params[:query].present?
-        query = "%#{params[:query]}%"
-
-        sql_subquery = <<~SQL
-          categories.name ILIKE :query
-          OR syllabuses.title ILIKE :query
-          OR syllabuses_modules.name ILIKE :query
-          OR lectures.details ILIKE :query
-        SQL
-
-        @categories = @categories.where("name ILIKE ?", query)
-        @syllabuses = @syllabuses.where("title ILIKE ?", query)
-        @syllabuses_modules = @syllabuses_modules.where("name ILIKE ?", query)
-        @lectures = @lectures.where("details ILIKE ?", query)
-      end
   end
 
 
@@ -53,21 +34,20 @@ class SyllabusesController < ApplicationController
   end
 
   def show
-    #cargar también módulos o bibliotecas asociadas
-    @modules = @syllabus.syllabus_modules
-    @libraries = @syllabus.libraries
-
-    @syllabus = Syllabus.find(params[:id]) # Encuentra el syllabus por su ID
-
-    # Si necesitas @syllabuses, asegúrate de inicializarla
-    @syllabuses = Syllabus.where(category_id: @syllabus.category_id) if @syllabus.respond_to?(:category_id)
-
-    # También necesitas inicializar @category si se usa en la vista
-    @category = @syllabus.category if @syllabus.respond_to?(:category)
-
+  
     @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
 
-  end
+  #cargar también módulos o bibliotecas asociadas
+  @modules = @syllabus.syllabus_modules
+  @libraries = @syllabus.libraries
+  @user = current_user
+
+  @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
+
+  total_lectures = @syllabus.syllabus_modules.sum { |mod| mod.lectures.count }
+  completed_lectures = session[:completed_lectures].to_a.count
+  @progress_percentage = total_lectures > 0 ? (completed_lectures.to_f / total_lectures * 100).round : 0
+end
 
   def edit
   end

@@ -1,5 +1,6 @@
+<!-- Código HTML y Ruby de la página -->
 <h1 class="text-center mt-5 mb-5"><%= @syllabus.title %></h1>
-<!--poner el nombre del mentor -->
+<!--poniendo el nombre del mentor -->
 <div class="container">
   <div>
     <nav>
@@ -19,52 +20,53 @@
       </div>
 
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-          <div class="">
-            <!-- Módulos del curso -->
-            <div class="d-flex">
-              <div class="" style="width: 65%;">
-                <div class="accordion" id="modulesAccordion">
-                  <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
-                  <div class="accordion-item">
-                    <h2 class="accordion-header" id="heading<%= index %>">
-                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
-                        <%= modulo.name %>
-                      </button>
-                    </h2>
-                    <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
-                      <div class="accordion-body">
-                        <% if modulo.lectures.any? %>
-                          <ul class="list-group">
-                            <% modulo.lectures.each do |lecture| %>
-                              <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <!-- Casilla de marcado con estilo contrastante -->
-                                <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
-                                <!-- Título de la lección justo después de la casilla -->
-                                <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
-                                <!-- Botón 'Ver Lección' a la derecha -->
-                                <%= link_to 'Comentarios', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
-                              </li>
-                            <% end %>
-                          </ul>
-                        <% else %>
-                          <p>No hay lecciones en este módulo.</p>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
-                        </div>
-                        <div>
+        <div class="">
+          <!-- Barra de progreso -->
+          <div class="mb-4">
+            <h5>Progreso del curso</h5>
+            <div class="progress" style="height: 25px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progress_percentage %>%;" aria-valuenow="<%= @progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
+                <%= @progress_percentage %>% completado
               </div>
-                      </div>
-              <div class="" style="width: 35%;"><%= turbo_frame_tag :comment %></div>
             </div>
           </div>
+          
+          <!-- Módulos del curso -->
+          <div class="accordion" id="modulesAccordion">
+            <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="heading<%= index %>">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
+                  <%= modulo.name %>
+                </button>
+              </h2>
+              <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
+                <div class="accordion-body">
+                  <% if modulo.lectures.any? %>
+                  <ul class="list-group">
+                    <% modulo.lectures.each do |lecture| %>
+                      <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
+                        <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
+                      </li>
+                    <% end %>
+                  </ul>
+                  <% else %>
+                    <p>No hay lecciones en este módulo.</p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- Botón 'Agregar a mi biblioteca' justo debajo del título principal -->
+
+<!-- Botón 'Agregar a mi biblioteca' -->
 <div class="text-center mt-5 mb-5">
   <%= button_to "Agregar a mi Biblioteca", syllabus_libraries_path(@syllabus), method: :post, class: 'btn btn-primary btn-lg' %>
 </div>
@@ -76,12 +78,12 @@
     height: 25px;
     border: 2px solid #007bff;
     background-color: #fff;
-    accent-color: #007bff; /* Cambia el color de la casilla cuando está marcada */
+    accent-color: #007bff;
     transition: background-color 0.2s, border-color 0.2s;
   }
 
   .form-check-input:checked {
-    background-color: #007bff; /* Color de fondo cuando está marcado */
+    background-color: #007bff;
     border-color: #0056b3;
   }
 
@@ -94,3 +96,48 @@
     font-size: 16px;
   }
 </style>
+
+<!-- Código JavaScript al final del archivo -->
+<script>
+  // Configuración de AJAX para incluir el token CSRF
+  document.addEventListener("DOMContentLoaded", function() {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
+    });
+  });
+</script>
+
+<!-- Incluir el código JavaScript al final del archivo -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const progressBar = document.querySelector(".progress-bar");
+    const checkboxes = document.querySelectorAll(".mark-completed");
+
+    function updateProgressBar() {
+      const totalLectures = checkboxes.length;
+      const completedLectures = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+      const progressPercentage = totalLectures > 0 ? (completedLectures / totalLectures) * 100 : 0;
+
+      // Actualiza el valor y el texto de la barra de progreso
+      progressBar.style.width = progressPercentage + "%";
+      progressBar.setAttribute("aria-valuenow", progressPercentage);
+      progressBar.innerText = Math.round(progressPercentage) + "% completado";
+
+      // Guardar el estado en la sesión del navegador
+      const completedLectureIds = Array.from(checkboxes)
+      .filter(checkbox => checkbox.checked)
+      .map(checkbox => checkbox.dataset.lectureId);
+      sessionStorage.setItem("completed_lectures", JSON.stringify(completedLectureIds));
+    }
+
+    // Actualiza la barra de progreso al cargar la página
+    updateProgressBar();
+
+    // Añade el evento de cambio para cada casilla
+    checkboxes.forEach(checkbox => {
+      checkbox.addEventListener("change", updateProgressBar);
+    });
+  });
+</script>
