@@ -14,7 +14,7 @@
   <% end %>
 
   <%= turbo_frame_tag :new_comment_form do %>
-    <%= simple_form_for [@lecture, @comment], html: { class: 'w-100 mx-auto' }, id: "new_comment_form" do |f| %>
+    <%= simple_form_for [@lecture, @comment], html: { data: { controller: "reset-comments", action: "turbo:submit-end->reset-comments#reset"}, class: 'w-100 mx-auto' } do |f| %>
       <div class="comment-bubble" style="max-width: 90%; margin: 0 auto; background-color: white; padding: 10px;">
         <div class="card-body">
           <%= f.label :content, "<strong>Escribe tu comentario:</strong>".html_safe, class: 'form-label' %>
@@ -27,20 +27,3 @@
     <% end %>
   <% end %>
 <% end %>
-
-<script>
-  document.addEventListener('turbo:submit-end', function(event) {
-    const form = event.target;
-    if (form.id === 'new_comment_form') {
-      const isSuccess = event.detail.success;
-
-      if (isSuccess) {
-        const commentField = document.getElementById('comment_content');
-        if (commentField) {
-          commentField.value = '';
-          commentField.focus();
-        }
-      }
-    }
-  });
-</script>
