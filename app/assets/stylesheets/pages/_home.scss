@@ -303,3 +303,59 @@ footer .social-media a:hover {
 background-color: black !important;
 }
 
+/* Carrusel y contenedor */
+#customCoursesCarousel .carousel-inner {
+    display: flex;
+    overflow: hidden;
+}
+
+/* Contenedor para las cards dentro de cada slide */
+.custom-courses-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Estilo para cada tarjeta */
+.custom-course-card {
+    flex: 1 1 30%;  /* Cada tarjeta ocupa el 30% del ancho disponible */
+    max-width: 280px;  /* Máximo de 280px por tarjeta */
+    margin: 0 10px;  /* Espaciado entre las tarjetas */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Efecto hover para las tarjetas */
+.custom-course-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Título de las tarjetas */
+.custom-course-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+/* Botón de cada tarjeta */
+.custom-course-card .buttons {
+    text-align: center;
+}
+
+
+/* Media query para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .custom-course-card {
+        flex: 1 1 45%;  /* En pantallas pequeñas, las tarjetas ocupan el 45% del ancho */
+        max-width: none;  /* Sin limitación de tamaño */
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-course-card {
+        flex: 1 1 100%;  /* En pantallas aún más pequeñas, las tarjetas ocupan el 100% */
+    }
+}

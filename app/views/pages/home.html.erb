@@ -1,8 +1,8 @@
 <!-- Banner Principal -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>¡Aprende de los mejores mentores del mundo!</h1>
-            <p>Explora</p>
+        <div class="hero-text">
+            <h1>¡Aprende de los mejores creativos del mundo!</h1>
+            <p>Inicia tu viaje creativo con los cursos más innovadores.</p>
             <div class="buttons">
                 <%= link_to "Explora Syllabuses", syllabuses_path, class: "btn-primary" %>
             </div>
@@ -24,7 +24,7 @@
         <p>No se encontraron categorías para "<%= params[:query] %>".</p>
     <% end %>
 
-    <h4>Syllabus:</h4>
+    <h4>Silabus:</h4>
     <% if @syllabuses.any? %>
         <ul>
         <% @syllabuses.each do |syllabus| %>
@@ -32,7 +32,7 @@
         <% end %>
         </ul>
     <% else %>
-        <p>No se encontraron syllabus para "<%= params[:query] %>".</p>
+        <p>No se encontraron silabus para "<%= params[:query] %>".</p>
     <% end %>
 
     <h4>Módulos:</h4>
@@ -58,31 +58,46 @@
     <% end %>
     <% end %>
 
-    <!-- Cursos Destacados -->
-    <section class="featured-courses">
-        <h2>Syllabuses Destacados</h2>
-        <div class="courses-container">
-            <div class="course-card">
-                <h3>Syllabus de Programación</h3>
-                <p class="mb-4">Impartido por expertos en la materia.</p>
-                <div class="buttons">
-                <%= link_to "Ver más", syllabuses_path, class: "btn-primary" %>
-            </div>
-            </div>
-            <div class="course-card">
-                <h3>Syllabus de Diseño</h3>
-                <p class="mb-4">Aprende a capturar momentos inolvidables.</p>
-                <div class="buttons">
-                <%= link_to "Ver más", syllabuses_path, class: "btn-primary" %>
-            </div>
-            </div>
-        </div>
-    </section>
+
 
 <section class="featured-courses">
-    <div class="courses-container">
+  <h2>Silabos Destacados</h2>
+
+  <div class="carousel-container">
+    <% @categories.each do |category| %>
+      <% if category.syllabuses.any? %>
+        <% category.syllabuses.each do |syllabus| %>
+          <div class="custom-card-vertical">
+          <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
+            <div class="card-body d-flex flex-column">
+              <h3 class="card-title"><%= syllabus.title %></h3>
+              <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
+              <p class="card-text"><%= syllabus.description %></p>
+              <div class="d-flex justify-content-center mt-2 gap-2">
+                <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="about-us">
+    <div class="about-content">
         <div class="about-text">
-            <h3 class="about-us-text mb-3">¿Quiénes Somos?</h3>
+            <h3 class="about-us-text">¿Quiénes Somos?</h3>
             <p class="about-us-text">Somos un grupo de estudiantes, tal como tú, que buscamos aprender de manera más eficiente. Al principio, nos sentimos perdidos, sin saber por dónde empezar ni cómo trazar una ruta clara para adquirir nuevos conocimientos. Era un reto encontrar el camino correcto entre tantas opciones.</p>
             <p class="about-us-text">Para hacer todo esto más fácil, decidimos crear esta plataforma. Aquí, las personas pueden compartir sus propias rutas de aprendizaje, recomendaciones y recursos útiles sobre diversos temas. Nuestro objetivo es ayudarte a encontrar el mejor camino para aprender, sin perder tiempo ni energía buscando información dispersa.</p>
             <p class="about-us-text">Queremos que este espacio sea una comunidad donde todos podamos compartir y crecer juntos. ¡Estamos aquí para aprender, apoyarnos y avanzar juntos!</p>
