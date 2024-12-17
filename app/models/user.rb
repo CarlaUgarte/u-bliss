@@ -2,13 +2,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+        :recoverable, :rememberable, :validatable
   has_many :syllabuses
   has_many :libraries
   has_many :comments
   #gamificacion
   has_many :user_points
   has_many :achievements
+  has_one_attached :photo
+
+  validates :first_name, :last_name, :username, presence: true
   #gamificacion
   def total_points
     user_points.sum(:points)
