@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_15_225843) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_17_205724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,6 +85,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_15_225843) do
     t.index ["user_id"], name: "index_libraries_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "content"
+    t.integer "rating"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "syllabus_id", null: false
+    t.index ["syllabus_id"], name: "index_reviews_on_syllabus_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "syllabus_modules", force: :cascade do |t|
     t.string "name"
     t.bigint "syllabus_id", null: false
@@ -132,6 +143,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_15_225843) do
   add_foreign_key "lectures", "syllabus_modules"
   add_foreign_key "libraries", "syllabuses"
   add_foreign_key "libraries", "users"
+  add_foreign_key "reviews", "syllabuses"
+  add_foreign_key "reviews", "users"
   add_foreign_key "syllabus_modules", "syllabuses"
   add_foreign_key "syllabuses", "categories"
   add_foreign_key "syllabuses", "users"
