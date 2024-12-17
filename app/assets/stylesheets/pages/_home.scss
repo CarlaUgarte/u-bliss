@@ -300,14 +300,29 @@ button, .trash-icon {
   cursor: pointer;
 }
 
-.fas.fa-pen-to-square, .fas.fa-trash-can {
+.fas.fa-pen,
+.fas.fa-trash,
+.fas.fa-sync,
+.fa-solid.fa-x
+.fas.fa-eye {
   color: black;
   font-size: 20px;
+  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.trash-icon i {
-  display: inline-block;
-  margin: 0;
+
+.fas.fa-pen:hover,
+.fas.fa-trash:hover,
+.fas.fa-sync:hover,
+.fa-solid.fa-x:hover,
+.fas.fa-eye:hover {
+  color: #111212;
+  transform: scale(1.2);
+}
+
+.fas.fa-sync,
+.fa-solid.fa-x {
+  font-weight: bold;
 }
 
 
@@ -318,13 +333,13 @@ button, .trash-icon {
   margin: 10px 0;
   position: relative;
   background-color: #f1f1f1;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(232, 211, 94, 0.2);
   transition: transform 0.3s ease;
 }
 
 
 .comment-bubble.user-comment {
-  background-color: #e3ecf5;
+  background-color: #030e1a;
   align-self: flex-end;
   margin-left: auto;
 }
@@ -334,7 +349,6 @@ button, .trash-icon {
   background-color: #ffffff;
   align-self: flex-start;
 }
-
 
 .comment-bubble:hover {
   transform: translateY(-5px);

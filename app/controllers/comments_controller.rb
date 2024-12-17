@@ -55,8 +55,12 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    @lecture = @comment.lecture
     @comment.destroy
-    redirect_to syllabuses_path(@lecture), notice: 'Comentario eliminado con éxito.'
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@comment) }
+      format.html { redirect_to syllabuses_path, notice: 'Comentario eliminado con éxito.' }
+    end
   end
 
   private

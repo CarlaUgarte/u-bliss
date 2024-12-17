@@ -1,6 +1,4 @@
-<h1 class="text-center mt-5 mb-5"><%= @syllabus.title %></h1>
-<!--poner el nombre del mentor -->
-<div class="container">
+<div class="container mt-5">
   <div>
     <nav>
       <div class="nav nav-tabs" id="nav-tab" role="tablist">
@@ -10,24 +8,29 @@
     </nav>
     <div class="tab-content mt-5" id="nav-tabContent">
       <div class="tab-pane fade show active mt-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-        <!-- Información general del Syllabus -->
-        <%= cl_image_tag(@syllabus.image.key, width: 800, height: 400, crop: :fill, class: "img-fluid rounded") if @syllabus.image.present? %>
-        <h3>Detalles del Curso</h3>
-        <p><%= @syllabus.description %></p>
-        <p><strong>Categoría:</strong> <%= @syllabus.category.name %></p>
-        <p>Mentor: <strong><%= @syllabus.user.email %></strong> </p>
+        <div class="row">
+          <div class="col-md-12 text-center mb-4">
+            <%= cl_image_tag(@syllabus.image.key, width: 800, height: 400, crop: :fill, class: "img-fluid rounded-4 shadow-lg border border-muted mb-4") if @syllabus.image.present? %>
+          </div>
+          <div class="col-md-12">
+            <h3 class="text-black text-center font-weight-bold mb-4"><%= @syllabus.title %></h3>
+            <p class="text-black mb-3" style="text-align: justify;"><%= @syllabus.description %></p>
+            <p class="font-weight-bold text-dark mb-3">
+              Categoría:<span class="text-muted"><strong><%= @syllabus.category.name %></strong></span>
+            </p>
+            <p class="font-weight-bold text-dark mb-3">
+              Mentor:<span class="text-muted"><strong><%= @syllabus.user.email %></strong></span>
+            </p>
+          </div>
+        </div>
       </div>
-
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
         <div class="container">
-          <!-- Barra de progreso -->
           <div class="progress mt-3">
             <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progress_percentage %>%;" aria-valuenow="<%= @progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
               <%= @progress_percentage %>% completado
             </div>
           </div>
-
-          <!-- Módulos del curso -->
           <div class="row">
             <div class="col-8">
               <div class="accordion" id="modulesAccordion">
@@ -44,12 +47,9 @@
                           <ul class="list-group">
                             <% modulo.lectures.each do |lecture| %>
                               <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <!-- Casilla de marcado con estilo contrastante -->
                                 <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
-                                <!-- Título de la lección justo después de la casilla -->
                                 <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
-                                <!-- Botón 'Ver Lección' a la derecha -->
-                                <%= link_to 'Comentarios', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
+                                <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
                               </li>
                             <% end %>
                           </ul>
@@ -71,30 +71,29 @@
     </div>
   </div>
 </div>
-<!-- Botón 'Agregar a mi biblioteca' justo debajo del título principal -->
+
 <div class="text-center mt-5 mb-5">
   <%= button_to "Agregar a mi Biblioteca", syllabus_libraries_path(@syllabus), method: :post, class: 'btn btn-primary btn-lg' %>
 </div>
 
-<!-- Estilos para las casillas de verificación -->
 <style>
   .form-check-input {
     width: 25px;
     height: 25px;
-    border: 2px solid #007bff;
+    border: 2px solidrgb(12, 16, 21);
     background-color: #fff;
-    accent-color: #007bff; /* Cambia el color de la casilla cuando está marcada */
+    accent-color:rgb(68, 72, 78);
     transition: background-color 0.2s, border-color 0.2s;
   }
 
   .form-check-input:checked {
-    background-color: #007bff; /* Color de fondo cuando está marcado */
-    border-color: #0056b3;
+    background-color:rgb(18, 20, 22);
+    border-color:rgb(13, 13, 13);
   }
 
   .form-check-input:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(156, 162, 169, 0.5);
   }
 
   .form-check-label {
@@ -106,7 +105,6 @@
   }
 </style>
 
-<!-- Código JavaScript al final del archivo -->
 <script>
   // Configuración de AJAX para incluir el token CSRF
   document.addEventListener("DOMContentLoaded", function() {

@@ -1,68 +1,74 @@
 <div class="container">
   <div class="row mb-4">
     <div class="col-12">
-      <h3 class="mt-5 mb-2">Mi Biblioteca</h3>
+      <h3 class="mt-5 mb-5 text-center">Mi Biblioteca</h3>
     </div>
   </div>
 
-<nav>
-  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Estudiante</button>
-    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mentor</button>
-  </div>
-</nav>
-<div class="tab-content" id="nav-tabContent">
-  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-   <div class="container min-vh-100 d-flex align-items-center justify-content-center">
-  <div class="row justify-content-center w-100 mb-5">
-    <% @libraries.each do |library| %>
-      <div class="col-12 col-md-4 mb-4 mt-5">
-        <div class="custom-card-vertical rounded-5 bg-light">
-          <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
-          <div class="card-body d-flex flex-column">
-            <h3 class="card-title"><%= library.syllabus.title %></h3>
-            <p class="card-subtitle">Mentor: <strong><%= library.syllabus.user.email %></strong></p>
-            <p class="card-text"><%= library.syllabus.description %></p>
-            <div class="d-flex justify-content-center mt-2 gap-2">
-              <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary custom-btn" %>
-              <%= button_to syllabus_library_path(library.syllabus, library), method: :delete, class: "btn btn-primary custom-btn" do %>
-                Eliminar
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-  </div>
-
-  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-    <div class="text-center mt-5">
-      <%= link_to "Agregar un Syllabus", new_syllabus_path, class: 'btn btn-primary btn-lg mt-5' %>
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Estudiante</button>
+      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mentor</button>
     </div>
-    <div class="row mb-5">
-      <% current_user.syllabuses.each do |syllabus| %>
-        <div class="col-12 col-md-4 mb-4">
-          <div class="custom-card-vertical rounded-5 bg-light">
-            <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
-            <div class="card-body d-flex flex-column">
-              <h3 class="card-title"><%= syllabus.title %></h2>
-              <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
-              <p class="card-text"><%= syllabus.description %></p>
-              <div class="d-flex justify-content-center mt-2 gap-2">
-                <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
-                <%= button_to syllabus_path(syllabus), method: :delete, class: "btn btn-primary custom-btn" do %>
-                  Eliminar
-                <% end %>
-                <%= link_to "Editar", edit_syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+  </nav>
+
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+      <div class="row mb-5">
+        <% @libraries.each do |library| %>
+          <div class="col-12 col-md-4 mb-4 mt-5">
+            <div class="custom-card-vertical rounded-5 bg-light">
+              <%= cl_image_tag library.syllabus.image.key, class: "card-image" if library.syllabus.image.attached? %>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title"><%= library.syllabus.title %></h3>
+                <p class="card-subtitle">Mentor: <strong><%= library.syllabus.user.email %></strong></p>
+                <p class="card-text"><%= library.syllabus.description %></p>
+                <div class="d-flex justify-content-end gap-3" style="position: absolute; bottom: 10px; right: 10px;">
+                  <%= link_to syllabus_path(library.syllabus) do %>
+                    <i class="fas fa-eye fa-lg text-black"></i>
+                  <% end %>
+                  <%= button_to syllabus_library_path(library.syllabus, library), method: :delete do %>
+                    <i class="fas fa-trash fa-lg text-black"></i>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <div class="row mb-5">
+        <% current_user.syllabuses.each do |syllabus| %>
+          <div class="col-12 col-md-4 mb-4 mt-5">
+            <div class="custom-card-vertical rounded-5 bg-light">
+              <%= cl_image_tag syllabus.image.key, class: "card-image" if syllabus.image.attached? %>
+              <div class="card-body d-flex flex-column">
+                <h3 class="card-title"><%= syllabus.title %></h3>
+                <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
+                <p class="card-subtitle">Category: <strong><%= syllabus.category.name %></strong></p>
+                <p class="card-text"><%= syllabus.description %></p>
+                <div class="d-flex justify-content-end gap-3" style="position: absolute; bottom: 10px; right: 10px;">
+                  <%= link_to syllabus_path(syllabus) do %>
+                    <i class="fas fa-eye fa-lg text-black"></i>
+                  <% end %>
+                  <%= button_to syllabus_path(syllabus), method: :delete do %>
+                    <i class="fas fa-trash fa-lg text-black"></i>
+                  <% end %>
+                  <%= link_to edit_syllabus_path(syllabus) do %>
+                    <i class="fa-solid fas fa-pen fa-lg text-black"></i>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="text-center mt-5 mb-5">
+        <%= link_to 'Agregar Syllabus', new_syllabus_path, class: 'btn btn-primary btn-lg mt-5' %>
+      </div>
     </div>
   </div>
-</div>
 </div>

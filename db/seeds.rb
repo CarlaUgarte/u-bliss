@@ -42,6 +42,18 @@ syllabus_descriptions = [
   'Disfruta de una mirada profunda al arte contemporáneo.'
 ]
 
+syllabus_images = [
+  "https://img.freepik.com/foto-gratis/ingeniero-ti-analizando-codigo_1098-21513.jpg?t=st=1734447817~exp=1734451417~hmac=b49f954ecb48daec9a4e300bb3f502bc1f01ed4bf733146bb1dad94e12a1d52f&w=996",
+  "https://img.freepik.com/foto-gratis/hombre-controlando-lampara-inteligente-su-telefono_23-2149036889.jpg?t=st=1734447883~exp=1734451483~hmac=de0db5ffa106a0648e72a6e43ff55a0f27cfa5a9f1b19abdc1e63b61dbc1cf17&w=996",
+  "https://img.freepik.com/foto-gratis/mujer-tiro-medio-dibujando-ipad_23-2150040121.jpg?t=st=1734447926~exp=1734451526~hmac=9eb4b812ac03ba5042f4f7976c8ed0a2a2e14907cecfab2880a70b8d411ac989&w=996",
+  "https://cdn.pixabay.com/photo/2018/01/24/17/33/light-bulb-3104355_1280.jpg",
+  "https://cdn.pixabay.com/photo/2016/09/03/23/34/cashbox-1642989_1280.jpg",
+  "https://cdn.pixabay.com/photo/2015/09/20/18/31/coins-948603_1280.jpg",
+  "https://cdn.pixabay.com/photo/2023/09/11/14/19/weight-8246973_1280.jpg",
+  "https://cdn.pixabay.com/photo/2023/03/02/21/22/brussels-7826514_1280.jpg",
+  "https://img.freepik.com/foto-gratis/pizarra-inscrita-formulas-calculos-cientificos_1150-19413.jpg?t=st=1734448040~exp=1734451640~hmac=6a016b6341ab5c21d1eda1ece6713e1a13955c639df3210111f9a152df32f0e2&w=996",
+  "https://img.freepik.com/foto-gratis/hoja-pintura-mujer-primer-plano_23-2148750513.jpg?t=st=1734448108~exp=1734451708~hmac=4e16ae40d3745d57e8ad3d3aae81b15186fcea70a2427c160e243a06fa8f1b32&w=996"
+]
 # Asociar los silabus con categorías y usuarios
 syllabus_titles.each_with_index do |title, index|
   category = Category.all.sample # Selección aleatoria de categoría
@@ -52,7 +64,8 @@ syllabus_titles.each_with_index do |title, index|
     category: category,
     user: user
   )
-
+  file = URI.open(syllabus_images[index])
+syllabus.image.attach
   # Crear módulos y lectures para cada syllabus
   case title
   when 'Introducción a la Programación'
