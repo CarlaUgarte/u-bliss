@@ -13,26 +13,29 @@
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-    <div class="row mb-5">
-      <% @libraries.each do |library| %>
-        <div class="col-12 col-md-4 mb-4 mt-5">
-          <div class="custom-card-vertical rounded-5 bg-light">
-            <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
-            <div class="card-body d-flex flex-column">
-              <h3 class="card-title"><%= library.syllabus.title %></h3>
-              <p class="card-subtitle">Mentor: <strong><%= library.syllabus.user.email %></strong></p>
-              <p class="card-text"><%= library.syllabus.description %></p>
-              <div class="d-flex justify-content-center mt-2 gap-2">
-                <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary custom-btn" %>
-                <%= button_to syllabus_library_path(library.syllabus, library), method: :delete, class: "btn btn-primary custom-btn" do %>
-                  Eliminar
-                <% end %>
-              </div>
+   <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+  <div class="row justify-content-center w-100 mb-5">
+    <% @libraries.each do |library| %>
+      <div class="col-12 col-md-4 mb-4 mt-5">
+        <div class="custom-card-vertical rounded-5 bg-light">
+          <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
+          <div class="card-body d-flex flex-column">
+            <h3 class="card-title"><%= library.syllabus.title %></h3>
+            <p class="card-subtitle">Mentor: <strong><%= library.syllabus.user.email %></strong></p>
+            <p class="card-text"><%= library.syllabus.description %></p>
+            <div class="d-flex justify-content-center mt-2 gap-2">
+              <%= link_to "Ver más", syllabus_path(library.syllabus), class: "btn btn-primary custom-btn" %>
+              <%= button_to syllabus_library_path(library.syllabus, library), method: :delete, class: "btn btn-primary custom-btn" do %>
+                Eliminar
+              <% end %>
             </div>
           </div>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
   </div>
 
   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">

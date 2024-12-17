@@ -1,8 +1,8 @@
 <!-- Banner Principal -->
     <section class="hero">
         <div class="hero-text">
-            <h1>¡Aprende de los mejores creativos del mundo!</h1>
-            <p>Inicia tu viaje creativo con los cursos más innovadores.</p>
+            <h1>¡Aprende de los mejores mentores del mundo!</h1>
+            <p class="big">Inicia tu viaje creativo con los cursos más innovadores.</p>
             <div class="buttons">
                 <%= link_to "Explora Syllabuses", syllabuses_path, class: "btn-primary" %>
             </div>
@@ -59,28 +59,37 @@
     <% end %>
 
 
+<section>
+  <div class="container">
+    <div class="row mb-2">
+      <div class="col-12">
+        <h1 class="mt-5">Syllabuses Destacados</h1>
+      </div>
+    </div>
 
-<section class="featured-courses">
-  <h2>Silabos Destacados</h2>
-
-  <div class="carousel-container">
-    <% @categories.each do |category| %>
-      <% if category.syllabuses.any? %>
-        <% category.syllabuses.each do |syllabus| %>
-          <div class="custom-card-vertical">
-          <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
-            <div class="card-body d-flex flex-column">
-              <h3 class="card-title"><%= syllabus.title %></h3>
-              <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
-              <p class="card-text"><%= syllabus.description %></p>
-              <div class="d-flex justify-content-center mt-2 gap-2">
-                <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+    <div class="row mb-5">
+      <% @categories.each do |category| %>
+        <% if category.syllabuses.any? %>
+          <div class="col-12 col-md-4 mb-4 mt-5">
+            <div class="custom-card-vertical rounded-5 bg-light">
+              <img src="https://via.placeholder.com/600x200" alt="Imagen" class="card-image">
+              <div class="card-body d-flex flex-column">
+                <!-- Iterate through syllabuses in the category -->
+                <% category.syllabuses.each do |syllabus| %>
+                  <h3 class="card-title"><%= syllabus.title %></h3>
+                  <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
+                  <p class="card-text"><%= syllabus.description %></p>
+                  <div class="d-flex justify-content-center mt-2 gap-2">
+                    <!-- Link to the syllabus detail page -->
+                    <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+                  </div>
+                <% end %> <!-- End syllabus loop -->
               </div>
             </div>
           </div>
-        <% end %>
-      <% end %>
-    <% end %>
+        <% end %> <!-- End category check -->
+      <% end %> <!-- End categories loop -->
+    </div>
   </div>
 </section>
 
@@ -94,13 +103,65 @@
 
 
 
-<section class="about-us">
-    <div class="about-content">
-        <div class="about-text">
-            <h3 class="about-us-text">¿Quiénes Somos?</h3>
-            <p class="about-us-text">Somos un grupo de estudiantes, tal como tú, que buscamos aprender de manera más eficiente. Al principio, nos sentimos perdidos, sin saber por dónde empezar ni cómo trazar una ruta clara para adquirir nuevos conocimientos. Era un reto encontrar el camino correcto entre tantas opciones.</p>
-            <p class="about-us-text">Para hacer todo esto más fácil, decidimos crear esta plataforma. Aquí, las personas pueden compartir sus propias rutas de aprendizaje, recomendaciones y recursos útiles sobre diversos temas. Nuestro objetivo es ayudarte a encontrar el mejor camino para aprender, sin perder tiempo ni energía buscando información dispersa.</p>
-            <p class="about-us-text">Queremos que este espacio sea una comunidad donde todos podamos compartir y crecer juntos. ¡Estamos aquí para aprender, apoyarnos y avanzar juntos!</p>
-        </div>
+
+
+<section class="mission-vision-values">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-12">
+        <h1>Quiénes Somos</h1>
+        <p class="intro-text mt-4 big">Somos un grupo de estudiantes que buscamos aprender de manera más eficiente.<br>Te invitamos a conocer nuestra misión, visión y valores que guían nuestra plataforma.</p>
+      </div>
     </div>
+
+    <div class="row mt-4">
+      <!-- Misión -->
+      <div class="col-12 col-md-4">
+        <div class="card custom-card">
+          <div class="card-body">
+            <h3 class="card-title">Misión</h3>
+            <p>Ayudar a las personas a aprender de manera más eficiente y con propósito, proporcionando una plataforma donde los estudiantes puedan compartir sus experiencias y recursos útiles.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visión -->
+      <div class="col-12 col-md-4">
+        <div class="card custom-card">
+          <div class="card-body">
+            <h3 class="card-title">Visión</h3>
+            <p>Ser la plataforma líder que conecta a estudiantes de todo el mundo, creando una comunidad global de aprendizaje colaborativo y eficiente.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Valores -->
+      <div class="col-12 col-md-4">
+        <div class="card custom-card">
+          <div class="card-body">
+            <h3 class="card-title">Valores</h3>
+            <ul>
+              <li><strong>Colaboración:</strong> Fomentamos el trabajo en equipo.</li>
+              <li><strong>Empoderamiento:</strong> Ayudamos a cada usuario a tomar control sobre su aprendizaje.</li>
+              <li><strong>Crecimiento continuo:</strong> Siempre estamos aprendiendo y mejorando.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+ <section>
+  <div class="row mt-5 justify-content-center mb-5">
+    <div class="col-12 col-md-8">
+      <div class="card shadow-lg text-center p-4 rounded-5">
+        <div class="card-body">
+          <h2 class="card-title">Nuestra Filosofía</h2>
+          <p class="card-text">Somos un grupo de estudiantes que, al principio, nos sentimos perdidos, pero decidimos crear esta plataforma para compartir rutas de aprendizaje, recomendaciones y recursos útiles. Queremos que todos encontremos el mejor camino para aprender y crecer juntos.</p>
+          <a href="#" class="btn btn-primary">Conviértete en Mentor</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+
 </section>
