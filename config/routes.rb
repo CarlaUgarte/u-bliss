@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   # resources :comments, only: %i[ edit update destroy ]
   resources :libraries, only: :index
 
+  #gamificaion
+  post 'tasks/complete_task', to: 'tasks#complete_task', as: 'complete_task'
+  #post 'tasks/toggle_complete', to: 'tasks#toggle_complete'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
