@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
   patch 'mi_perfil', to: 'pages#update_profile'
-  delete "mi_profile", to: "pages#destroy_account"
+  delete 'mi_perfil', to: 'pages#destroy', as: :destroy_account
 
     resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]

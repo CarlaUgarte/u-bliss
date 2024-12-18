@@ -1,37 +1,45 @@
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
   <div class="card shadow p-4 w-50">
+    <style>
+      /* Estilo personalizado para placeholders */
+      .custom-placeholder::placeholder {
+        color: #6c757d; /* Gris Bootstrap */
+        font-style: italic;
+      }
+    </style>
+
     <% if params[:edit] %>
       <h1 class="mb-4 text-center">Editar Perfil</h1>
 
       <%= form_with model: @user, url: my_profile_path, method: :patch, local: true, class: "needs-validation" do |form| %>
         <div class="mb-3">
           <%= form.label :first_name, "Nombre", class: "form-label" %>
-          <%= form.text_field :first_name, class: "form-control", placeholder: "Ingresa tu nombre" %>
+          <%= form.text_field :first_name, class: "form-control custom-placeholder", placeholder: "Ingresa tu nombre" %>
         </div>
 
         <div class="mb-3">
           <%= form.label :last_name, "Apellido", class: "form-label" %>
-          <%= form.text_field :last_name, class: "form-control", placeholder: "Ingresa tu apellido" %>
+          <%= form.text_field :last_name, class: "form-control custom-placeholder", placeholder: "Ingresa tu apellido" %>
         </div>
 
         <div class="mb-3">
           <%= form.label :username, "Nombre de Usuario", class: "form-label" %>
-          <%= form.text_field :username, class: "form-control", placeholder: "Ejemplo: usuario123" %>
+          <%= form.text_field :username, class: "form-control custom-placeholder", placeholder: "Ejemplo: usuario123" %>
         </div>
 
         <div class="mb-3">
           <%= form.label :description, "Descripción (Presentación)", class: "form-label" %>
-          <%= form.text_area :description, class: "form-control", rows: 3, placeholder: "Escribe una breve presentación sobre ti" %>
+          <%= form.text_area :description, class: "form-control custom-placeholder", rows: 3, placeholder: "Escribe una breve presentación sobre ti" %>
         </div>
 
         <div class="mb-3">
           <%= form.label :linkedin, "LinkedIn", class: "form-label" %>
-          <%= form.text_field :linkedin, class: "form-control", placeholder: "https://www.linkedin.com/in/tu-perfil" %>
+          <%= form.text_field :linkedin, class: "form-control custom-placeholder", placeholder: "https://www.linkedin.com/in/tu-perfil" %>
         </div>
 
         <div class="mb-3">
           <%= form.label :photo, "Foto de Perfil", class: "form-label" %>
-          <%= form.file_field :photo, class: "form-control" %>
+          <%= form.file_field :photo, class: "form-control custom-placeholder" %>
           <% if @user.photo.attached? %>
             <div class="mt-3 text-center">
               <p>Foto actual:</p>
@@ -58,10 +66,9 @@
         </div>
       <% end %>
       <div class="d-flex justify-content-between mt-4">
-        <%= link_to "Editar", my_profile_path(edit: true), class: "btn btn-warning" %>
-        <%= link_to "Eliminar Cuenta", delete_account_path, method: :delete, class: "btn btn-danger", data: { confirm: "¿Estás seguro de que deseas eliminar tu cuenta?" } %>
+        <%= link_to "Editar", mi_perfil_path(edit: true), class: "btn btn-warning" %>
+        <%= link_to "Eliminar Cuenta", destroy_account_path, method: :delete, turbo: false, class: "btn btn-danger", data: { confirm: "¿Estás seguro de que deseas eliminar tu cuenta?" } %>
       </div>
     <% end %>
   </div>
 </div>
-

@@ -17,12 +17,18 @@ class PagesController < ApplicationController
       flash[:alert] = "Hubo un error al actualizar el perfil."
       render :my_profile
     end
-  end
+  end 
 
   def destroy
-    current_user.destroy # Elimina al usuario actual
-    flash[:notice] = "Tu cuenta ha sido eliminada correctamente."
-    redirect_to root_path # Redirige a la página principal u otra ruta
+    begin
+      if current_user.destroy
+        redirect_to root_path, notice: "Cuenta eliminada correctamente."
+      else
+        redirect_to mi_perfil_path, alert: "Hubo un problema al intentar eliminar tu cuenta."
+      end
+    rescue => e
+      redirect_to mi_perfil_path, alert: "Error al eliminar la cuenta: #{e.message}"
+    end
   end
 
   private
@@ -30,5 +36,4 @@ class PagesController < ApplicationController
   def user_params
     params.require(:user).permit(:first_name, :last_name, :username, :description, :linkedin_url, :photo)
   end
-
 end
