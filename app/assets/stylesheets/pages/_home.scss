@@ -31,7 +31,7 @@ p{
 }
 
 .big {
-  font-size: 1.1rem !important;
+  font-size: 1rem !important;
 }
 .hero {
   background-image: url('https://static.vecteezy.com/system/resources/previews/005/948/321/non_2x/back-to-school-banner-with-hand-drawn-line-art-icons-of-education-science-objects-and-office-supplies-school-supplies-concept-of-education-background-free-vector.jpg');
@@ -300,29 +300,14 @@ button, .trash-icon {
   cursor: pointer;
 }
 
-.fas.fa-pen,
-.fas.fa-trash,
-.fas.fa-sync,
-.fa-solid.fa-x
-.fas.fa-eye {
+.fas.fa-pen-to-square, .fas.fa-trash-can {
   color: black;
   font-size: 20px;
-  transition: transform 0.3s ease, color 0.3s ease;
 }
 
-
-.fas.fa-pen:hover,
-.fas.fa-trash:hover,
-.fas.fa-sync:hover,
-.fa-solid.fa-x:hover,
-.fas.fa-eye:hover {
-  color: #111212;
-  transform: scale(1.2);
-}
-
-.fas.fa-sync,
-.fa-solid.fa-x {
-  font-weight: bold;
+.trash-icon i {
+  display: inline-block;
+  margin: 0;
 }
 
 
@@ -333,13 +318,13 @@ button, .trash-icon {
   margin: 10px 0;
   position: relative;
   background-color: #f1f1f1;
-  box-shadow: 0 8px 16px rgba(232, 211, 94, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
 }
 
 
 .comment-bubble.user-comment {
-  background-color: #030e1a;
+  background-color: #e3ecf5;
   align-self: flex-end;
   margin-left: auto;
 }
@@ -349,6 +334,7 @@ button, .trash-icon {
   background-color: #ffffff;
   align-self: flex-start;
 }
+
 
 .comment-bubble:hover {
   transform: translateY(-5px);
@@ -387,8 +373,8 @@ button, .trash-icon {
   background-clip: text;  /* Aplica el gradiente solo al texto */
 }
 
-.custom-card p {
-  color: #5d5d5d;
+.custom-card .card-text {
+  color: #555;
 }
 
 .custom-card ul {
@@ -401,14 +387,109 @@ button, .trash-icon {
 }
 
 .custom-card ul li {
-  font-size: 0.9rem;
-  color: #5d5d5d;
+  font-size: 1rem;
+  color: #000000;
 }
 
 .mission-vision-values .intro-text {
   font-size: 1rem;
-  color: #1c1c1c;
+  color: #000000;
   margin-bottom: 30px;
+}
+
+/* Estilo base para las cards */
+/* Estilo base para las cards */
+/* Estilo base para las cards */
+.custom-card {
+  position: relative;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px; /* Espacio entre las cards */
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900); /* Gradiente con los tres primeros colores */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra por defecto */
+  border-radius: 10px; /* Bordes redondeados */
+  padding: 15px; /* Ajustamos el padding de la card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 250px; /* Altura ajustada para hacer las cards más pequeñas */
+  color: transparent; /* El texto es transparente por defecto */
+  overflow: hidden; /* Asegura que el texto no sobresalga cuando no está visible */
+  text-align: center;
+  flex-direction: column;
+  width: 100%; /* Asegura que las cards ocupen el 100% de su contenedor */
+}
+
+/* Eliminar márgenes y padding del título y el contenido */
+.custom-card .card-body {
+  padding: 0; /* Sin padding en el cuerpo de la card */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%; /* Para que la card ocupe toda la altura */
+}
+
+/* Título de la card (invisible por defecto) */
+.custom-card .card-body h3 {
+  margin-bottom: 15px; /* Espacio entre el título y el texto */
+  font-size: 1.5rem; /* Tamaño ajustado del título */
+  display: none; /* Ocultar el título por defecto */
+  color: black; /* Título de color negro por defecto cuando se hace hover */
+}
+
+/* Párrafo de la card y lista de valores */
+.custom-card .card-body p,
+.custom-card .card-body ul {
+  margin: 0; /* Eliminar márgenes en el párrafo o lista */
+  padding: 0; /* Eliminar padding en los párrafos o listas */
+  display: none; /* Ocultar el texto por defecto */
+}
+
+/* Mostrar el icono cuando la card está en estado por defecto */
+.icon-card {
+  display: block; /* El icono está visible por defecto */
+  font-size: 3rem; /* Tamaño del icono */
+  color: black; /* Color del icono */
+  margin-bottom: 15px; /* Espacio entre el icono y el texto */
+}
+
+/* Hover: cambiar el fondo a blanco y mostrar el texto */
+.custom-card:hover {
+  background-color: #fff !important; /* Fondo blanco al hacer hover */
+  transform: translateY(-10px); /* Sube un poco */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al hacer hover */
+}
+
+/* Al hacer hover, mostrar el título, el texto y ocultar el icono */
+.custom-card:hover .card-body h3,
+.custom-card:hover .card-body p,
+.custom-card:hover .card-body ul {
+  display: block; /* Mostrar el texto y título */
+  color: black; /* Texto negro */
+}
+
+/* Al hacer hover, ocultar el icono */
+.custom-card:hover .icon-card {
+  display: none; /* Ocultar el icono */
+}
+
+/* Hover: la card de Misión */
+.custom-card:nth-child(1):hover {
+  background-color: #fff !important; /* Fondo blanco al hacer hover */
+}
+
+/* Hover: la card de Visión */
+.custom-card:nth-child(2):hover {
+  background-color: #fff !important; /* Fondo blanco al hacer hover */
+}
+
+/* Hover: la card de Valores */
+.custom-card:nth-child(3):hover {
+  background-color: #fff !important; /* Fondo blanco al hacer hover */
+}
+
+.custom-card:hover {
+  background: white !important; /* Gradiente con los tres primeros colores */
 }
 
 @media (max-width: 768px) {
