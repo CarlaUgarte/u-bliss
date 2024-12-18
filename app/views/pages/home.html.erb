@@ -1,177 +1,176 @@
-    <section class="hero">
-        <div class="hero-text">
-            <h1>¡Aprende con los mejores mentores!</h1>
-            <p class="big">Aprende y comparte con tus pares.</p>
-            <div class="buttons">
-                <%= link_to "Explora Syllabuses", syllabuses_path, class: "btn-primary" %>
-            </div>
-        </div>
-    </section>
 
-        <% if params[:query].present? %>
-    <h3>Resultados de búsqueda:</h3>
-
-    <h4>Categorías:</h4>
-    <% if @categories.any? %>
-        <ul>
-        <% @categories.each do |category| %>
-            <li><%= category.name %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron categorías para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Silabus:</h4>
-    <% if @syllabuses.any? %>
-        <ul>
-        <% @syllabuses.each do |syllabus| %>
-            <li><%= syllabus.title %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron silabus para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Módulos:</h4>
-    <% if @syllabuses_modules.any? %>
-        <ul>
-        <% @syllabuses_modules.each do |mod| %>
-            <li><%= mod.name %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron módulos para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Lecturas:</h4>
-    <% if @lectures.any? %>
-        <ul>
-        <% @lectures.each do |lecture| %>
-            <li><%= lecture.details %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron lecturas para "<%= params[:query] %>".</p>
-    <% end %>
-    <% end %>
-
-
-<section>
-  <div class="container">
-    <div class="row mb-2">
-      <div class="col-12">
-        <h2 class="mt-5">Syllabuses Destacados</h2>
+  <!-- Sección Hero -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>¡Aprende con los mejores mentores!</h1>
+      <p class="big">Aprende y comparte con tus pares.</p>
+      <div class="buttons">
+        <%= link_to "Explora Syllabuses", syllabuses_path, class: "btn-primary" %>
       </div>
     </div>
+  </section>
 
-    <div class="row mb-5">
+  <!-- Resultados de búsqueda -->
+  <% if params[:query].present? %>
+    <h3>Resultados de búsqueda:</h3>
+  <% end %>
+
+  <!-- Categorías -->
+  <h4>Categorías:</h4>
+  <% if @categories.any? %>
+    <ul>
       <% @categories.each do |category| %>
-        <% if category.syllabuses.any? %>
-          <div class="col-12 col-md-4 mb-2 mt-5">
-            <div class="custom-card-vertical rounded-5 bg-light">
-                        <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
+        <li><%= category.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No se encontraron categorías para "<%= params[:query] %>".</p>
+  <% end %>
 
-              <div class="card-body d-flex flex-column">
-                <!-- Mostrar solo el primer syllabus de la categoría -->
-                <% syllabus = category.syllabuses.first %> <!-- Solo el primer syllabus -->
-                <h3 class="card-title"><%= syllabus.title %></h3>
-                <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
-                <p class="card-text"><%= syllabus.description %></p>
-                <div class="d-flex justify-content-center mt-2 gap-2">
-                  <!-- Enlace al detalle del syllabus -->
-                  <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+  <!-- Syllabuses -->
+  <h4>Syllabuses:</h4>
+  <% if @syllabuses&.any? %>
+    <ul>
+      <% @syllabuses.each do |syllabus| %>
+        <li><%= syllabus.title %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No se encontraron syllabuses para "<%= params[:query] %>".</p>
+  <% end %>
+
+  <!-- Módulos -->
+  <h4>Módulos:</h4>
+  <% if @syllabuses_modules&.any? %>
+    <ul>
+      <% @syllabuses_modules.each do |mod| %>
+        <li><%= mod.name %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No se encontraron módulos para "<%= params[:query] %>".</p>
+  <% end %>
+
+  <!-- Lecturas -->
+  <h4>Lecturas:</h4>
+  <% if @lectures&.any? %>
+    <ul>
+      <% @lectures.each do |lecture| %>
+        <li><%= lecture.details %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No se encontraron lecturas para "<%= params[:query] %>".</p>
+  <% end %>
+
+  <!-- Syllabuses Destacados -->
+  <section class="featured-syllabuses">
+    <div class="container">
+      <div class="row mb-2">
+        <div class="col-12">
+          <h2 class="mt-5">Syllabuses Destacados</h2>
+        </div>
+      </div>
+
+      <div class="row mb-5">
+        <% @categories.each do |category| %>
+          <% if category.syllabuses.any? %>
+            <div class="col-12 col-md-4 mb-2 mt-5">
+              <div class="custom-card-vertical rounded-5 bg-light">
+                <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
+
+                <div class="card-body d-flex flex-column">
+                  <% syllabus = category.syllabuses.first %>
+                  <h3 class="card-title"><%= syllabus.title %></h3>
+                  <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
+                  <p class="card-text"><%= syllabus.description %></p>
+                  <div class="d-flex justify-content-center mt-2 gap-2">
+                    <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
+                  </div>
                 </div>
               </div>
             </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quiénes Somos -->
+  <section class="mission-vision-values">
+    <div class="container mt-5">
+      <div class="row text-center mt-5">
+        <div class="col-12">
+          <h2>Quiénes Somos</h2>
+          <p class="intro-text mt-4 big">
+            Somos un grupo de estudiantes que buscamos aprender de manera más eficiente.<br>
+            Te invitamos a conocer nuestra misión, visión y valores que guían nuestra plataforma.
+          </p>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <!-- Misión -->
+        <div class="col-12 col-md-4">
+          <div class="card custom-card">
+            <div class="card-body">
+              <h3 class="card-title">Misión</h3>
+              <p>Ayudar a las personas a aprender de manera más eficiente y con propósito, proporcionando una plataforma donde los estudiantes puedan compartir sus experiencias y recursos útiles.</p>
+              <div class="icon-card">
+                <i class="fas fa-book"></i>
+              </div>
+            </div>
           </div>
-        <% end %> <!-- Fin verificación si hay syllabuses en la categoría -->
-      <% end %> <!-- Fin del ciclo de categorías -->
-    </div>
-  </div>
-</section>
+        </div>
 
+        <!-- Visión -->
+        <div class="col-12 col-md-4">
+          <div class="card custom-card">
+            <div class="card-body">
+              <h3 class="card-title">Visión</h3>
+              <p>Ser la plataforma líder que conecta a estudiantes de todo el mundo, creando una comunidad global de aprendizaje colaborativo y eficiente.</p>
+              <div class="icon-card">
+                <i class="fas fa-globe"></i>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-<section class="mission-vision-values">
-  <div class="container mt-5">
-    <div class="row text-center mt-5">
-      <div class="col-12">
-        <h2>Quiénes Somos</h2>
-        <p class="intro-text mt-4 big">Somos un grupo de estudiantes que buscamos aprender de manera más eficiente.<br>Te invitamos a conocer nuestra misión, visión y valores que guían nuestra plataforma.</p>
-      </div>
-    </div>
-
-   <div class="row mt-4">
-  <!-- Misión -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Misión</h3>
-        <p>Ayudar a las personas a aprender de manera más eficiente y con propósito, proporcionando una plataforma donde los estudiantes puedan compartir sus experiencias y recursos útiles.</p>
-        <div class="icon-card">
-          <!-- Icono de Misión -->
-          <i class="fas fa-book"></i>
+        <!-- Valores -->
+        <div class="col-12 col-md-4">
+          <div class="card custom-card">
+            <div class="card-body">
+              <h3 class="card-title">Valores</h3>
+              <ul>
+                <li><strong>Colaboración:</strong> Fomentamos el trabajo en equipo.</li>
+                <li><strong>Empoderamiento:</strong> Ayudamos a cada usuario a tomar control sobre su aprendizaje.</li>
+                <li><strong>Crecimiento continuo:</strong> Siempre estamos aprendiendo y mejorando.</li>
+              </ul>
+              <div class="icon-card">
+                <i class="fas fa-handshake"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Visión -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Visión</h3>
-        <p>Ser la plataforma líder que conecta a estudiantes de todo el mundo, creando una comunidad global de aprendizaje colaborativo y eficiente.</p>
-        <div class="icon-card">
-          <!-- Icono de Visión -->
-          <i class="fas fa-globe"></i>
+  <!-- Filosofía -->
+  <section class="philosophy" style="margin-top: 100px; margin-bottom: 50px;">
+    <div class="row mt-5 justify-content-center mb-5">
+      <div class="col-12 col-md-8">
+        <div class="card shadow-lg text-center p-4 rounded-5 border-0">
+          <div class="card-body">
+            <h2 class="mb-3">Nuestra Filosofía</h2>
+            <p class="big mt-2">
+              Somos un grupo de estudiantes que, al principio, nos sentimos perdidos, pero decidimos crear esta plataforma para compartir rutas de aprendizaje, recomendaciones y recursos útiles. Queremos que todos encontremos el mejor camino para aprender y crecer juntos.
+            </p>
+            <a href="#" class="mt-2 btn btn-primary custom-btn">Conviértete en Mentor</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <!-- Valores -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Valores</h3>
-        <ul>
-          <li><strong>Colaboración:</strong> Fomentamos el trabajo en equipo.</li>
-          <li><strong>Empoderamiento:</strong> Ayudamos a cada usuario a tomar control sobre su aprendizaje.</li>
-          <li><strong>Crecimiento continuo:</strong> Siempre estamos aprendiendo y mejorando.</li>
-        </ul>
-        <div class="icon-card">
-          <!-- Icono de Valores -->
-          <i class="fas fa-handshake"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  </section>
 
 
- <section style="margin-top: 100px; margin-bottom: 50px;">
-  <div class="row mt-5 justify-content-center mb-5">
-    <div class="col-12 col-md-8">
-      <div class="card shadow-lg text-center p-4 rounded-5 border-0">
-        <div class="card-body">
-          <h2 class="mb-3">Nuestra Filosofía</h2>
-          <p class="big mt-2">Somos un grupo de estudiantes que, al principio, nos sentimos perdidos, pero decidimos crear esta plataforma para compartir rutas de aprendizaje, recomendaciones y recursos útiles. Queremos que todos encontremos el mejor camino para aprender y crecer juntos.</p>
-          <a href="#" class="mt-2 btn btn-primary custom-btn">Conviértete en Mentor</a>
-        </div>
-      </div>
-    </div>
-  </div>
-    </div>
-
-</section>
