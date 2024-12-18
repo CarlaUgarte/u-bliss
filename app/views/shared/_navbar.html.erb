@@ -26,20 +26,14 @@
           <%= link_to 'Home', root_path, class: 'nav-link text-black' %>
         </li>
 
-        <!-- Dropdown para categorías -->
-        <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %> dropdown">
-          <a href="<%= syllabuses_path %>" class="nav-link text-black">
-            Categorías
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><%= link_to 'Diseño Gráfico', syllabuses_path(category: 'design'), class: 'dropdown-item' %></li>
-            <li><%= link_to 'Fotografía', syllabuses_path(category: 'photography'), class: 'dropdown-item' %></li>
-            <li><%= link_to 'Desarrollo Web', syllabuses_path(category: 'web-development'), class: 'dropdown-item' %></li>
-            <li><%= link_to 'Marketing', syllabuses_path(category: 'marketing'), class: 'dropdown-item' %></li>
-          </ul>
+        <li class="nav-item <%= 'active' if current_page?(about_us_path) %>">
+          <%= link_to 'Nosotros', about_us_path, class: 'nav-link text-black' %>
         </li>
 
-        <!-- Mi Biblioteca -->
+        <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %>">
+          <%= link_to 'Categorías', syllabuses_path, class: 'nav-link text-black' %>
+        </li>
+
         <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
           <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link text-black' %>
         </li>

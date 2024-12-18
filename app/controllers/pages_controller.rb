@@ -34,6 +34,18 @@ class PagesController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      if current_user.destroy
+        redirect_to root_path, notice: "Cuenta eliminada correctamente."
+      else
+        redirect_to mi_perfil_path, alert: "Hubo un problema al intentar eliminar tu cuenta."
+      end
+    rescue => e
+      redirect_to mi_perfil_path, alert: "Error al eliminar la cuenta: #{e.message}"
+    end
+  end
+
   private
 
   def user_params
