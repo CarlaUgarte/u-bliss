@@ -5,9 +5,13 @@ Rails.application.routes.draw do
   get 'about_us', to: 'pages#show', id: 'about_us', as: :about_us
 
   get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
+  patch 'mi_perfil', to: 'pages#update_profile'
+  resources :users, only: :destroy
+
     resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
     resources :libraries, only: %i[ create destroy ]
+    resources :reviews, only: :create
   end
   resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index show ] do
     resources :lectures, only: %i[ new create ]
@@ -17,6 +21,7 @@ Rails.application.routes.draw do
   end
   # resources :comments, only: %i[ edit update destroy ]
   resources :libraries, only: :index
+
 
   #gamificaion
   post 'tasks/complete_task', to: 'tasks#complete_task', as: 'complete_task'

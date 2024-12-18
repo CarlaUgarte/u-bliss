@@ -8,31 +8,11 @@
 }
 
 .text-logo {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   text-align: left;
   margin: 0;
   margin-right: 10px;
-}
-
-/* Estado normal: El texto es negro */
-/* Estado normal */
-.custom-link-color {
-  font-weight: bolder;
-  color: #000000;  /* Texto negro por defecto */
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  padding: 5px 10px;
-  font-size: 1rem;
-  transition: background-position 1s ease, color 0.4s ease;  /* Transición suave para el gradiente */
-  outline: none;
-  border: none;
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);  /* Gradiente */
-  background-size: 400% 400%;  /* Gran tamaño del gradiente para la animación */
-  background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
-  -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
-  background-clip: text;  /* Aplica el gradiente solo al texto */
 }
 
 /* Efecto cuando el ratón pasa por encima (hover) */
@@ -76,4 +56,51 @@
   color: none;
   box-shadow: none;
   border-color: #F6AF65;
+}
+
+/* Oculta el menú por defecto */
+.nav-item.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Muestra el menú cuando el usuario hace hover sobre el li del menú */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Remove underline from the <a> tag itself */
+a {
+  text-decoration: none;  /* Ensures no underline on the link */
+}
+
+/* Container hover effect for both logo and text */
+.logo-container {
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for the entire container */
+}
+
+.logo-container:hover {
+  transform: scale(0.9);  /* Scale down both logo and text */
+  opacity: 0.7;  /* Reduce opacity of both */
+}
+
+/* Default text style (no underline, normal color) */
+.text-logo {
+  color: black;  /* Default text color */
+  text-decoration: none;  /* Ensure no underline */
+  transition: all 0.3s ease; /* Smooth transition for color */
+}
+
+/* Hover effect for the text "U-Bliss" */
+.logo-container:hover .text-logo {
+  color: black;
+  text-decoration: none;  /* Ensure there's no underline on hover */
+}
+
+/* Ensure logo image maintains opacity change */
+.img-hover-opacity {
+  transition: opacity 0.3s ease;
 }
