@@ -77,4 +77,3 @@ end
 
 gem "cloudinary"
 gem 'pg_search'
-gem "image_processing"
