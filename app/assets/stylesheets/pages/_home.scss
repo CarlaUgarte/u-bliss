@@ -468,28 +468,27 @@ button, .trash-icon {
   color: black; /* Texto negro */
 }
 
-/* Al hacer hover, ocultar el icono */
+
 .custom-card:hover .icon-card {
-  display: none; /* Ocultar el icono */
+  display: none;
 }
 
-/* Hover: la card de Misión */
+
 .custom-card:nth-child(1):hover {
-  background-color: #fff !important; /* Fondo blanco al hacer hover */
+  background-color: #fff !important;
 }
 
-/* Hover: la card de Visión */
+
 .custom-card:nth-child(2):hover {
-  background-color: #fff !important; /* Fondo blanco al hacer hover */
+  background-color: #fff !important;
 }
 
-/* Hover: la card de Valores */
 .custom-card:nth-child(3):hover {
-  background-color: #fff !important; /* Fondo blanco al hacer hover */
+  background-color: #fff !important;
 }
 
 .custom-card:hover {
-  background: white !important; /* Gradiente con los tres primeros colores */
+  background: white !important;
 }
 
 @media (max-width: 768px) {
