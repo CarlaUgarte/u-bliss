@@ -15,26 +15,6 @@
   margin-right: 10px;
 }
 
-/* Estado normal: El texto es negro */
-/* Estado normal */
-.custom-link-color {
-  font-weight: bolder;
-  color: #000000;  /* Texto negro por defecto */
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  padding: 5px 10px;
-  font-size: 1rem;
-  transition: background-position 1s ease, color 0.4s ease;  /* Transición suave para el gradiente */
-  outline: none;
-  border: none;
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);  /* Gradiente */
-  background-size: 400% 400%;  /* Gran tamaño del gradiente para la animación */
-  background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
-  -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
-  background-clip: text;  /* Aplica el gradiente solo al texto */
-}
-
 /* Efecto cuando el ratón pasa por encima (hover) */
 .custom-link-color:hover {
   color: transparent;  /* El texto se vuelve transparente para mostrar el gradiente */
