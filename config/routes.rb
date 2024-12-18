@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
     resources :libraries, only: %i[ create destroy ]
   end
-  resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index show ] do
+  resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index ] do
     resources :lectures, only: %i[ new create ]
   end
   resources :lectures, except: %i[ new create ] do

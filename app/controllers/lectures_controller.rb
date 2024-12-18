@@ -8,7 +8,7 @@ class LecturesController < ApplicationController
     @lecture = Lecture.new(lecture_params)
     @lecture.syllabus_module = @syllabus_module
     if @lecture.save
-      redirect_to new_syllabus_module_lecture_path(@lecture)
+      redirect_to @lecture.syllabus_module
    #   redirect_to lecture_new_path(@syllabus_module.syllabus)
     else
       render :new, status: :unprocessable_entity

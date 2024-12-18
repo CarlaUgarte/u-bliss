@@ -4,10 +4,10 @@ class SyllabusesController < ApplicationController
   def index
     @categories = Category.all
     @syllabuses = Syllabus.all
-  
+
     # Filtramos por categoría si está presente
     @syllabuses = @syllabuses.where(category: params[:category]) if params[:category].present?
-  
+
     # Lógica para la búsqueda
     if params[:query].present?
       query = "%#{params[:query]}%"
@@ -28,13 +28,14 @@ class SyllabusesController < ApplicationController
     @syllabus.user = current_user
     if @syllabus.save
       redirect_to new_syllabus_syllabus_module_path(@syllabus), notice: 'Syllabus fue exitosamente creado.'
+
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
-  
+
     @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
 
   #cargar también módulos o bibliotecas asociadas
