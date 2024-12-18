@@ -27,32 +27,27 @@
               Mentor: <span class="text-muted"><strong><%= @syllabus.user.email %></strong></span>
             </p>
 
-            <% if @syllabus.reviews.any? %>
-  <% ratings = @syllabus.reviews.map(&:rating).select { |r| r.is_a?(Numeric) } %>
-  <% if ratings.any? %>
-    <% average_rating = (ratings.sum / ratings.size.to_f).round(2) %>
-    <% full_stars = average_rating.to_i %>
-    <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
-    <% empty_stars = 5 - full_stars - half_star %>
+            <p class="font-weight-bold text-dark mb-3">
+              Puntuación:
+              <span class="rating">
+                <% average_rating = (@syllabus.reviews.map(&:rating).sum / @syllabus.reviews.size.to_f).round(2) %>
 
-    <% full_stars.times do %>
-      <span class="star full"></span>
-    <% end %>
+                <% full_stars = average_rating.to_i %>
+                <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
+                <% empty_stars = 5 - full_stars - half_star %>
+                <% full_stars.times do %>
+                  <i class="fa fa-star text-warning"></i>
+                <% end %>
+                <% half_star.times do %>
+                  <i class="fa fa-star-half-alt text-warning"></i>
+                <% end %>
+                <% empty_stars.times do %>
+                  <i class="fa fa-star text-muted"></i>
+                <% end %>
 
-    <% if half_star == 1 %>
-      <span class="star half"></span>
-    <% end %>
-
-    <% empty_stars.times do %>
-      <span class="star empty"></span>
-    <% end %>
-  <% else %>
-    <p>No valid ratings available.</p>
-  <% end %>
-<% else %>
-  <p>No reviews yet.</p>
-<% end %>
-
+                <strong><%= average_rating %> / 5</strong>
+              </span>
+            </p>
 
           </div>
         </div>

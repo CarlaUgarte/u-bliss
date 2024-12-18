@@ -2,7 +2,13 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
+  get 'about_us', to: 'pages#show', id: 'about_us', as: :about_us
+
   get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
+
+  patch 'mi_perfil', to: 'pages#update_profile'
+  resources :users, only: :destroy
+
     resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
     resources :libraries, only: %i[ create destroy ]

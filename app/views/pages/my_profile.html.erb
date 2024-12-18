@@ -1,0 +1,68 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4 w-50">
+
+
+    <% if params[:edit] %>
+      <h1 class="mb-4 text-center">Editar Perfil</h1>
+
+      <%= form_with model: @user, url: my_profile_path, method: :patch, local: true, class: "needs-validation" do |form| %>
+        <div class="mb-3">
+          <%= form.label :first_name, "Nombre", class: "form-label" %>
+          <%= form.text_field :first_name, class: "form-control custom-placeholder", placeholder: "Ingresa tu nombre" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :last_name, "Apellido", class: "form-label" %>
+          <%= form.text_field :last_name, class: "form-control custom-placeholder", placeholder: "Ingresa tu apellido" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :username, "Nombre de Usuario", class: "form-label" %>
+          <%= form.text_field :username, class: "form-control custom-placeholder", placeholder: "Ejemplo: usuario123" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :description, "Descripción (Presentación)", class: "form-label" %>
+          <%= form.text_area :description, class: "form-control custom-placeholder", rows: 3, placeholder: "Escribe una breve presentación sobre ti" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :linkedin, "LinkedIn", class: "form-label" %>
+          <%= form.text_field :linkedin, class: "form-control custom-placeholder", placeholder: "https://www.linkedin.com/in/tu-perfil" %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :photo, "Foto de Perfil", class: "form-label" %>
+          <%= form.file_field :photo, class: "form-control custom-placeholder" %>
+          <% if @user.photo.attached? %>
+            <div class="mt-3 text-center">
+              <p>Foto actual:</p>
+              <%= image_tag @user.photo.variant(resize_to_fill: [250, 250]).processed, class: 'img-fluid', style: 'border-radius: 50%; width: 150px; height: 150px; object-fit: cover;' %>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="d-grid gap-2">
+          <%= form.submit "Guardar Cambios", class: "btn btn-primary btn-lg" %>
+        </div>
+      <% end %>
+    <% else %>
+      <h1 class="mb-4 text-center">Mi Perfil</h1>
+      <p><strong>Nombre:</strong> <%= @user.first_name %></p>
+      <p><strong>Apellido:</strong> <%= @user.last_name %></p>
+      <p><strong>Usuario:</strong> <%= @user.username %></p>
+      <p><strong>Descripción:</strong> <%= @user.description %></p>
+      <p><strong>LinkedIn:</strong> <%= link_to @user.linkedin_url, @user.linkedin_url, target: "_blank" %></p>
+      <% if @user.photo.attached? %>
+        <div class="text-center">
+          <p><strong>Foto de Perfil:</strong></p>
+          <%= image_tag @user.photo.variant(resize_to_fill: [250, 250]).processed, class: 'img-fluid', style: 'border-radius: 50%; width: 150px; height: 150px; object-fit: cover;' %>
+        </div>
+      <% end %>
+      <div class="d-flex justify-content-between mt-4">
+        <%= link_to "Editar", mi_perfil_path(edit: true), class: "btn btn-warning" %>
+        <%= button_to "Eliminar Cuenta", user_path(@user), method: :delete, class: "btn btn-danger"%>
+      </div>
+    <% end %>
+  </div>
+</div>
