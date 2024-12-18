@@ -5,12 +5,57 @@ SyllabusModule.destroy_all
 Syllabus.destroy_all
 Category.destroy_all
 User.destroy_all
+
 # Creación de usuarios con nombres reales
-user1 = User.create!(email: 'ana@example.com', password: 'password')
-user2 = User.create!(email: 'juan@example.com', password: 'password')
-user3 = User.create!(email: 'maria@example.com', password: 'password')
-user4 = User.create!(email: 'pedro@example.com', password: 'password') # estudiantes
-user5 = User.create!(email: 'luisa@example.com', password: 'password') # estudiantes
+user1 = User.create!(
+  first_name: 'Ana',
+  last_name: 'Perez',
+  username: 'anaperez',
+  email: 'ana@example.com',
+  password: 'password'
+)
+
+user2 = User.create!(
+  first_name: 'Juan',
+  last_name: 'Lopez',
+  username: 'juanlopez',
+  email: 'juan@example.com',
+  password: 'password'
+)
+
+user3 = User.create!(
+  first_name: 'Maria',
+  last_name: 'Gomez',
+  username: 'mariagomez',
+  email: 'maria@example.com',
+  password: 'password'
+)
+
+user4 = User.create!(
+  first_name: 'Pedro',
+  last_name: 'Hernandez',
+  username: 'pedrohernandez',
+  email: 'pedro@example.com',
+  password: 'password'
+) # estudiantes
+
+user5 = User.create!(
+  first_name: 'Luisa',
+  last_name: 'Martinez',
+  username: 'luisamartinez',
+  email: 'luisa@example.com',
+  password: 'password'
+) # estudiantes
+
+# Ejemplo adicional
+User.create!(
+  first_name: 'John',
+  last_name: 'Doe',
+  username: 'johndoe',
+  email: 'john.doe@example.com',
+  password: 'securepassword'
+)
+
 
 # Creación de categorías con imágenes
 categories = ['Programación', 'Tecnología', 'Diseño', 'Creatividad', 'Marketing',

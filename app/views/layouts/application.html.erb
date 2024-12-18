@@ -9,28 +9,35 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://ga.jspm.io/npm:star-rating.js@4.3.0/dist/star-rating.css">
+
+
+
   </head>
 
-  <body><%= render "shared/navbar" %>
-<%= render "shared/flashes" %>
+    <body><%= render "shared/navbar" %>
+  <%= render "shared/flashes" %>
 
-    <%= yield %>
-     <footer>
-        <div class="footer-links">
-            <ul>
-                <li><a href="#">Sobre nosotros</a></li>
-                <li><a href="#">Términos y condiciones</a></li>
-                <li><a href="#">Política de privacidad</a></li>
-                <li><a href="#">Ayuda</a></li>
-            </ul>
-        </div>
-        <div class="social-media">
-            <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a>
-        </div>
-    </footer>
-  </body>
-</html>
+
+      <%= yield %>
+
+
+      <footer>
+          <div class="footer-links">
+              <ul>
+                  <li><a href="#">Sobre nosotros</a></li>
+                  <li><a href="#">Términos y condiciones</a></li>
+                  <li><a href="#">Política de privacidad</a></li>
+                  <li><a href="#">Ayuda</a></li>
+              </ul>
+          </div>
+          <div class="social-media">
+              <a href="#">Instagram</a> | <a href="#">Facebook</a> | <a href="#">Twitter</a>
+          </div>
+      </footer>
+
+    </body>
+  </html>

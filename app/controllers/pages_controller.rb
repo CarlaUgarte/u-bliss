@@ -20,6 +20,18 @@ class PagesController < ApplicationController
       flash[:alert] = "Hubo un error al actualizar el perfil."
       render :my_profile
     end
+  end 
+
+  def destroy
+    begin
+      if current_user.destroy
+        redirect_to root_path, notice: "Cuenta eliminada correctamente."
+      else
+        redirect_to mi_perfil_path, alert: "Hubo un problema al intentar eliminar tu cuenta."
+      end
+    rescue => e
+      redirect_to mi_perfil_path, alert: "Error al eliminar la cuenta: #{e.message}"
+    end
   end
 
   def destroy

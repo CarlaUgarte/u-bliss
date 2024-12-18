@@ -1,42 +1,39 @@
-<%= simple_form_for(@syllabus, html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>
+<div class="custom-card-new rounded-5 bg-light">
+  <h1 class="display-4 text-center mt-5 fw-bold">Crea un Syllabus</h1>
 
-  <% if @syllabus.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h4><%= pluralize(@syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h4>
-      <ul>
-        <% @syllabus.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <%= simple_form_for(@syllabus, html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>
+
+    <% if @syllabus.errors.any? %>
+      <div id="error_explanation" class="alert alert-danger">
+        <h4><%= pluralize(@syllabus.errors.count, "error") %> prohibited this syllabus from being saved:</h4>
+        <ul>
+          <% @syllabus.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Título del formulario -->
+    <div class="form-group">
+      <%= f.input :title, label: 'Titulo', input_html: { class: 'form-control' } %>
+    </div>
+
+      <div class="form-group">
+      <%= f.input :description, label: 'Descripción', as: :text, input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.association :category, label: 'Categoría', input_html: { class: 'form-control' } %>
+    </div>
+
+    <div class="form-group">
+      <%= f.input :image, label: 'Fotografía', as: :file, input_html: { class: 'form-control' } %>
+    </div>
+
+    <!-- Botón de envío -->
+    <div class="form-actions text-center mt-5">
+      <%= f.button :submit, 'Crear un Syllabus', class: 'btn btn-primary' %>
     </div>
   <% end %>
-
-  <!-- Título del formulario -->
-  <div class="form-group">
-    <%= f.input :title, label: 'Titulo', input_html: { class: 'form-control' } %>
-  </div>
-
-  <!-- Descripción del formulario -->
-  <div class="form-group">
-    <%= f.input :description, label: 'Descripción', as: :text, input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.association :category, label: 'Categoría', input_html: { class: 'form-control' } %>
-  </div>
-
-  <div class="form-group">
-    <%= f.input :image, label: 'Fotografía', as: :file, input_html: { class: 'form-control' } %>
-  </div>
-
-  <!-- Botón de envío -->
-  <div class="form-actions text-center">
-    <%= f.button :submit, 'Crear un Syllabus', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<!-- Enlace de retroceso -->
-<%= link_to 'Atras', syllabuses_path, class: 'btn btn-secondary' %>
-
-<!-- Cargar Bootstrap si no está en tu proyecto -->
-<%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css' %>
+</div>

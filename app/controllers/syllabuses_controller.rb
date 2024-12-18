@@ -28,12 +28,15 @@ class SyllabusesController < ApplicationController
     @syllabus.user = current_user
     if @syllabus.save
       redirect_to new_syllabus_syllabus_module_path(@syllabus), notice: 'Syllabus fue exitosamente creado.'
+
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def show
+
+    @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
 
     @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
     @review = Review.new
