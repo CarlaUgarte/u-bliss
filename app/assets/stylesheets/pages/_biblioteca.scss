@@ -11,7 +11,6 @@
   height: 500px;
   position: relative;
   transition: all 0.3s ease;
-
   border: 5px solid transparent;
   background: white;
 }
@@ -38,8 +37,9 @@
   padding: 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 0;
+  justify-content: flex-start;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
 .custom-card-vertical .card-title {
@@ -63,29 +63,38 @@
   text-align: start;
 }
 
-.custom-card-vertical .card-body {
-  padding-bottom: 15px;
-}
-
-.custom-card-vertical .btn {
-  width: 45%;
-  padding: 8px 0;
-  text-align: center;
-  font-size: 0.9rem;
-  border-radius: 5px;
-}
-
 .custom-card-vertical .d-flex {
   gap: 10px;
 }
 
-.custom-card-vertical form {
-  width: 100%;
+.custom-card-vertical .card-footer {
   display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 15px;
+  gap: 10px;  /* Espacio entre los botones */
+  width: 100%;  /* Asegura que el contenedor de los botones ocupe todo el ancho disponible */
 }
+
+.custom-card-vertical .btn {
+  flex-grow: 1;  /* Hace que los botones ocupen todo el ancho disponible dentro del pie de la tarjeta */
+  padding: 10px 15px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;  /* El texto sigue siendo blanco */
+  transition: background-position 0.3s ease-out, color 0.4s ease-out;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  border: none;
+  display: flex;  /* Usamos flexbox para alinear el contenido */
+  justify-content: center;  /* Alinea horizontalmente el texto */
+  align-items: center;  /* Alinea verticalmente el texto */
+  box-sizing: border-box;
+}
+
 
 .custom-card-vertical:hover {
   box-shadow: none;
@@ -109,4 +118,42 @@
 
   border: 5px solid transparent;
   background: white;
+.nav-link.active {
+  font-weight: bolder;
+  color: transparent !important;  /* El texto es transparente para que se vea el gradiente */
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 10px;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);  /* Gradiente */
+  background-size: 400% 400%;  /* Gran tamaño del gradiente */
+  background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
+  -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
+  background-clip: text;  /* Aplica el gradiente solo al texto */
+}
+
+.nav-link {
+  font-weight: bolder;
+  color: transparent !important;  /* El texto es transparente para que se vea el gradiente */
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  padding: 5px 10px;
+  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);  /* Gradiente */
+  background-size: 400% 400%;  /* Gran tamaño del gradiente */
+  background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
+  -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
+  background-clip: text;  /* Aplica el gradiente solo al texto */
+}
+
+#nav-profile-tab {
+    color: transparent !important;  /* El texto es transparente para que se vea el gradiente */
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #00C2D1, #0A1045);  /* Gradiente */
+    background-size: 400% 400%;  /* Gran tamaño del gradiente */
+    background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
+    -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
+    background-clip: text;  /* Aplica el gradiente solo al texto */
 }

@@ -38,6 +38,8 @@ class SyllabusesController < ApplicationController
 
     @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
 
+    @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
+    @review = Review.new
   #cargar también módulos o bibliotecas asociadas
   @modules = @syllabus.syllabus_modules
   @libraries = @syllabus.libraries
