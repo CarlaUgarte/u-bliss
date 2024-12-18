@@ -1,13 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container d-flex justify-content-between align-items-center w-100">
 
-    <!-- Texto U-Bliss alineado a la izquierda -->
-    <p class="text-logo mb-0">U-Bliss</p>
+<!-- Contenedor para logo y texto -->
+<a class="d-flex align-items-center logo-container" href="<%= root_path %>">
+  <!-- Logo -->
+  <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 40px;") %>
 
-    <!-- Logo -->
-    <a class="navbar-brand" href="<%= root_path %>">
-      <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 40px;") %>
-    </a>
+  <!-- Text Logo -->
+  <p class="text-logo mb-0 me-5 ms-2">U-Bliss</p>
+</a>
+
+
 
     <!-- Formulario de búsqueda en la navbar -->
     <%= form_with url: syllabuses_path, method: :get, class: "d-flex custom-form" do %>
