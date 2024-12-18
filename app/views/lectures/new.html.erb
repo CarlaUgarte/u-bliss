@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :lecture do %>
-  <%= simple_form_for([ @syllabus_module, @lecture], html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>  <!-- Título del modulo -->
+  <%= simple_form_for([ @syllabus_module, @lecture], html: { id: "lecture_input", class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>  <!-- Título del modulo -->
   <div class= "d-flex m-3 justify-content-center">
     <div class="form-group">
       <%= f.input :details, label: 'Titulo de la Lección', input_html: { class: 'form-control' } %>

@@ -12,7 +12,10 @@ class SyllabusesModulesController < ApplicationController
     @syllabus_module = SyllabusModule.new(syllabus_module_params)
     @syllabus_module.syllabus = @syllabus
     if @syllabus_module.save!
-      redirect_to @syllabus_module
+      respond_to do |format|
+        format.turbo_stream
+        format.html {redirect_to @syllabus_module}
+      end
     else
       render :new, status: :unprocessable_entity
     end

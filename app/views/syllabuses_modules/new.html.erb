@@ -1,5 +1,5 @@
 <%= turbo_frame_tag :syllabus_module do %>
-  <div class="custom-card-new rounded-5 bg-light">
+  <div id="input-module" class="custom-card-new rounded-5 bg-light">
     <%= simple_form_for([@syllabus, @syllabus_module], html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>  <!-- Título del modulo -->
 
       <div class="form-group">
