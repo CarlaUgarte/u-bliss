@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "input-module" %>
+<%= turbo_stream.append "modulesAccordion", partial: "syllabuses_modules/syllabuses_modules", locals: {modulo: @syllabus_module, index: @syllabus_module.id} %>

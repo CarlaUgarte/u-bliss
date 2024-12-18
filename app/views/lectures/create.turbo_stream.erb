@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "lecture_input" %>
+<%= turbo_stream.append "lecture_list", partial: "lectures/lecture", locals: {lecture: @lecture} %>

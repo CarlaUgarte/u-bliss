@@ -115,9 +115,10 @@
   height: auto;
   position: relative;
   transition: all 0.3s ease;
-
   border: 5px solid transparent;
   background: white;
+}
+
 .nav-link.active {
   font-weight: bolder;
   color: transparent !important;
