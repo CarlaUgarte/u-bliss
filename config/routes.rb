@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
   patch 'mi_perfil', to: 'pages#update_profile'
-  delete 'mi_perfil', to: 'pages#destroy', as: :destroy_account
+  resources :users, only: :destroy
 
     resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
@@ -18,8 +18,6 @@ Rails.application.routes.draw do
   end
   # resources :comments, only: %i[ edit update destroy ]
   resources :libraries, only: :index
-
-  resource :account, only: [:destroy] # Esto crea una ruta para DELETE /account
 
   #gamificaion
   post 'tasks/complete_task', to: 'tasks#complete_task', as: 'complete_task'

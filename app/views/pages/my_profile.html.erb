@@ -67,7 +67,7 @@
       <% end %>
       <div class="d-flex justify-content-between mt-4">
         <%= link_to "Editar", mi_perfil_path(edit: true), class: "btn btn-warning" %>
-        <%= link_to "Eliminar Cuenta", destroy_account_path, method: :delete, turbo: false, class: "btn btn-danger", data: { confirm: "¿Estás seguro de que deseas eliminar tu cuenta?" } %>
+        <%= button_to "Eliminar Cuenta", user_path(@user), method: :delete, class: "btn btn-danger"%>
       </div>
     <% end %>
   </div>
