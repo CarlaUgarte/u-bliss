@@ -8,7 +8,7 @@
 }
 
 .text-logo {
-  font-size: 1.5rem;
+  font-size: 1.5rem !important;
   font-weight: bolder;
   text-align: left;
   margin: 0;
@@ -76,4 +76,51 @@
   color: none;
   box-shadow: none;
   border-color: #F6AF65;
+}
+
+/* Oculta el menú por defecto */
+.nav-item.dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Muestra el menú cuando el usuario hace hover sobre el li del menú */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Remove underline from the <a> tag itself */
+a {
+  text-decoration: none;  /* Ensures no underline on the link */
+}
+
+/* Container hover effect for both logo and text */
+.logo-container {
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth transition for the entire container */
+}
+
+.logo-container:hover {
+  transform: scale(0.9);  /* Scale down both logo and text */
+  opacity: 0.7;  /* Reduce opacity of both */
+}
+
+/* Default text style (no underline, normal color) */
+.text-logo {
+  color: black;  /* Default text color */
+  text-decoration: none;  /* Ensure no underline */
+  transition: all 0.3s ease; /* Smooth transition for color */
+}
+
+/* Hover effect for the text "U-Bliss" */
+.logo-container:hover .text-logo {
+  color: black;
+  text-decoration: none;  /* Ensure there's no underline on hover */
+}
+
+/* Ensure logo image maintains opacity change */
+.img-hover-opacity {
+  transition: opacity 0.3s ease;
 }
