@@ -23,12 +23,12 @@
       <ul class="navbar-nav ms-auto d-flex justify-content-end gap-3">
         <!-- Enlace Home -->
         <li class="nav-item <%= 'active' if current_page?(root_path) %>">
-          <%= link_to 'Home', root_path, class: 'nav-link custom-link-color' %>
+          <%= link_to 'Home', root_path, class: 'nav-link text-black' %>
         </li>
 
         <!-- Dropdown para categorías -->
         <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %> dropdown">
-          <a href="<%= syllabuses_path %>" class="nav-link custom-link-color">
+          <a href="<%= syllabuses_path %>" class="nav-link text-black">
             Categorías
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -41,14 +41,14 @@
 
         <!-- Mi Biblioteca -->
         <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
-          <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link custom-link-color' %>
+          <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link text-black' %>
         </li>
 
         <!-- Dropdown para usuario -->
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <!-- Foto del usuario -->
-            <a class="nav-link dropdown-toggle d-flex align-items-center custom-link-color" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle d-flex align-items-center text-black" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.photo.attached? %>
                 <%= image_tag current_user.photo.variant(resize_to_fill: [40, 40]), class: 'rounded-circle', style: 'width: 40px; height: 40px; object-fit: cover;' %>
               <% else %>
@@ -66,7 +66,7 @@
         <% else %>
           <!-- Mostrar "Iniciar Sesión / Crear Cuenta" si no está autenticado -->
           <li class="nav-item">
-            <%= link_to 'Iniciar Sesión / Crear Cuenta', new_user_session_path, class: 'nav-link custom-link-color' %>
+            <%= link_to 'Iniciar Sesión / Crear Cuenta', new_user_session_path, class: 'nav-link text-black' %>
           </li>
         <% end %>
       </ul>
