@@ -11,56 +11,56 @@
 
     <!-- Formulario de búsqueda en la navbar -->
     <%= form_with url: syllabuses_path, method: :get, class: "d-flex custom-form" do %>
-  <%= text_field_tag :query, params[:query], class: "form-control custom-input", placeholder: "Buscar..." %>
-  <%= submit_tag "Buscar", class: "btn btn-primary custom-btn" %>
-<% end %>
-
+      <%= text_field_tag :query, params[:query], class: "form-control custom-input", placeholder: "Buscar..." %>
+      <%= submit_tag "Buscar", class: "btn btn-primary custom-btn" %>
+    <% end %>
 
     <!-- Menú de navegación alineado a la derecha -->
     <div class="collapse navbar-collapse">
-  <ul class="navbar-nav ms-auto d-flex justify-content-end gap-3">
-    <!-- Enlace Home al principio -->
-    <li class="nav-item <%= 'active' if current_page?(root_path) %>">
-      <%= link_to 'Home', root_path, class: 'nav-link custom-link-color' %>
-    </li>
+      <ul class="navbar-nav ms-auto d-flex justify-content-end gap-3">
+        <!-- Enlace Home al principio -->
+        <li class="nav-item <%= 'active' if current_page?(root_path) %>">
+          <%= link_to 'Home', root_path, class: 'nav-link custom-link-color' %>
+        </li>
 
-   <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %> dropdown">
-  <!-- Enlace de Categorías con el dropdown-toggle -->
-  <a href="<%= syllabuses_path %>" class="nav-link custom-link-color">
-    Categorías
-  </a>
+        <li class="nav-item <%= 'active' if current_page?(about_us_path) %>">
+          <%= link_to 'Nosotros', about_us_path, class: 'nav-link custom-link-color' %>
+        </li>
 
-  <!-- Menú desplegable con categorías -->
-  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <li><%= link_to 'Diseño Gráfico', syllabuses_path(category: 'design'), class: 'dropdown-item' %></li>
-    <li><%= link_to 'Fotografía', syllabuses_path(category: 'photography'), class: 'dropdown-item' %></li>
-    <li><%= link_to 'Desarrollo Web', syllabuses_path(category: 'web-development'), class: 'dropdown-item' %></li>
-    <li><%= link_to 'Marketing', syllabuses_path(category: 'marketing'), class: 'dropdown-item' %></li>
-    <!-- Puedes agregar más categorías aquí -->
-  </ul>
-</li>
+        <li class="nav-item <%= 'active' if current_page?(syllabuses_path) %>">
+          <%= link_to 'Categorías', syllabuses_path, class: 'nav-link custom-link-color' %>
+        </li>
 
+        <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
+          <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link custom-link-color' %>
+        </li>
 
-    <li class="nav-item <%= 'active' if current_page?(libraries_path) %>">
-      <%= link_to 'Mi Biblioteca', libraries_path, class: 'nav-link custom-link-color' %>
-    </li>
+        <!-- Enlaces de autenticación -->
+        <li class="nav-item <%= 'active' if current_page?('/users/sign_in') %>">
+          <% if user_signed_in? %>
+            <!-- Contenedor con d-flex para que Mi Perfil y Cerrar Sesión estén uno al lado del otro -->
+            <div class="d-flex gap-3">
+              <!-- Mostrar "Mi Perfil" cuando el usuario está autenticado -->
+              <%= link_to 'Mi Perfil', my_profile_path, class: 'nav-link custom-link-color' %>
 
-    <li class="nav-item <%= 'active' if current_page?('/users/sign_in') %>">
-      <% if user_signed_in? %>
-        <!-- Contenedor con d-flex para que Mi Perfil y Cerrar Sesión estén uno al lado del otro -->
-        <div class="d-flex gap-3">
-          <!-- Mostrar "Mi Perfil" cuando el usuario está autenticado -->
-        <%= link_to 'Mi Perfil', my_profile_path, class: 'nav-link custom-link-color' %>
-
-          <!-- Botón para cerrar sesión -->
-          <%= button_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: 'nav-link custom-link-color' %>
-        </div>
-      <% else %>
-        <!-- Mostrar "Iniciar Sesión / Crear Cuenta" cuando el usuario no está autenticado -->
-        <%= link_to 'Iniciar Sesión / Crear Cuenta', new_user_session_path, class: 'nav-link custom-link-color' %>
-      <% end %>
-    </li>
-  </ul>
-</div>
-
+              <!-- Botón para cerrar sesión -->
+              <%= button_to 'Cerrar Sesión', destroy_user_session_path, method: :delete, class: 'nav-link custom-link-color' %>
+            </div>
+          <% else %>
+            <!-- Mostrar "Iniciar Sesión / Crear Cuenta" cuando el usuario no está autenticado -->
+            <%= link_to 'Iniciar Sesión / Crear Cuenta', new_user_session_path, class: 'nav-link custom-link-color' %>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+
+
+
+
+
+
+
+

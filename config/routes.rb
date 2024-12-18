@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
   root to: "pages#home"
+  get 'about_us', to: 'pages#show', id: 'about_us', as: :about_us
+
   get 'mi_perfil', to: 'pages#my_profile', as: :my_profile
     resources :syllabuses do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
