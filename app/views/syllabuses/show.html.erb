@@ -7,7 +7,6 @@
       </div>
     </nav>
     <div class="tab-content mt-5" id="nav-tabContent">
-      <!-- Pestaña de detalles -->
       <div class="tab-pane fade show active mt-5" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
         <div class="row">
           <div class="col-md-12 text-center mb-4">
@@ -21,39 +20,36 @@
               <%= @syllabus.description %>
             </p>
             <p class="font-weight-bold text-dark mb-3">
-              Categoría:<span class="text-muted"><strong><%= @syllabus.category.name %></strong></span>
+              Categoría: <span class="text-muted"><strong><%= @syllabus.category.name %></strong></span>
             </p>
             <p class="font-weight-bold text-dark mb-3">
               Mentor: <span class="text-muted"><strong><%= @syllabus.user.email %></strong></span>
             </p>
+            <p class="font-weight-bold text-dark mb-3">
+              Puntuación:
+              <span class="rating">
+                <% if @syllabus.reviews.size > 0 %>
+                  <% average_rating = (@syllabus.reviews.map(&:rating).sum / @syllabus.reviews.size.to_f).round(2) %>
+                <% else %>
+                  <% average_rating = 0 %>
+                <% end %>
 
-            <% if @syllabus.reviews.any? %>
-  <% ratings = @syllabus.reviews.map(&:rating).select { |r| r.is_a?(Numeric) } %>
-  <% if ratings.any? %>
-    <% average_rating = (ratings.sum / ratings.size.to_f).round(2) %>
-    <% full_stars = average_rating.to_i %>
-    <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
-    <% empty_stars = 5 - full_stars - half_star %>
+                <% full_stars = average_rating.to_i %>
+                <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
+                <% empty_stars = 5 - full_stars - half_star %>
+                <% full_stars.times do %>
+                  <i class="fa fa-star text-warning"></i>
+                <% end %>
+                <% half_star.times do %>
+                  <i class="fa fa-star-half-alt text-warning"></i>
+                <% end %>
+                <% empty_stars.times do %>
+                  <i class="fa fa-star text-muted"></i>
+                <% end %>
 
-    <% full_stars.times do %>
-      <span class="star full"></span>
-    <% end %>
-
-    <% if half_star == 1 %>
-      <span class="star half"></span>
-    <% end %>
-
-    <% empty_stars.times do %>
-      <span class="star empty"></span>
-    <% end %>
-  <% else %>
-    <p>No valid ratings available.</p>
-  <% end %>
-<% else %>
-  <p>No reviews yet.</p>
-<% end %>
-
-
+                <strong><%= average_rating %> / 5</strong>
+              </span>
+            </p>
           </div>
         </div>
       </div>
@@ -84,7 +80,7 @@
                               <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
                                 <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
-                                <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: {turbo_frame: :comment} %>
+                                <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: { turbo_frame: :comment } %>
                               </li>
                             <% end %>
                           </ul>
@@ -124,101 +120,3 @@
 <div class="text-center mt-5 mb-5">
   <%= button_to "Agregar a mi Biblioteca", syllabus_libraries_path(@syllabus), method: :post, class: 'btn btn-primary btn-lg' unless current_user.id == @syllabus.user_id %>
 </div>
-
-<style>
-  .form-check-input {
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgb(12, 16, 21);
-    background-color: #fff;
-    accent-color: rgb(68, 72, 78);
-    transition: background-color 0.2s, border-color 0.2s;
-  }
-
-  .form-check-input:checked {
-    background-color: rgb(18, 20, 22);
-    border-color: rgb(13, 13, 13);
-  }
-
-  .form-check-input:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(156, 162, 169, 0.5);
-  }
-
-  .form-check-label {
-    font-size: 14px;
-  }
-
-  .progress-bar {
-    transition: width 0.2s ease;
-  }
-
-  .star-rating-input {
-    font-size: 3rem;
-  }
-
-  .card {
-    border-radius: 10px;
-  }
-
-  .card-body {
-    padding: 15px;
-  }
-
-  .bg-dark {
-    background-color: #333 !important;
-  }
-
-  .text-white {
-    color: #fff !important;
-  }
-
-  .bg-white {
-    background-color: #fff !important;
-  }
-
-  .text-dark {
-    color: #333 !important;
-  }
-</style>
-
- <script>
-  // Configuración de AJAX para incluir el token CSRF
-  document.addEventListener("DOMContentLoaded", function() {
-    $.ajaxSetup({
-      headers: {
-        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-      }
-    });
-  });
-
-  // Función para actualizar la barra de progreso
-  document.addEventListener("DOMContentLoaded", function() {
-    const progressBar = document.querySelector(".progress-bar");
-    const checkboxes = document.querySelectorAll(".mark-completed");
-
-    function updateProgressBar() {
-      const totalLectures = checkboxes.length;
-      const completedLectures = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
-      const progressPercentage = totalLectures > 0 ? (completedLectures / totalLectures) * 100 : 0;
-
-      // Actualiza el valor y el texto de la barra de progreso
-      progressBar.style.width = progressPercentage + "%";
-      progressBar.setAttribute("aria-valuenow", progressPercentage);
-      progressBar.innerText = Math.round(progressPercentage) + "% completado";
-
-      // Guardar el estado en la sesión del navegador
-      const completedLectureIds = Array.from(checkboxes)
-        .filter(checkbox => checkbox.checked)
-        .map(checkbox => checkbox.dataset.lectureId);
-      sessionStorage.setItem("completed_lectures", JSON.stringify(completedLectureIds));
-    }
-
-    // Actualiza la barra de progreso al cargar la página
-    updateProgressBar();
-
-    checkboxes.forEach(checkbox => {
-      checkbox.addEventListener("change", updateProgressBar);
-    });
-  });
-</script>
