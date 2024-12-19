@@ -23,7 +23,7 @@
               Categoría: <span class="text-muted"><strong><%= @syllabus.category.name %></strong></span>
             </p>
             <p class="font-weight-bold text-dark mb-3">
-              Mentor: <span class="text-muted"><strong><%= @syllabus.user.email %></strong></span>
+              Mentor: <span class="text-muted"><strong><%= link_to "#{@syllabus.user.first_name} #{@syllabus.user.last_name}", mentor_path(@syllabus), data: {turbo_frame: :mentor_profile} %></strong></span>
             </p>
             <p class="font-weight-bold text-dark mb-3">
               Puntuación:
@@ -50,6 +50,9 @@
             </p>
           </div>
         </div>
+        <div>
+          <%= turbo_frame_tag :mentor_profile %>
+        </div>
       </div>
 
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
@@ -60,7 +63,7 @@
             </div>
           </div><%= link_to "Agregar Modulo", new_syllabus_syllabus_module_path(@syllabus), data: {turbo_frame: :syllabus_module} if current_user.id == @syllabus.user_id %>
           <%= turbo_frame_tag :syllabus_module %>
-           <div class="row">
+            <div class="row">
             <div class="col-8">
               <div class="accordion" id="modulesAccordion">
                 <% @syllabus.syllabus_modules.each_with_index do |modulo, index| %>

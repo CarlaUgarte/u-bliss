@@ -1,0 +1,16 @@
+<%= turbo_frame_tag :mentor_profile do %>
+  <h1 class="mb-4 text-center">Mentor</h1>
+  <div class="text-center">
+    <% if mentor.user.photo.attached? %>
+      <%= image_tag mentor.user.photo.variant(resize_to_fill: [250, 250]).processed, class: 'img-fluid', style: 'border-radius: 50%; width: 150px; height: 150px; object-fit: cover;' %>
+    <% else %>
+      <%= image_tag "avatar.png", class: 'rounded-circle', style: 'width: 200px; height: 200px; object-fit: cover;' %>
+    <% end %>
+  </div>
+  <p> <strong> <%= mentor.user.first_name %> </strong></p>
+  <p><strong> <%= mentor.user.last_name %> </strong></p>
+  <p><strong>Descripción:</strong> <%= mentor.user.description %></p>
+  <p class="font-weight-bold text-dark mb-3">
+  <i class="fa-brands fa-linkedin fa-lg"></i> <span class="text-muted"><strong><%= @syllabus.user.linkedin_url %></strong></span>
+  </p>
+<% end %>

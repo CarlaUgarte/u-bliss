@@ -1,5 +1,5 @@
 class SyllabusesController < ApplicationController
-  before_action :set_syllabus, only: %i[show edit update destroy]
+  before_action :set_syllabus, only: %i[show edit update destroy mentor_profile]
 
   def index
     @categories = Category.all
@@ -44,6 +44,7 @@ class SyllabusesController < ApplicationController
   @modules = @syllabus.syllabus_modules
   @libraries = @syllabus.libraries
   @user = current_user
+  @mentor = Syllabus.find_by(user_id:@syllabus.user_id)
 
   @syllabus = Syllabus.includes(syllabus_modules: :lectures).find(params[:id])
 
@@ -66,6 +67,10 @@ end
   def destroy
     @syllabus.destroy
     redirect_to libraries_path, notice: 'Syllabus exitosamente borrado.'
+  end
+
+  def mentor_profile
+    @mentor = Syllabus.find_by(user_id:@syllabus.user_id)
   end
 
   private
