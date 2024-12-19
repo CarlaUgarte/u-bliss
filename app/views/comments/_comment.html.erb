@@ -20,7 +20,7 @@
     <% else %>
       <div class="comment-bubble" <%= 'user-comment' if comment.user == current_user %> shadow-lg" style="max-width: 95%; width: 95%; margin: 10px auto; background-color: white; padding: 15px;">
         <div class="comment-content">
-          <p><strong><%= comment.user.email %> recomendó:</strong></p>
+          <p><strong><%= "#{comment.user.first_name} #{comment.user.last_name}" %> </strong> recomendó:</p>
           <p><%= comment.content %></p>
         </div>
         <div class="comment-footer d-flex justify-content-end align-items-center" style="background-color: transparent; border-top: none;">

@@ -44,9 +44,9 @@
             <!-- Foto del usuario -->
             <a class="nav-link dropdown-toggle d-flex align-items-center text-black" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <% if current_user.photo.attached? %>
-                <%= image_tag current_user.photo.variant(resize_to_fill: [40, 40]), class: 'rounded-circle', style: 'width: 40px; height: 40px; object-fit: cover;' %>
+                <%= image_tag current_user.photo.variant(resize_to_fill: [40, 40]), class: 'rounded-circle', style: 'width: 30px; height: 30px; object-fit: cover;' %>
               <% else %>
-                <%= image_tag "avatar.png", class: 'rounded-circle', style: 'width: 40px; height: 40px; object-fit: cover;' %>
+                <%= image_tag "avatar.png", class: 'rounded-circle', style: 'width: 30px; height: 30px; object-fit: cover;' %>
               <% end %>
             </a>
             <!-- Menú desplegable -->
