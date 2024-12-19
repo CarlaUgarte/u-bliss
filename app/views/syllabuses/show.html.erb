@@ -58,7 +58,7 @@
             <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progress_percentage %>%;" aria-valuenow="<%= @progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
               <%= @progress_percentage %>% completado
             </div>
-          </div><%= link_to "Agregar Modulo", new_syllabus_syllabus_module_path(@syllabus), data: {turbo_frame: :syllabus_module} %>
+          </div><%= link_to "Agregar Modulo", new_syllabus_syllabus_module_path(@syllabus), data: {turbo_frame: :syllabus_module} if current_user.id == @syllabus.user_id %>
           <%= turbo_frame_tag :syllabus_module %>
            <div class="row">
             <div class="col-8">
