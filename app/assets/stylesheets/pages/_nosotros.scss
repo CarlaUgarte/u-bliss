@@ -1,0 +1,27 @@
+/* Contenedor de todo el contenido */
+.full-width-container {
+  width: 100%;
+  background-color: white;
+  padding: 0;
+  margin: 0;
+}
+
+/* Contenedor de la imagen */
+.image-container {
+  max-width: 60%;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0;
+}
+
+/* Ajustes para la imagen "Sobre" */
+.mi-clase {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-top: 0;
+  display: block;
+}
