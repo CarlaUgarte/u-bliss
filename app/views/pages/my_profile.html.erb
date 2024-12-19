@@ -4,7 +4,6 @@
 
     <% if params[:edit] %>
       <h1 class="mb-4 text-center">Editar Perfil</h1>
-
       <%= form_with model: @user, url: my_profile_path, method: :patch, local: true, class: "needs-validation" do |form| %>
         <div class="mb-3">
           <%= form.label :first_name, "Nombre", class: "form-label" %>
