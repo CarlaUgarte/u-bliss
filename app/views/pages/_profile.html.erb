@@ -1,0 +1,18 @@
+<h1 class="mb-4 text-center">Mi Perfil</h1>
+<div class="text-center">
+  <% if user.photo.attached? %>
+    <%= image_tag user.photo.variant(resize_to_fill: [250, 250]).processed, class: 'img-fluid', style: 'border-radius: 50%; width: 150px; height: 150px; object-fit: cover;' %>
+  <% else %>
+    <%= image_tag "avatar.png", class: 'rounded-circle', style: 'width: 200px; height: 200px; object-fit: cover;' %>
+  <% end %>
+</div>
+<p><strong>Nombre:</strong> <%= user.first_name %></p>
+<p><strong>Apellido:</strong> <%= user.last_name %></p>
+<p><strong>Usuario:</strong> <%= user.username %></p>
+<p style="text-align: justify;">
+  <strong>Descripción:</strong>
+  <span> <%= user.description %></span>
+</p>
+<p class="font-weight-bold text-dark mb-3">
+<i class="fa-brands fa-linkedin fa-lg"></i> <span class="text-muted"><strong><%= user.linkedin_url %></strong></span>
+</p>

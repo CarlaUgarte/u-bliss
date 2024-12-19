@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :syllabus_modules, controller: 'syllabuses_modules', only: %i[ new create ]
     resources :libraries, only: %i[ create destroy ]
     resources :reviews, only: :create
+
   end
   resources :syllabus_modules, controller: 'syllabuses_modules', except: %i[ index ] do
     resources :lectures, only: %i[ new create ]
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   # resources :comments, only: %i[ edit update destroy ]
   resources :libraries, only: :index
 
+  get "/syllabuses/:id/mentor_profile", to: "syllabuses#mentor_profile", as: :mentor
 
   #gamificaion
   post 'tasks/complete_task', to: 'tasks#complete_task', as: 'complete_task'
