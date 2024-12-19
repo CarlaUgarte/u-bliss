@@ -1,5 +1,167 @@
 body {
   font-family: 'Inter', sans-serif !important;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.video-section {
+  position: relative;
+  background-color: #000;
+  padding: 50px 0;
+}
+
+.video-section video {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.dynamic-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary-gradient {
+  background: linear-gradient(to right, #7a44e7, #8c52ff); /* Gradiente en el fondo */
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-family: 'Inter', sans-serif !important; /* Aplica la fuente Inter */
+  transition: background 0.3s ease;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(to right, #7a44e7, #8c52ff); /* Mantén el mismo gradiente en hover */
+  opacity: 0.8;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.counter {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.testimonial img {
+  width: 150px; /* Ajusta el tamaño según sea necesario */
+  height: 150px; /* Asegura que la altura sea igual a la anchura */
+  object-fit: cover; /* Asegura que la imagen se ajuste sin deformarse */
+  border-radius: 50%; /* Hace que la imagen sea circular */
+}
+
+.icon-list {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.icon-list li {
+  margin-bottom: 0.8rem;
+}
+
+.icon-list i {
+  color: #007bff;
+  margin-right: 10px;
+}
+
+.col-md-4, .col-md-6, .col-md-2 {
+  margin-bottom: 1.5rem;
+}
+
+.row {
+  margin-bottom: 3rem;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 60%; /* El video ocupará el 60% del ancho de la ventana */
+  height: 60vh; /* El video ocupará el 60% de la altura de la ventana */
+  margin: 0 auto; /* Centra el video en la página */
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Asegura que ocupe todo el ancho del contenedor */
+  height: 100%; /* Asegura que ocupe toda la altura del contenedor */
+  object-fit: cover; /* Hace que el video ocupe todo el contenedor sin distorsión */
+}
+
+.custom-img {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  height: 250px; /* Ajusta la altura para alargar la imagen */
+  object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+#featuredCoursesCarousel {
+  position: relative;
+}
+
+/* Posicionamiento de los controles del carrusel debajo */
+#featuredCoursesCarousel {
+  position: relative;
+}
+
+#featuredCoursesCarousel {
+  position: relative;
+}
+
+/* Posicionamiento de los controles del carrusel debajo */
+.carousel-control-prev, .carousel-control-next {
+  position: absolute;
+  bottom: -30px; /* Ajusta esta propiedad para mover las flechas más o menos hacia abajo */
+  top: auto;
+  z-index: 1;
+}
+
+/* Fondo y color del icono de las flechas */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black; /* Fondo de las flechas negro */
+  border-radius: 50%; /* Asegura que las flechas tengan un fondo circular */
+}
+
+/* Opcional: Puedes usar esto si no ves las flechas con el color de fondo que hemos definido */
+.carousel-control-prev-icon:before,
+.carousel-control-next-icon:before {
+  color: black; /* Cambia el color del icono de las flechas a negro */
+}
+
+body {
+  font-family: 'Inter', sans-serif !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -50,8 +212,6 @@ p{
 .hero-content {
   padding: 100px 20px;           /* Solo el padding para el contenido */
 }
-
-
 
 .hero h1 {
   font-size: 2rem;
@@ -113,12 +273,13 @@ p{
   color: #777;
 }
 
-.course-card .btn-primary {
-  background-color: #ff6f61;
+.course-card .btn-primary-gradient {
+  background: linear-gradient(to right, #7a44e7, #8c52ff); /* Gradiente en el fondo */
   color: white;
   padding: 10px 20px;
   text-decoration: none;
   border-radius: 5px;
+  font-family: 'Inter', sans-serif !important;
 }
 
 .testimonials {
@@ -175,14 +336,7 @@ footer .footer-links ul li a {
 footer .social-media a {
   color: white;
   text-decoration: none;
-  margin: 0 10px;
 }
-
-footer .social-media a:hover {
-  text-decoration: underline;
-}
-
-
 .btn-primary {
   padding: 10px 15px;
   font-size: 1rem;
@@ -192,7 +346,7 @@ footer .social-media a:hover {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);
+  background: linear-gradient(90deg, #ff5757, #8c52ff);
   background-size: 400% 400%;
   color: white;
   transition: background-position 0.3s ease-out, color 0.4s ease-out; /* Animación más rápida */
@@ -201,19 +355,6 @@ footer .social-media a:hover {
   border-radius: 5px;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%; /* Comienza en la posición inicial */
-  }
-  50% {
-    background-position: 100% 50%; /* Mueve el gradiente hacia la derecha */
-  }
-  100% {
-    background-position: 0% 50%; /* Vuelve a la posición inicial */
-  }
-}
-
-/* Efecto de hover en el botón */
 .btn-primary:hover {
   background-position: 100% 50%;  /* El gradiente se mueve de izquierda a derecha */
   color: white;  /* Mantiene el color blanco del texto */
@@ -232,267 +373,59 @@ footer .social-media a:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
-.black {
-background-color: black !important;
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  background: linear-gradient(to right, #ff5757, #8c52ff); /* Gradiente de fondo para los botones */
+  color: white; /* Texto blanco en los botones */
 }
 
-/* Carrusel y contenedor */
-#customCoursesCarousel .carousel-inner {
-    display: flex;
-    overflow: hidden;
+.btn-lg:hover {
+  background: linear-gradient(to right, #7a44e7, #8c52ff); /* Gradiente más oscuro al pasar el ratón */
 }
 
-/* Contenedor para las cards dentro de cada slide */
-.custom-courses-container {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+/* Estilo para el título con gradiente */
+.gradient-text {
+  background: linear-gradient(to right, #ff5757, #8c52ff); /* Gradiente de fondo */
+  -webkit-background-clip: text; /* Asegura que el gradiente se aplique solo al texto */
+  background-clip: text; /* Aplica el gradiente solo al texto */
+  color: transparent; /* El texto es transparente para que se vea el gradiente */
+  font-weight: bold;
 }
 
-/* Estilo para cada tarjeta */
-.custom-course-card {
-    flex: 1 1 30%;  /* Cada tarjeta ocupa el 30% del ancho disponible */
-    max-width: 280px;  /* Máximo de 280px por tarjeta */
-    margin: 0 10px;  /* Espaciado entre las tarjetas */
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+/* Asegura que las tarjetas estén centradas dentro de la fila */
+.row {
+  display: flex;
+  justify-content: center; /* Centra las tarjetas horizontalmente */
+  flex-wrap: wrap; /* Asegura que las tarjetas se ajusten si es necesario */
 }
 
-/* Efecto hover para las tarjetas */
-.custom-course-card:hover {
-    transform: translateY(-10px);
+.testimonial {
+  max-width: 100%; /* Asegura que las tarjetas no se desborden */
+  margin: 0 auto; /* Centra las tarjetas dentro de cada columna */
 }
 
-/* Título de las tarjetas */
-.custom-course-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+.card-body {
+  padding: 1.5rem;
 }
 
-/* Botón de cada tarjeta */
-.custom-course-card .buttons {
-    text-align: center;
-}
-
-
-/* Media query para pantallas más pequeñas */
-@media (max-width: 768px) {
-    .custom-course-card {
-        flex: 1 1 45%;  /* En pantallas pequeñas, las tarjetas ocupan el 45% del ancho */
-        max-width: none;  /* Sin limitación de tamaño */
-    }
-}
-
-@media (max-width: 576px) {
-    .custom-course-card {
-        flex: 1 1 100%;  /* En pantallas aún más pequeñas, las tarjetas ocupan el 100% */
-    }
+.bg-primary {
+  background-color: black !important;
 }
 
 button, .trash-icon {
-  border: none;
+  border: none !important;
   background: transparent;
   padding: 0;
   cursor: pointer;
-}
-
-.fas.fa-pen-to-square, .fas.fa-trash-can {
-  color: black;
-  font-size: 20px;
-}
-
-.trash-icon i {
-  display: inline-block;
-  margin: 0;
-}
-
-
-.comment-bubble {
-  padding: 10px;
-  border-radius: 20px;
-  max-width: 80%;
-  margin: 10px 0;
-  position: relative;
-  background-color: #f1f1f1;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-}
-
-
-.comment-bubble.user-comment {
-  background-color: #e3ecf5;
-  align-self: flex-end;
-  margin-left: auto;
-}
-
-
-.comment-bubble:not(.user-comment) {
-  background-color: #ffffff;
-  align-self: flex-start;
-}
-
-
-.comment-bubble:hover {
-  transform: translateY(-5px);
-}
-
-.mission-vision-values {
-  padding: 50px 0;
-  background-color: #f9f9f9;
-}
-
-.custom-card {
-  border: none;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-  display: flex;
-  flex-direction: column;
-  height: 80%;
-}
-
-.custom-card .card-body {
-  padding: 30px;
-  flex-grow: 1; /* Esto hace que las cards tengan la misma altura */
-}
-
-.custom-card .card-title {
-  font-size: 1.1rem;
-  font-weight: bolder;
-  color: transparent !important;  /* El texto es transparente para que se vea el gradiente */
-  position: relative;
-  display: inline-block;
-  text-decoration: none;
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900, #00C2D1, #0A1045);  /* Gradiente */
-  background-size: 400% 400%;  /* Gran tamaño del gradiente */
-  background-position: 0% 0%;  /* El gradiente comienza en la posición inicial */
-  -webkit-background-clip: text;  /* Aplica el gradiente solo al texto */
-  background-clip: text;  /* Aplica el gradiente solo al texto */
-}
-
-.custom-card .card-text {
-  color: #555;
-}
-
-.custom-card ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.custom-card p {
-  font-size: 1rem;
-}
-
-.custom-card ul li {
-  font-size: 1rem;
-  color: #000000;
-}
-
-.mission-vision-values .intro-text {
-  font-size: 1rem;
-  color: #000000;
-  margin-bottom: 30px;
-}
-
-/* Estilo base para las cards */
-/* Estilo base para las cards */
-/* Estilo base para las cards */
-.custom-card {
-  position: relative;
-  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px; /* Espacio entre las cards */
-  background: linear-gradient(45deg, #ED33B9, #F6AF65, #F9E900); /* Gradiente con los tres primeros colores */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra por defecto */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 15px; /* Ajustamos el padding de la card */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 250px; /* Altura ajustada para hacer las cards más pequeñas */
-  color: transparent; /* El texto es transparente por defecto */
-  overflow: hidden; /* Asegura que el texto no sobresalga cuando no está visible */
-  text-align: center;
-  flex-direction: column;
-  width: 100%; /* Asegura que las cards ocupen el 100% de su contenedor */
-}
-
-/* Eliminar márgenes y padding del título y el contenido */
-.custom-card .card-body {
-  padding: 0; /* Sin padding en el cuerpo de la card */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 100%; /* Para que la card ocupe toda la altura */
-}
-
-/* Título de la card (invisible por defecto) */
-.custom-card .card-body h3 {
-  margin-bottom: 15px; /* Espacio entre el título y el texto */
-  font-size: 1.5rem; /* Tamaño ajustado del título */
-  display: none; /* Ocultar el título por defecto */
-  color: black; /* Título de color negro por defecto cuando se hace hover */
-}
-
-/* Párrafo de la card y lista de valores */
-.custom-card .card-body p,
-.custom-card .card-body ul {
-  margin: 0; /* Eliminar márgenes en el párrafo o lista */
-  padding: 0; /* Eliminar padding en los párrafos o listas */
-  display: none; /* Ocultar el texto por defecto */
-}
-
-/* Mostrar el icono cuando la card está en estado por defecto */
-.icon-card {
-  display: block; /* El icono está visible por defecto */
-  font-size: 3rem; /* Tamaño del icono */
-  color: black; /* Color del icono */
-  margin-bottom: 15px; /* Espacio entre el icono y el texto */
-}
-
-/* Hover: cambiar el fondo a blanco y mostrar el texto */
-.custom-card:hover {
-  background-color: #fff !important; /* Fondo blanco al hacer hover */
-  transform: translateY(-10px); /* Sube un poco */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al hacer hover */
-}
-
-/* Al hacer hover, mostrar el título, el texto y ocultar el icono */
-.custom-card:hover .card-body h3,
-.custom-card:hover .card-body p,
-.custom-card:hover .card-body ul {
-  display: block; /* Mostrar el texto y título */
-  color: black; /* Texto negro */
-}
-
-
-.custom-card:hover .icon-card {
-  display: none;
-}
-
-
-.custom-card:nth-child(1):hover {
-  background-color: #fff !important;
-}
-
-
-.custom-card:nth-child(2):hover {
-  background-color: #fff !important;
-}
-
-.custom-card:nth-child(3):hover {
-  background-color: #fff !important;
-}
-
-.custom-card:hover {
-  background: white !important;
-}
-
-@media (max-width: 768px) {
-  .mission-vision-values .card-body {
-    padding: 20px;
-  }
 }

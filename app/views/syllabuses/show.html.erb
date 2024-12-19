@@ -61,11 +61,11 @@
             <h1 class="text-black text-center font-weight-bold mb-4">
               <%= @syllabus.title %>
             </h1>
-          <div class="progress mt-3">
+          <div class="progress mt-3 mb-5">
             <div class="progress-bar bg-success" role="progressbar" style="width: <%= @progress_percentage %>%;" aria-valuenow="<%= @progress_percentage %>" aria-valuemin="0" aria-valuemax="100">
               <%= @progress_percentage %>% completado
             </div>
-          </div><%= link_to "Agregar Modulo", new_syllabus_syllabus_module_path(@syllabus), data: {turbo_frame: :syllabus_module} if current_user.id == @syllabus.user_id %>
+          </div><%= link_to "Agregar Módulo", new_syllabus_syllabus_module_path(@syllabus), data: {turbo_frame: :syllabus_module}, class: "btn btn-primary m-2" if current_user.id == @syllabus.user_id %>
           <%= turbo_frame_tag :syllabus_module %>
             <div class="row">
             <div class="col-8">

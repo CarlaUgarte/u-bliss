@@ -1,16 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
   <div class="container d-flex justify-content-between align-items-center w-100">
-
-<!-- Contenedor para logo y texto -->
-<a class="d-flex align-items-center logo-container" href="<%= root_path %>">
-  <!-- Logo -->
-  <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity", style: "max-width: 40px;") %>
-
-  <!-- Text Logo -->
-  <p class="text-logo mb-0 me-5 ms-2">U-Bliss</p>
-</a>
-
-
+    <!-- Contenedor para logo y texto -->
+    <a class="d-flex align-items-center justify-content-center logo-container" href="<%= root_path %>" style="height: 100px;">
+      <!-- Logo -->
+      <%= image_tag("Logo.png", alt: "U-bliss Logo", class: "img-hover-opacity me-3", style: "max-width: 150px;") %>
+    </a>
 
     <!-- Formulario de búsqueda en la navbar -->
     <%= form_with url: syllabuses_path, method: :get, class: "d-flex custom-form" do %>
@@ -20,7 +14,7 @@
 
     <!-- Menú de navegación alineado a la derecha -->
     <div class="collapse navbar-collapse">
-      <ul class="navbar-nav ms-auto d-flex justify-content-end gap-3">
+      <ul class="navbar-nav ms-auto d-flex justify-content-end gap-3 align-items-center">
         <!-- Enlace Home -->
         <li class="nav-item <%= 'active' if current_page?(root_path) %>">
           <%= link_to 'Home', root_path, class: 'nav-link text-black' %>

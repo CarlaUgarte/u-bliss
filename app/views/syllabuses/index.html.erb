@@ -1,7 +1,7 @@
-<h1 class="display-4 text-center mt-5 fw-bold">Syllabus que tenemos para tí</h1>
+<h1 class="text-center mt-5 fw-bold">Syllabus que tenemos para tí</h1>
 
-<div class="container my-5">
-  <div class="row">
+<div class="container my-5 container-width">
+  <div class="row g-4">
     <% @categories.each do |category| %>
       <div class="col-md-4 mb-4">
         <div class="list-group shadow-sm rounded">
@@ -9,23 +9,25 @@
             <h5 class="mb-1 text-truncate fw-bold"><%= category.name %></h5>
           </div>
           <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
-          <%category_syllabuses = Syllabus.where(category_id: category.id)%>
+          <% category_syllabuses = Syllabus.where(category_id: category.id) %>
           <% category_syllabuses.each do |syllabus| %>
-            <%=link_to syllabus_path(syllabus), class: 'text-dark text-decoration-none' do %>
-            <div class="list-group-item d-flex justify-content-between align-items-center py-3">
-              <div class="d-block">
-                <h5 class="mb-1 text-center"><strong><%= syllabus.title %></strong></h5>
-                <small class=""><%= syllabus.description.first(90) %>...</small>
-              </div>
+            <div class="syllabus-card">
+              <%= link_to syllabus_path(syllabus), class: 'text-dark text-decoration-none' do %>
+                <div class="list-group-item d-flex justify-content-between align-items-center py-3 syllabus-item">
+                  <div class="d-block">
+                    <h5 class="mb-1 text-center"><strong><%= syllabus.title %></strong></h5>
+                    <small><%= syllabus.description.first(90) %>...</small>
+                  </div>
+                </div>
+              <% end %>
             </div>
-            <% end %>
           <% end %>
         </div>
       </div>
     <% end %>
   </div>
 </div>
-<% console %>
+
 <!-- Estilos específicos para las imágenes, tarjetas y títulos -->
 <style>
   .container.my-5 {
@@ -59,4 +61,56 @@
     font-weight: bold; /* Destaca el texto */
     font-family: 'Inter', sans-serif !important;
   }
+
+  /* Asegura que los sílabos tengan el mismo tamaño */
+/* Estilo para el syllabus */
+.syllabus-item {
+  height: 200px; /* Ajusta el tamaño como lo necesites */
+  overflow: hidden;
+  position: relative; /* Necesario para posicionar el icono encima del contenido */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover: el blur afecta solo al contenido, no al icono */
+.syllabus-card:hover .syllabus-item .syllabus-content {
+  filter: blur(5px); /* Aplica el blur solo al contenido */
+  transition: filter 0.3s ease; /* Transición suave para el blur */
+}
+
+/* Icono de ojo sobre el syllabus */
+.syllabus-card:hover .syllabus-item::before {
+  content: '\f06e'; /* Código Unicode para el ícono de ojo (Font Awesome) */
+  font-family: 'Font Awesome 5 Free'; /* Asegúrate de usar la familia de Font Awesome */
+  font-weight: 900; /* Necesario para mostrar los iconos de Font Awesome */
+  font-size: 50px; /* Tamaño del icono */
+  color: black; /* Color del icono */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; /* Asegura que el icono esté por encima del contenido */
+  pointer-events: none; /* El icono no interfiere con los clics */
+}
+
+/* Desaparecer el contenido del syllabus cuando se pasa el ratón */
+.syllabus-card:hover .syllabus-item .syllabus-content {
+  opacity: 0; /* Hace desaparecer el contenido cuando se pasa el ratón */
+}
+
+/* Asegurarse de que el contenido no se vea después del hover */
+.syllabus-content {
+  transition: opacity 0.3s ease;
+}
+
+/* Estilo adicional para las imágenes si es necesario */
+.img-category {
+  width: 100%;
+  height: 200px;
+  object-fit: cover; /* Asegura que las imágenes se ajusten bien al espacio */
+  border-radius: 10px;
+}
+
 </style>

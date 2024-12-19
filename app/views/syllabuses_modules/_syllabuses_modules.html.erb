@@ -6,7 +6,7 @@
   </h2>
   <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
     <div class="accordion-body">
-      <%= link_to "Agregar Leccion", new_syllabus_module_lecture_path(modulo), data: {turbo_frame: :lecture} if current_user.id == modulo.syllabus.user_id %>
+      <%= link_to "Agregar Lección", new_syllabus_module_lecture_path(modulo), data: {turbo_frame: :lecture}, class: "btn btn-primary m-2" if current_user.id == modulo.syllabus.user_id %>
       <%= turbo_frame_tag :lecture %>
       <% if modulo.lectures.any? %>
         <ul id="lecture_list" class="list-group">

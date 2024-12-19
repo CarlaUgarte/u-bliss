@@ -1,158 +1,125 @@
-<section class="hero">
-    <div class="hero-text">
-        <h1>¡Aprende con los mejores mentores!</h1>
-        <p class="big">Aprende y comparte con tus pares.</p>
-        <div class="buttons">
-            <%= link_to "Explora Syllabuses", syllabuses_path, class: "btn-primary" %>
-        </div>
+<!-- Fila 1: Video con Llamada a la Acción -->
+<section class="video-section text-center">
+  <div class="video-wrapper">
+    <!-- Embed de YouTube -->
+    <iframe src="https://www.youtube.com/embed/XBmZcwEO1R4"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+  </div>
+  <div class="text-center mt-4">
+    <h1 class="dynamic-text text-white">U-Bliss - Tu guía al conocimiento</h1>
+    <div class="mt-3">
+      <a href="/syllabuses" class="btn btn-primary btn-lg mx-2">¡Comienza como Estudiante!</a>
+      <a href="/syllabuses/new" class="btn btn-secondary btn-lg mx-2">¡Comienza como Mentor!</a>
     </div>
+  </div>
 </section>
 
-        <% if params[:query].present? %>
-    <h3>Resultados de búsqueda:</h3>
-
-    <h4>Categorías:</h4>
-    <% if @categories.any? %>
-        <ul>
-        <% @categories.each do |category| %>
-            <li><%= category.name %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron categorías para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Silabus:</h4>
-    <% if @syllabuses.any? %>
-        <ul>
-        <% @syllabuses.each do |syllabus| %>
-            <li><%= syllabus.title %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron silabus para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Módulos:</h4>
-    <% if @syllabuses_modules.any? %>
-        <ul>
-        <% @syllabuses_modules.each do |mod| %>
-            <li><%= mod.name %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron módulos para "<%= params[:query] %>".</p>
-    <% end %>
-
-    <h4>Lecturas:</h4>
-    <% if @lectures.any? %>
-        <ul>
-        <% @lectures.each do |lecture| %>
-            <li><%= lecture.details %></li>
-        <% end %>
-        </ul>
-    <% else %>
-        <p>No se encontraron lecturas para "<%= params[:query] %>".</p>
-    <% end %>
-    <% end %>
-
-
-<section>
-  <div class="container">
-    <div class="row mb-2">
-      <div class="col-12">
-        <h2 class="mt-5">Syllabuses Destacados</h2>
-      </div>
+<!-- Fila 2: ¿Qué es U-Bliss? -->
+<section class="container">
+  <div class="row align-items-center">
+    <div class="col-md-6 text-start"> <!-- Cambié text-center por text-start -->
+<h1 class="section-title gradient-text">¿Qué es U-Bliss?</h1>
+      <p>U-Bliss es una plataforma educativa gratuita diseñada para democratizar el acceso al aprendizaje. Permite a las personas adquirir nuevas profesiones, compartir conocimientos y colaborar en un entorno que fomenta el crecimiento profesional y personal. Con herramientas innovadoras en línea, U-Bliss busca empoderar a una comunidad global comprometida con la educación de calidad y el desarrollo continuo.</p>
     </div>
-
-    <div class="row mb-5">
-      <% @categories.each do |category| %>
-        <% if category.syllabuses.any? %>
-          <div class="col-12 col-md-4 mb-2 mt-5">
-            <div class="custom-card-vertical rounded-5 bg-light">
-                        <%= image_tag "categorias/#{category.name}.jpg", class: "img-category" %>
-
-              <div class="card-body d-flex flex-column">
-                <!-- Mostrar solo el primer syllabus de la categoría -->
-                <% syllabus = category.syllabuses.first %> <!-- Solo el primer syllabus -->
-                <h3 class="card-title"><%= syllabus.title %></h3>
-                <p class="card-subtitle">Mentor: <strong><%= syllabus.user.email %></strong></p>
-                <p class="card-text"><%= syllabus.description %></p>
-                <div class="d-flex justify-content-center mt-2 gap-2">
-                  <!-- Enlace al detalle del syllabus -->
-                  <%= link_to "Ver más", syllabus_path(syllabus), class: "btn btn-primary custom-btn" %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %> <!-- Fin verificación si hay syllabuses en la categoría -->
-      <% end %> <!-- Fin del ciclo de categorías -->
+    <div class="col-md-6">
+      <img src="<%= asset_path('home/U-Bliss.png')%>" class="img-fluid rounded" alt="Imagen representativa de U-Bliss">
     </div>
   </div>
 </section>
 
 
-
-
-
-
-
-
-
-
-
-
-<section class="mission-vision-values">
-  <div class="container mt-5">
-    <div class="row text-center mt-5">
-      <div class="col-12">
-        <h2>Quiénes Somos</h2>
-        <p class="intro-text mt-4 big">Somos un grupo de estudiantes que buscamos aprender de manera más eficiente.<br>Te invitamos a conocer nuestra misión, visión y valores que guían nuestra plataforma.</p>
-      </div>
-    </div>
-
-   <div class="row mt-4">
-  <!-- Misión -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Misión</h3>
-        <p>Ayudar a las personas a aprender de manera más eficiente y con propósito, proporcionando una plataforma donde los estudiantes puedan compartir sus experiencias y recursos útiles.</p>
-        <div class="icon-card">
-          <!-- Icono de Misión -->
-          <i class="fas fa-book"></i>
+<!-- Fila 3: Beneficios para Estudiantes y Maestros -->
+<section class="container">
+  <div class="row text-center">
+    <div class="col-md-6 mb-2">
+      <!-- Contenedor para los beneficios de ser Estudiante -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/estudiante.png")%>" alt="Beneficios de ser Estudiante" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Visión -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Visión</h3>
-        <p>Ser la plataforma líder que conecta a estudiantes de todo el mundo, creando una comunidad global de aprendizaje colaborativo y eficiente.</p>
-        <div class="icon-card">
-          <!-- Icono de Visión -->
-          <i class="fas fa-globe"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Valores -->
-  <div class="col-12 col-md-4">
-    <div class="card custom-card">
-      <div class="card-body">
-        <h3 class="card-title">Valores</h3>
-        <ul>
-          <li><strong>Colaboración:</strong> Fomentamos el trabajo en equipo.</li>
-          <li><strong>Empoderamiento:</strong> Ayudamos a cada usuario a tomar control sobre su aprendizaje.</li>
-          <li><strong>Crecimiento continuo:</strong> Siempre estamos aprendiendo y mejorando.</li>
+        <h3>Beneficios de ser Estudiante</h3>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-check-circle"></i> Acceso a cursos exclusivos</li>
+          <li><i class="bi bi-check-circle"></i> Aprendizaje flexible y personalizado</li>
+          <li><i class="bi bi-check-circle"></i> Comunidad activa de estudiantes</li>
         </ul>
-        <div class="icon-card">
-          <!-- Icono de Valores -->
-          <i class="fas fa-handshake"></i>
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <!-- Contenedor para los beneficios de ser Mentor -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/mentor.png")%>" alt="Beneficios de ser Mentor" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <h3>Beneficios de ser Mentor</h3>
+        <ul class="list-unstyled">
+          <li><i class="bi bi-check-circle"></i> Ayuda a transformar vidas</li>
+          <li><i class="bi bi-check-circle"></i> Flexibilidad para enseñar online</li>
+          <li><i class="bi bi-check-circle"></i> Plataforma fácil de usar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Fila 4: Cursos Destacados -->
+<section class="container my-5">
+  <h2 class="section-title text-center mb-4">Categorías Destacadas</h2>
+  <div id="featuredCoursesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <!-- Indicadores -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#featuredCoursesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#featuredCoursesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
+
+    <!-- Contenedor de las tarjetas -->
+    <div class="carousel-inner">
+     <!-- Contenedor de las tarjetas -->
+<div class="carousel-inner">
+  <!-- Slide 1 -->
+  <div class="carousel-item active">
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/programación.png')%>" class="card-img-top rounded custom-img" alt="Curso 1">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/arte.png')%>" class="card-img-top rounded custom-img" alt="Curso 2">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/finanzas.png')%>" class="card-img-top rounded custom-img" alt="Curso 3">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slide 2 -->
+  <div class="carousel-item">
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/salud.png')%>" class="card-img-top rounded custom-img" alt="Curso 4">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/negocios.png')%>" class="card-img-top rounded custom-img" alt="Curso 5">
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-lg">
+          <img src="<%= asset_path('home/idiomas.png')%>" class="card-img-top rounded custom-img" alt="Curso 6">
         </div>
       </div>
     </div>
@@ -160,18 +127,102 @@
 </div>
 
 
- <section style="margin-top: 100px; margin-bottom: 50px;">
-  <div class="row mt-5 justify-content-center mb-5">
-    <div class="col-12 col-md-8">
-      <div class="card shadow-lg text-center p-4 rounded-5 border-0">
-        <div class="card-body">
-          <h2 class="mb-3">Nuestra Filosofía</h2>
-          <p class="big mt-2">Somos un grupo de estudiantes que, al principio, nos sentimos perdidos, pero decidimos crear esta plataforma para compartir rutas de aprendizaje, recomendaciones y recursos útiles. Queremos que todos encontremos el mejor camino para aprender y crecer juntos.</p>
-          <a href="#" class="mt-2 btn btn-primary custom-btn">Conviértete en Mentor</a>
+    <!-- Controles del carrusel -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#featuredCoursesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#featuredCoursesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
+</section>
+
+<!-- Fila 6: Características principales -->
+<section class="container-fluid py-5">
+  <h2 class="section-title text-center mb-4">Nuestros valores</h2>
+  <div class="row justify-content-center text-center">
+    <div class="col-md-2 mb-4">
+      <!-- Contenedor centrado para Profesionalismo -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/profesionalismo.png")%>" alt="Profesionalismo" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
+        <h5>Profesionalismo</h5>
+      </div>
+    </div>
+    <div class="col-md-2 mb-4">
+      <!-- Contenedor centrado para Integridad -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/integridad.png")%>" alt="Integridad" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <h5>Integridad</h5>
+      </div>
+    </div>
+    <div class="col-md-2 mb-4">
+      <!-- Contenedor centrado para Compromiso -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/compromiso.png")%>" alt="Compromiso" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <h5>Compromiso</h5>
+      </div>
+    </div>
+    <div class="col-md-2 mb-4">
+      <!-- Contenedor centrado para Transparencia -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/transparencia.png")%>" alt="Transparencia" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <h5>Transparencia</h5>
+      </div>
+    </div>
+    <div class="col-md-2 mb-4">
+      <!-- Contenedor centrado para Innovación -->
+      <div class="d-flex flex-column align-items-center">
+        <!-- Espacio para el icono -->
+        <div class="icon-container mb-3" style="width: 60px; height: 60px;">
+          <img src="<%= asset_path("iconos/innovacion.png")%>" alt="Innovación" class="img-fluid" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <h5>Innovación</h5>
       </div>
     </div>
   </div>
+</section>
+
+
+<!-- Fila 7: Recomendaciones -->
+<section class="container my-5">
+  <h2 class="section-title text-center mb-4">Quienes nos recomiendan</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-4 text-center mb-4">
+      <div class="testimonial shadow-lg p-4 rounded">
+        <img src="<%= asset_path('home/mujer1.jpg')%>" class="img-fluid rounded-circle mb-3" alt="Cliente 1">
+        <h5>Citatli Ayala</h5>
+        <p>"Gracias a U-Bliss he podido iniciar mis estudios de diseño de modas."</p>
+      </div>
     </div>
+    <div class="col-md-4 text-center mb-4">
+      <div class="testimonial shadow-lg p-4 rounded">
+        <img src="<%= asset_path('home/sergey.webp')%>" class="img-fluid rounded-circle mb-3" alt="Cliente 2">
+        <h5>Sergey Mijailovich</h5>
+        <p>"U-Bliss me ha proporcionado material para aprender hablar español."</p>
+      </div>
+    </div>
+    <div class="col-md-4 text-center mb-4">
+      <div class="testimonial shadow-lg p-4 rounded">
+        <img src="<%= asset_path('home/mujer2.jpg')%>" class="img-fluid rounded-circle mb-3" alt="Cliente 3">
+        <h5>Ester Tapia</h5>
+        <p>"He mejorado mis finanzas gracias a la plataforma de U-Bliss."</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 </section>
