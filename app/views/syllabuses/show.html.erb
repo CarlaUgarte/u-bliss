@@ -33,7 +33,6 @@
                 <% else %>
                   <% average_rating = 0 %>
                 <% end %>
-
                 <% full_stars = average_rating.to_i %>
                 <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
                 <% empty_stars = 5 - full_stars - half_star %>
@@ -46,7 +45,6 @@
                 <% empty_stars.times do %>
                   <i class="fa fa-star text-muted"></i>
                 <% end %>
-
                 <strong><%= average_rating %> / 5</strong>
               </span>
             </p>

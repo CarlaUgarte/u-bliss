@@ -1,4 +1,5 @@
 .custom-card-vertical {
+  text-align: justify;
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -144,7 +145,7 @@
   background-size: 400% 400%;
   background-position: 0% 0%;
   -webkit-background-clip: text;
-  background-clip: text; 
+  background-clip: text;
 }
 
 #nav-profile-tab {
