@@ -27,7 +27,7 @@ class SyllabusesController < ApplicationController
     @syllabus = Syllabus.new(syllabus_params)
     @syllabus.user = current_user
     if @syllabus.save
-      redirect_to new_syllabus_syllabus_module_path(@syllabus), notice: 'Syllabus fue exitosamente creado.'
+      redirect_to syllabus_path(@syllabus), notice: 'Syllabus fue exitosamente creado.'
 
     else
       render :new, status: :unprocessable_entity
