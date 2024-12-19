@@ -423,3 +423,9 @@ footer .social-media a {
   background-color: black !important;
 }
 
+button, .trash-icon {
+  border: none !important;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}

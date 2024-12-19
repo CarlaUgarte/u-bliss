@@ -56,3 +56,8 @@
 .container-width {
   max-width: 80%;
 }
+
+.accordion-button:not(.collapsed) {
+  background-color: black !important;
+  color: white !important;
+}
