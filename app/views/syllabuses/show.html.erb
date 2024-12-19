@@ -33,7 +33,6 @@
                 <% else %>
                   <% average_rating = 0 %>
                 <% end %>
-
                 <% full_stars = average_rating.to_i %>
                 <% half_star = (average_rating - full_stars) >= 0.5 ? 1 : 0 %>
                 <% empty_stars = 5 - full_stars - half_star %>
@@ -46,7 +45,6 @@
                 <% empty_stars.times do %>
                   <i class="fa fa-star text-muted"></i>
                 <% end %>
-
                 <strong><%= average_rating %> / 5</strong>
               </span>
             </p>
@@ -78,8 +76,8 @@
                             <% modulo.lectures.each do |lecture| %>
                               <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
-                                <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
-                                <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: { turbo_frame: :comment } %>
+                                <span class="flex-grow-1"><%= lecture.details %></span>
+                                <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm py-1 px-2 flex-shrink-0 ms-3', data: { turbo_frame: :comment } %>
                               </li>
                             <% end %>
                           </ul>
