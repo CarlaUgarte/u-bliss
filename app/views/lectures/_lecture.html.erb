@@ -1,0 +1,5 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+  <%= check_box_tag "lecture_#{lecture.id}_completed", true, session[:completed_lectures]&.include?(lecture.id), class: 'form-check-input me-2 mark-completed', data: { lecture_id: lecture.id } %>
+  <span class="flex-grow-1"><%= lecture.details.truncate(50) %></span>
+  <%= link_to 'Recomendaciones', lecture_comments_path(lecture), class: 'btn btn-primary btn-sm', data: { turbo_frame: :comment } %>
+</li>

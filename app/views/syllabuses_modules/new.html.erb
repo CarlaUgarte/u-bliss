@@ -1,10 +1,14 @@
-<%= simple_form_for([@syllabus, @syllabus_module], html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>  <!-- Título del modulo -->
+<%= turbo_frame_tag :syllabus_module do %>
+  <div id="input-module" class="custom-card-new rounded-5 bg-light">
+    <%= simple_form_for([@syllabus, @syllabus_module], html: { class: 'container my-5', style: 'max-width: 600px;' }) do |f| %>  <!-- Título del modulo -->
 
-  <div class="form-group">
-    <%= f.input :name, label: 'Titulo del Modulo', input_html: { class: 'form-control' } %>
-  </div>
+      <div class="form-group">
+        <%= f.input :name, label: 'Titulo del Modulo', input_html: { class: 'form-control' } %>
+      </div>
 
-  <div class="form-actions text-center">
-    <%= f.button :submit, 'Agregar', class: 'btn btn-primary' %>
+      <div class="form-actions text-center">
+        <%= f.button :submit, 'Agregar', class: 'btn btn-primary mt-5' %>
+      </div>
+    <% end %>
   </div>
 <% end %>

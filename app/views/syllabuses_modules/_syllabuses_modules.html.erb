@@ -1,0 +1,22 @@
+<div class="accordion-item">
+  <h2 class="accordion-header" id="heading<%= index %>">
+    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index.zero? %>" aria-controls="collapse<%= index %>">
+      <%= modulo.name %>
+    </button>
+  </h2>
+  <div id="collapse<%= index %>" class="accordion-collapse collapse <%= 'show' if index.zero? %>" aria-labelledby="heading<%= index %>" data-bs-parent="#modulesAccordion">
+    <div class="accordion-body">
+      <%= link_to "Agregar Leccion", new_syllabus_module_lecture_path(modulo), data: {turbo_frame: :lecture} %>
+      <%= turbo_frame_tag :lecture %>
+      <% if modulo.lectures.any? %>
+        <ul id="lecture_list" class="list-group">
+          <% modulo.lectures.each do |lecture| %>
+          <%= render "lectures/lecture", lecture: %>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No hay lecciones en este módulo.</p>
+      <% end %>
+    </div>
+  </div>
+</div>

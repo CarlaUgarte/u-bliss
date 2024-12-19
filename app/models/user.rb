@@ -4,6 +4,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Asociaciones
+  has_many :reviews, dependent: :destroy
   has_many :syllabuses, dependent: :destroy
   has_many :libraries, dependent: :destroy
   has_many :comments, dependent: :destroy

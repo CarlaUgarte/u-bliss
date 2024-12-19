@@ -101,6 +101,25 @@
   box-shadow: none;
 }
 
+.custom-card-new {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  max-width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: auto;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 5px solid transparent;
+  background: white;
+}
+
 .nav-link.active {
   font-weight: bolder;
   color: transparent !important;

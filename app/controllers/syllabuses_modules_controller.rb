@@ -4,11 +4,18 @@ class SyllabusesModulesController < ApplicationController
     @syllabus_module = SyllabusModule.new
   end
 
+  def show
+    @syllabus_module = SyllabusModule.find(params[:id])
+  end
+
   def create
     @syllabus_module = SyllabusModule.new(syllabus_module_params)
     @syllabus_module.syllabus = @syllabus
     if @syllabus_module.save!
-      redirect_to new_syllabus_module_lecture_path(@syllabus_module)
+      respond_to do |format|
+        format.turbo_stream
+        format.html {redirect_to @syllabus_module}
+      end
     else
       render :new, status: :unprocessable_entity
     end

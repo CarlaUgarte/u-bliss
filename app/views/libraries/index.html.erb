@@ -39,6 +39,9 @@
     </div>
 
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+      <div class="text-center m-1">
+        <%= link_to 'Agregar Syllabus', new_syllabus_path, class: 'btn btn-primary btn-lg mt-5' %>
+      </div>
       <div class="row mb-5">
         <% current_user.syllabuses.each do |syllabus| %>
           <div class="col-12 col-md-4 mb-4 mt-5">
@@ -64,10 +67,6 @@
             </div>
           </div>
         <% end %>
-      </div>
-
-      <div class="text-center mt-5 mb-5">
-        <%= link_to 'Agregar Syllabus', new_syllabus_path, class: 'btn btn-primary btn-lg mt-5' %>
       </div>
     </div>
   </div>
